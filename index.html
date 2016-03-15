@@ -64,6 +64,56 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-03-15T03:07:08.000Z"><a href="/2016/03/15/关于return语句是否立即返回/">2016-03-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/03/15/关于return语句是否立即返回/">关于return语句是否立即返回</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>java的return语句，好多程序员都认为自己对这个语句很了解，可是，事实是这样吗？请看下边的一个例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class TestClass &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TestClass tc = new TestClass();</span><br><span class="line">		int b = tc.getInt();</span><br><span class="line">		System.out.println(b);</span><br><span class="line">	&#125;</span><br><span class="line">	public int <span class="function"><span class="title">getInt</span></span>() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="built_in">return</span> 1;</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			<span class="built_in">return</span> 2;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述程序打印的结果是什么呢？<br>答案是 2 </p>
+<p>为什么是2呢？ 这是因为，就好像是为主函数准备了一个容器，在调用子函数的过程中，遇到return语句，并不是立即返回，而是把结果放到函数栈中，此时的函数也不是立即返回，而是等到finally语句执行完后，才会真正返回。所以在finally语句结束后，返回结果是2，把2放入到函数栈中覆盖第一个返回值1，那么，程序的输出结果就是2了。</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/java基础/">java基础</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-03-14T08:43:15.000Z"><a href="/2016/03/14/内部类详解/">2016-03-14</a></time>
       
       
@@ -224,7 +274,7 @@
   <h3 class="title">Kategorien</h3>
   <ul class="entry">
   
-    <li><a href="/categories/技术/">技术</a><small>2</small></li>
+    <li><a href="/categories/技术/">技术</a><small>3</small></li>
   
   </ul>
 </div>
@@ -234,6 +284,10 @@
 <div class="widget tag">
   <h3 class="title">Neueste Artikel</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2016/03/15/关于return语句是否立即返回/">关于return语句是否立即返回</a>
+      </li>
     
       <li>
         <a href="/2016/03/14/内部类详解/">内部类详解</a>
@@ -256,11 +310,15 @@
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/java基础/">java基础</a><small>1</small></li>
+    <li><a href="/tags/object-Object/">[object Object]</a><small>0</small></li>
+  
+    <li><a href="/tags/java基础/">java基础</a><small>2</small></li>
   
     <li><a href="/tags/前端/">前端</a><small>1</small></li>
   
     <li><a href="/tags/后台/">后台</a><small>1</small></li>
+  
+    <li><a href="/tags/技术/">技术</a><small>0</small></li>
   
   </ul>
 </div>
@@ -270,7 +328,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag-Cloud</h3>
   <div class="entry">
-    <a href="/tags/java基础/" style="font-size: 10px;">java基础</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a>
+    <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a>
   </div>
 </div>
 
