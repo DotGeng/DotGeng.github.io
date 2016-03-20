@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>DotGeng</title>
+  <title>多线程对文件的读写 | DotGeng</title>
   <meta name="author" content="Gengyukun" />
 
   
@@ -14,7 +14,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  
+  <meta property="og:title" content="多线程对文件的读写" />
   <meta property="og:site_name" content="DotGeng" />
 
   
@@ -57,8 +57,7 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
@@ -68,7 +67,7 @@
       
       
   
-    <h1 class="title"><a href="/2016/03/21/多线程对文件的读写/">多线程对文件的读写</a></h1>
+    <h1 class="title">多线程对文件的读写</h1>
   
 
     </header>
@@ -109,210 +108,6 @@
 
 
 
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-15T03:07:08.000Z"><a href="/2016/03/15/关于return语句是否立即返回/">2016-03-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/15/关于return语句是否立即返回/">关于return语句是否立即返回</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>java的return语句，好多程序员都认为自己对这个语句很了解，可是，事实是这样吗？请看下边的一个例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class TestClass &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TestClass tc = new TestClass();</span><br><span class="line">		int b = tc.getInt();</span><br><span class="line">		System.out.println(b);</span><br><span class="line">	&#125;</span><br><span class="line">	public int <span class="function"><span class="title">getInt</span></span>() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="built_in">return</span> 1;</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			<span class="built_in">return</span> 2;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上述程序打印的结果是什么呢？<br>答案是 2 </p>
-<p>为什么是2呢？ 这是因为，就好像是为主函数准备了一个容器，在调用子函数的过程中，遇到return语句，并不是立即返回，而是把结果放到函数栈中，此时的函数也不是立即返回，而是等到finally语句执行完后，才会真正返回。所以在finally语句结束后，返回结果是2，把2放入到函数栈中覆盖第一个返回值1，那么，程序的输出结果就是2了。</p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java基础/">java基础</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-14T08:43:15.000Z"><a href="/2016/03/14/内部类详解/">2016-03-14</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/14/内部类详解/">内部类详解</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>java的内部类详解<br>java的内部类，就是一个类的内部定义的类。这个类可以是可以是Inner Class，也可以是Static Nested Class。<br>内部类可以定义外部类方法的外面，也可以定义在外部类的方法的里边，##内部类可以直接访问外部类的成员变量。##如下代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class OuterClass &#123;</span><br><span class="line">	private int out_x = 0;</span><br><span class="line">		public void <span class="function"><span class="title">method1</span></span>() &#123;</span><br><span class="line">			InnerClass2 inner2 = new InnerClass2();//内部类2实例化</span><br><span class="line">			class InnerClass1 &#123;//定义内部类1</span><br><span class="line">				public void <span class="function"><span class="title">method2</span></span>() &#123;</span><br><span class="line">					out_x = 3;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			InnerClass1 inner1 = new InnerClass1();//内部类1实例化</span><br><span class="line">		&#125;</span><br><span class="line">		public class innerClass2 &#123;内部类2定义</span><br><span class="line">			public void <span class="function"><span class="title">method2</span></span>() &#123;</span><br><span class="line">				out_x = 10;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在方法体的外部可以定义内部类，如InnerClass2，在方法体的内部也可以定义内部类，如innerClass1。在方法体的外部定义的内部类的内部类可用public，private,默认和protected修饰，他决定内部类对外是不是可见。我们要是想得到外部类的实例，必须先把外部类实例化，然后在实例化内部类；如下所示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OuterClass outer = new Outer();</span><br><span class="line">Outer.InnerClass2 = outer.new Inner1();</span><br></pre></td></tr></table></figure></p>
-<p>定义在方法体内部的内部类，是不能有任何的修饰符，这是和方法体内部的局部变量是一样的。但是这种内部类是可以用final和abstract修饰的。这种内部类对外部是不可见的。但是可以通过对该类的实例化，把内部类传递给外部进行使用。该内部类必须遵循先定义在使用的原则，通俗上说就是内部类的定义代码必须在实用类代码之前。这种规则和方法中的局部变量是一样的。这种内部类是可以访问方法中的局部变量的，但是该局部变量之前必须加final修饰符（建议在eclipse上练练就明白了）。</p>
-<p>下边说下匿名内部类：<br>有时候我们我们使用内部类并不需要他的名字，这种内部类就是匿名内部类。定义的方法就是在定义在定义某一个接口或者某一个类的子类时，还创建了该类的实例对象。这时是不用给内部类命名的。例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class OuterClass &#123;</span><br><span class="line">	public void <span class="function"><span class="title">method</span></span>() &#123;</span><br><span class="line">		new Thread(</span><br><span class="line">			new <span class="function"><span class="title">Runable</span></span>() &#123;</span><br><span class="line">				public void <span class="function"><span class="title">run</span></span>()&#123;&#125;;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>最后来说下，static Nested class 和 inner class的区别；<br>在方法体的外部定义的内部类加上static关键字，从而成为Static Nested Class。这样的类其实就不在具备内部类的特性。static Nested class在运行上和普通类没有什么区别。只是在定义时，修饰符可以是public protected 默认的和private的。而普通类只能是public和默认的。这里要是想访问static Nested class类，就不需要依靠外部类的实体。通过”外部类名.内部类名”就可以直接创建该内部类的实体。所用的方法是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Outer outer = new OuterClass.innerClass();</span><br></pre></td></tr></table></figure></p>
-<p>Static Nested Class 类可以访问外部类的非Static变量，但是不是直接访问，必须是建立外部类的实例，通过外部类实例进行访问。</p>
-<p>在静态方法中定义的内部类也是Static Nested Class类，这个方法前边不能再加static关键字。此类和普通方法中的类的使用方式很相似。例如：都可以访问外部类中的成员变量，可以访问方法中的局部变量，但是该变量必须用final修饰；</p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java基础/">java基础</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-12T09:05:05.000Z"><a href="/2016/03/12/the-first-blog/">2016-03-12</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/12/the-first-blog/">the first blog</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>我的第一篇博客！</p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/前端/">前端</a>, <a href="/tags/后台/">后台</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-11T17:19:52.594Z"><a href="/2016/03/12/hello-world/">2016-03-12</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/12/hello-world/">Hello World</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-
-<nav id="pagination">
-  
-</nav>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
