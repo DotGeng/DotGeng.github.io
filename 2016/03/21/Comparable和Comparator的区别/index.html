@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>关于return语句是否立即返回 | DotGeng</title>
+  <title>Comparable和Comparator的区别 | DotGeng</title>
   <meta name="author" content="Gengyukun" />
 
   
@@ -14,7 +14,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="关于return语句是否立即返回" />
+  <meta property="og:title" content="Comparable和Comparator的区别" />
   <meta property="og:site_name" content="DotGeng" />
 
   
@@ -63,19 +63,44 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-03-15T03:07:08.000Z"><a href="/2016/03/15/关于return语句是否立即返回/">2016-03-15</a></time>
+        <time datetime="2016-03-21T13:39:00.000Z"><a href="/2016/03/21/Comparable和Comparator的区别/">2016-03-21</a></time>
       
       
   
-    <h1 class="title">关于return语句是否立即返回</h1>
+    <h1 class="title">Comparable和Comparator的区别</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>java的return语句，好多程序员都认为自己对这个语句很了解，可是，事实是这样吗？请看下边的一个例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class TestClass &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TestClass tc = new TestClass();</span><br><span class="line">		int b = tc.getInt();</span><br><span class="line">		System.out.println(b);</span><br><span class="line">	&#125;</span><br><span class="line">	public int <span class="function"><span class="title">getInt</span></span>() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="built_in">return</span> 1;</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			<span class="built_in">return</span> 2;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上述程序打印的结果是什么呢？<br>答案是 2 </p>
-<p>为什么是2呢？ 这是因为，就好像是为主函数准备了一个容器，在调用子函数的过程中，遇到return语句，并不是立即返回，而是把结果放到函数栈中，此时的函数也不是立即返回，而是等到finally语句执行完后，才会真正返回。所以在finally语句结束后，返回结果是2，把2放入到函数栈中覆盖第一个返回值1，那么，程序的输出结果就是2了。</p>
+        <p>Comparator和Comparable 都是用来实现集合中元素的比较。排序的，知识，Comparable实现的排序实在java集合内部实现的，而Comparator的排序实在java集合外部实现的排序，所以，如果想实现排序，那就需要在集合内实现Comparable接口或者在集合外部实现Comparator接口</p>
+<p>另外，就从所处的包来说： Comparator位于java.util下，而Comparable位于包java.lang下</p>
+<p>下边我们详细说下两者的异同：<br>1 Comaprable和Comaprator相同的地方<br>他们都是一个java接口，并且都是用来对定义的class比较大小的，什么是是自定义的class，如public class person {。。。}<br> 当我们有这么一个personList,里面包含了person1, person2, persion3….., 我们用Collections.sort( personList ),<br>是得不到预期的结果的. 这时肯定有人要问, 那为什么可以排序一个字符串list呢:</p>
+<p>如 StringList{“hello1” , “hello3” , “hello2”}, Collections.sort( stringList ) 能够得到正确的排序, 那是因为<br>String 这个对象已经帮我们实现了 Comparable接口 , 所以我们的 Person 如果想排序, 也要实现一个比较器。</p>
+<ol>
+<li>Comparator 和 Comparable 的区别</li>
+</ol>
+<p>Comparable</p>
+<p>Comparable 定义在 Person类的内部:</p>
+<p>public class Persion implements Comparable {..比较Person的大小..},</p>
+<p> 因为已经实现了比较器,那么我们的Person现在是一个可以比较大小的对象了,它的比较功能和String完全一样,可以随时随地的拿来<br>比较大小,因为Person现在自身就是有大小之分的。Collections.sort(personList)可以得到正确的结果。</p>
+<p>Comparator</p>
+<p>Comparator 是定义在Person的外部的, 此时我们的Person类的结构不需要有任何变化,如</p>
+<p>public class Person{ String name; int age },</p>
+<p>然后我们另外定义一个比较器:</p>
+<p>public PersonComparator implements Comparator() {..比较Person的大小..},</p>
+<p>在PersonComparator里面实现了怎么比较两个Person的大小. 所以,用这种方法,当我们要对一个 personList进行排序的时候,<br>我们除了了要传递personList过去, 还需要把PersonComparator传递过去,因为怎么比较Person的大小是在PersonComparator<br>里面实现的, 如:</p>
+<p>Collections.sort( personList , new PersonComparator() ).</p>
+<ol>
+<li>Comparator 和 Comparable 的实例</li>
+</ol>
+<p>Comparable:</p>
+<p>实现Comparable接口要覆盖compareTo方法, 在compareTo方法里面实现比较：<br>public class Person implements Comparable {<br>     String name;<br>     int age<br>     public int compareTo(Person another) {<br>          int i = 0;<br>          i = name.compareTo(another.name); // 使用字符串的比较<br>          if(i == 0) { // 如果名字一样,比较年龄, 返回比较年龄结果<br>               return age - another.age;<br>          } else {<br>               return i; // 名字不一样, 返回比较名字的结果.<br>          }<br>     }<br>}<br>   这时我们可以直接用 Collections.sort( personList ) 对其排序了.</p>
+<p>Comparator:</p>
+<p>实现Comparator需要覆盖 compare 方法：<br>public class Person{<br>     String name;<br>     int age<br>}</p>
+<p>class PersonComparator implements Comparator {<br>     public int compare(Person one, Person another) {<br>          int i = 0;<br>          i = one.name.compareTo(another.name); // 使用字符串的比较<br>          if(i == 0) { // 如果名字一样,比较年龄,返回比较年龄结果<br>               return one.age - another.age;<br>          } else {<br>               return i; // 名字不一样, 返回比较名字的结果.<br>          }<br>     }<br>}<br>   Collections.sort( personList , new PersonComparator()) 可以对其排序</p>
+<p> 4:总结</p>
+<p>两种方法各有优劣, 用Comparable 简单, 只要实现Comparable 接口的对象直接就成为一个可以比较的对象,<br>但是需要修改源代码, 用Comparator 的好处是不需要修改源代码, 而是另外实现一个比较器, 当某个自定义<br>的对象需要作比较的时候,把比较器和对象一起传递过去就可以比大小了, 并且在Comparator 里面用户可以自<br>己实现复杂的可以通用的逻辑,使其可以匹配一些比较简单的对象,那样就可以节省很多重复劳动了。</p>
 
       
     </div>
@@ -94,7 +119,7 @@
         
   
   <div class="tags">
-    <a href="/tags/java基础/">java基础</a>
+    <a href="/tags/java基础/">java基础</a>, <a href="/tags/Collection/">Collection</a>
   </div>
 
         <!-- partial('post/share') -->
