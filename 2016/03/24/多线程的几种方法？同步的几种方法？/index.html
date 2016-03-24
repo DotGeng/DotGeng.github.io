@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>ArrayList和Vector的区别 | DotGeng</title>
+  <title>多线程的几种方法？同步的几种方法？ | DotGeng</title>
   <meta name="author" content="Gengyukun" />
 
   
@@ -14,7 +14,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="ArrayList和Vector的区别" />
+  <meta property="og:title" content="多线程的几种方法？同步的几种方法？" />
   <meta property="og:site_name" content="DotGeng" />
 
   
@@ -63,18 +63,20 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-03-21T14:16:13.000Z"><a href="/2016/03/21/ArrayList和Vector的区别/">2016-03-21</a></time>
+        <time datetime="2016-03-24T02:27:27.000Z"><a href="/2016/03/24/多线程的几种方法？同步的几种方法？/">2016-03-24</a></time>
       
       
   
-    <h1 class="title">ArrayList和Vector的区别</h1>
+    <h1 class="title">多线程的几种方法？同步的几种方法？</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>这两个类都实现了List接口（List接口继承了Collection接口），他们都是有序集合，级存贮在这两个集合中的元素都是有序的，他们的底层实现就是用数组。我们可以按照集合中元素的索引号取出某个元素，并且其中元素是可以重复的（比较和HashTable以及HashMap的区别）。</p>
-<p>接下来我们详细说明两者的区别：<br>1 同步性<br>    Vector是线程安全的，也就是说他的方法之间是线程同步的，而Arraylist是线程不安全的，他的方法之间不是线程同步的，如果只有一个线程会访问到集合，那么我们就应该用ArrayList，因为他不需要考虑线程的安全性，效率更高；如果有多个线程访问该集合，那么最好使用Vector，因为他是贤臣安全的，我们就不要在考虑和编写线程安全的代码。<br>2 数据增长<br>    Arraylist与Vector都有一个初始的容量大小，当存储在他们里边的元素的个数超过了该容量，就需要增加ArrayList和Vector的大小，每次要增加存储空间的时候，不是增加一个存储空间，而是增加多个存储空间，Vector增加默认增加为原来的两倍，Arraylist增加为原来的1.5倍（在源码中可以看到）。他们也可以设置增长空间大小，比如用resize方法</p>
+        <p>多线程的实现的三种方法；<br>1 实现Runnable接口<br>代码如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">new Thread(new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">	public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">		//填入线程要执行的代码</span><br><span class="line">	&#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure></p>
+<p>2 继承Thread对象，重写里边的Runnable方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class MyThread extends Thread &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">		//填入线程要执行的方法</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">new Myhread().start();//启动线程</span><br></pre></td></tr></table></figure></p>
+<p>3 实现Callable接口，并用FutureTask 包装器封装成task兑现，交给Thread执行即可:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import java.util.current.*;</span><br><span class="line">class MyCounter implements Callable&lt;Integer&gt; &#123;</span><br><span class="line">	//重写call方法</span><br><span class="line">	public Integer <span class="function"><span class="title">call</span></span>() &#123;</span><br><span class="line">		//填入线程要执行的方法</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//实现该类</span><br><span class="line">public class Test &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		MyCounter mc = new MyCounter();</span><br><span class="line">		FutureTask&lt;Integer&gt; task  = new FutureTask&lt;Integer&gt;(mc);//封装成task任务</span><br><span class="line">		Thread  t = new Thread(task);</span><br><span class="line">		t.start();//启动线程</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>同步的几种方法：<br>同步的实现方法有两种：分别是synchronized，wait与notify<br>wait():使一个线程处于等待状态，并释放所有的锁<br>sleep():使一个正在运行的线程处于休眠状态，是Thread的静态方法，调用该方法要捕捉InterruptedException（中断异常）异常，调用该方法进入休眠状态的线程，不需要使用notify或者notifyAll方法唤醒，并且notify或者notifyAll方法也不能唤醒此类线程。<br>notify():唤醒一个处于等待状态的线程，注意是在调用该方法的时候，并不能确定唤醒的是哪一个线程，而是由JVM确定唤醒的是哪个线程，而且不是按照优先级。<br>notifyAll():唤醒所有的等待线程，注意不是给所有的线程一个锁，而是让他们竞争锁。</p>
 
       
     </div>
@@ -93,7 +95,7 @@
         
   
   <div class="tags">
-    <a href="/tags/java基础/">java基础</a>, <a href="/tags/Collection/">Collection</a>
+    <a href="/tags/java基础/">java基础</a>, <a href="/tags/多线程编程/">多线程编程</a>
   </div>
 
         <!-- partial('post/share') -->
