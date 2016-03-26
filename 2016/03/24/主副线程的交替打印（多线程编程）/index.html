@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>主副线程的交替运行(多线程编程) | DotGeng</title>
+  <meta name="author" content="Gengyukun" />
+
+  
+  <meta name="description" content="DotGeng的Blog" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="主副线程的交替运行(多线程编程)" />
+  <meta property="og:site_name" content="DotGeng" />
+
+  
+  
+
+  
+    <meta property="og:image" content="undefined" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="DotGeng" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">DotGeng</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-03-24T03:44:33.000Z"><a href="/2016/03/24/主副线程的交替打印（多线程编程）/">2016-03-24</a></time>
+      
+      
+  
+    <h1 class="title">主副线程的交替运行(多线程编程)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>实现下列需求：<br>子线程循环10次，接着主线程循环100次，接着又回到子线程循环10次，接着又回到主线程循环100次，如此循环100次。</p>
+<p>代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">package cn.cqupt.check;</span><br><span class="line"></span><br><span class="line">public class TestThread2 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		new TestThread2().init();</span><br><span class="line">	&#125;</span><br><span class="line">	public void <span class="function"><span class="title">init</span></span>() &#123;</span><br><span class="line">		final Business business = new Business();</span><br><span class="line">		new Thread(new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">			public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">				<span class="keyword">for</span>(int i =0;i &lt; 50 ; i++) &#123;</span><br><span class="line">					try &#123;</span><br><span class="line">						business.subThread(i);</span><br><span class="line">					&#125; catch (InterruptedException e) &#123;</span><br><span class="line">						// TODO Auto-generated catch block</span><br><span class="line">						e.printStackTrace();</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();</span><br><span class="line">		<span class="keyword">for</span>(int i = 0; i&lt;50; i ++) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				business.mainThread(i);</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	private class Business &#123;</span><br><span class="line">		boolean bShouldSub = <span class="literal">true</span>;</span><br><span class="line">		public synchronized void mainThread(int i) throws InterruptedException &#123;</span><br><span class="line">			<span class="keyword">if</span>(bShouldSub) &#123;</span><br><span class="line">				this.wait();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(int j = 0; j &lt; 100;j++ ) &#123;</span><br><span class="line">				System.out.println(Thread.currentThread().getName()+<span class="string">"i="</span> + i+<span class="string">", j="</span> +j);</span><br><span class="line">			&#125;</span><br><span class="line">			bShouldSub = <span class="literal">true</span>;</span><br><span class="line">			this.notify();</span><br><span class="line">		&#125;</span><br><span class="line">		public synchronized void subThread(int i) throws InterruptedException &#123;</span><br><span class="line">			<span class="keyword">if</span>(!bShouldSub) &#123;</span><br><span class="line">				this.wait();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(int j = 0; j &lt; 10;j++ ) &#123;</span><br><span class="line">				System.out.println(Thread.currentThread().getName()+<span class="string">"i="</span> + i+<span class="string">", j="</span> +j);</span><br><span class="line">			&#125;</span><br><span class="line">			bShouldSub = <span class="literal">false</span>;</span><br><span class="line">			this.notify();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/多线程编程/">多线程编程</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/技术/">技术</a><small>10</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Neueste Artikel</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2016/03/24/主副线程的交替打印（多线程编程）/">主副线程的交替运行(多线程编程)</a>
+      </li>
+    
+      <li>
+        <a href="/2016/03/24/多线程的几种方法？同步的几种方法？/">多线程的几种方法？同步的几种方法？</a>
+      </li>
+    
+      <li>
+        <a href="/2016/03/23/java8特性介绍(转载)/">java8特性介绍(转载)</a>
+      </li>
+    
+      <li>
+        <a href="/2016/03/22/java中Sort方法底层实现/">java中Sort方法底层实现</a>
+      </li>
+    
+      <li>
+        <a href="/2016/03/21/ArrayList和Vector的区别/">ArrayList和Vector的区别</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
+  
+    <li><a href="/tags/java-多线程编程/">java 多线程编程</a><small>1</small></li>
+  
+    <li><a href="/tags/java-新知/">java 新知</a><small>1</small></li>
+  
+    <li><a href="/tags/java基础/">java基础</a><small>6</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>1</small></li>
+  
+    <li><a href="/tags/后台/">后台</a><small>1</small></li>
+  
+    <li><a href="/tags/多线程编程/">多线程编程</a><small>2</small></li>
+  
+    <li><a href="/tags/概念/">概念</a><small>1</small></li>
+  
+    <li><a href="/tags/算法/">算法</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag-Cloud</h3>
+  <div class="entry">
+    <a href="/tags/Collection/" style="font-size: 15px;">Collection</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 15px;">多线程编程</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2016 Gengyukun
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>
