@@ -74,7 +74,8 @@
     </header>
     <div class="entry">
       
-        <p>本文在分析对象池技术基本原理的基础上，给出了对象池技术的两种实现方式。还指出了使用对象池技术时所应注意的问题。<br>Java对象的生命周期分析</p>
+        <p>今天给大家分享下Java对象池技术的一些知识：</p>
+<p>本文在分析对象池技术基本原理的基础上，给出了对象池技术的两种实现方式。还指出了使用对象池技术时所应注意的问题。<br>Java对象的生命周期分析</p>
 <p>　　Java对象的生命周期大致包括三个阶段：对象的创建，对象的使用，对象的清除。因此，对象的生命周期长度可用如下的表达式表示：T = T1 + T2 +T3。其中T1表示对象的创建时间，T2表示对象的使用时间，而T3则表示其清除时间。由此，我们可以看出，只有T2是真正有效的时间，而T1、T3则是对象本身的开销。下面再看看T1、T3在对象的整个生命周期中所占的比例。</p>
 <p>　　我们知道，Java对象是通过构造函数来创建的，在这一过程中，该构造函数链中的所有构造函数也都会被自动调用。另外，默认情况下，调用类的构造函数时，Java会把变量初始化成确定的值：所有的对象被设置成null，整数变量（byte、short、int、long）设置成0，float和double变量设置成0.0，逻辑值设置成false。所以用new关键字来新建一个对象的时间开销是很大的，如表1所示。</p>
 <p>表1 一些操作所耗费时间的对照表</p>
@@ -107,6 +108,7 @@
 <p>　　恰当地使用对象池技术，能有效地改善应用程序的性能。目前，对象池技术已得到广泛的应用，如对于网络和数据库连接这类重量级的对象，一般都会采用对象池技术。但在使用对象池技术时也要注意如下问题： </p>
 <p>　　并非任何情况下都适合采用对象池技术。基本上，只在重复生成某种对象的操作成为影响性能的关键因素的时候，才适合采用对象池技术。而如果进行池化所能带来的性能提高并不重要的话，还是不采用对象池化技术为佳，以保持代码的简明。</p>
 <p>　　要根据具体情况正确选择对象池的实现方式。如果是创建一个公用的对象池技术实现包，或需要在程序中动态指定所池化对象的Class类型时，才选择通用对象池。而大部分情况下，采用专用对象池就可以了。</p>
+<p>转自:<a href="http://dev.yesky.com/421/2685421.shtml" target="_blank" rel="external">http://dev.yesky.com/421/2685421.shtml</a></p>
 
       
     </div>
@@ -739,7 +741,7 @@
 <nav id="pagination">
   
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Nächste Seite &raquo;</a>
   </nav>
 
 </nav>
@@ -747,14 +749,14 @@
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="search" name="q" results="0" placeholder="Suche">
     <input type="hidden" name="q" value="site:yoursite.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Categories</h3>
+  <h3 class="title">Kategorien</h3>
   <ul class="entry">
   
     <li><a href="/categories/技术/">技术</a><small>12</small></li>
@@ -765,7 +767,7 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Recent Posts</h3>
+  <h3 class="title">Neueste Artikel</h3>
   <ul class="entry">
     
       <li>
@@ -827,7 +829,7 @@
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">Tag-Cloud</h3>
   <div class="entry">
     <a href="/tags/Collection/" style="font-size: 15px;">Collection</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 15px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 15px;">多线程编程</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
   </div>
