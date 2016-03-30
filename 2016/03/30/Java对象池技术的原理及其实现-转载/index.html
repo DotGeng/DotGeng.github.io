@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>Java对象池技术的原理及其实现(转载) | DotGeng</title>
+  <meta name="author" content="Gengyukun" />
+
+  
+  <meta name="description" content="DotGeng的Blog" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="Java对象池技术的原理及其实现(转载)" />
+  <meta property="og:site_name" content="DotGeng" />
+
+  
+  
+
+  
+    <meta property="og:image" content="undefined" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="DotGeng" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">DotGeng</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-03-30T14:24:04.000Z"><a href="/2016/03/30/Java对象池技术的原理及其实现-转载/">2016-03-30</a></time>
+      
+      
+  
+    <h1 class="title">Java对象池技术的原理及其实现(转载)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>本文在分析对象池技术基本原理的基础上，给出了对象池技术的两种实现方式。还指出了使用对象池技术时所应注意的问题。<br>Java对象的生命周期分析</p>
+<p>　　Java对象的生命周期大致包括三个阶段：对象的创建，对象的使用，对象的清除。因此，对象的生命周期长度可用如下的表达式表示：T = T1 + T2 +T3。其中T1表示对象的创建时间，T2表示对象的使用时间，而T3则表示其清除时间。由此，我们可以看出，只有T2是真正有效的时间，而T1、T3则是对象本身的开销。下面再看看T1、T3在对象的整个生命周期中所占的比例。</p>
+<p>　　我们知道，Java对象是通过构造函数来创建的，在这一过程中，该构造函数链中的所有构造函数也都会被自动调用。另外，默认情况下，调用类的构造函数时，Java会把变量初始化成确定的值：所有的对象被设置成null，整数变量（byte、short、int、long）设置成0，float和double变量设置成0.0，逻辑值设置成false。所以用new关键字来新建一个对象的时间开销是很大的，如表1所示。</p>
+<p>表1 一些操作所耗费时间的对照表</p>
+<p>运算操作    示例    标准化时间<br>本地赋值    i = n        1.0<br>实例赋值    this.i = n    1.2<br>方法调用    Funct()        5.9<br>新建对象    New Object()    980<br>新建数组    New int[10]    3100</p>
+<p>从表1可以看出，新建一个对象需要980个单位的时间，是本地赋值时间的980倍，是方法调用时间的166倍，而若新建一个数组所花费的时间就更多了。</p>
+<p>再看清除对象的过程。我们知道，Java语言的一个优势，就是Java程序员勿需再像C/C++程序员那样，显式地释放对象，而由称为垃圾收集器（Garbage Collector）的自动内存管理系统，定时或在内存凸现出不足时，自动回收垃圾对象所占的内存。凡事有利总也有弊，这虽然为Java程序设计者提供了极大的方便，但同时它也带来了较大的性能开销。这种开销包括两方面，首先是对象管理开销，GC为了能够正确释放对象，它必须监控每一个对象的运行状态，包括对象的申请、引用、被引用、赋值等。其次，在GC开始回收“垃圾”对象时，系统会暂停应用程序的执行，而独自占用CPU。</p>
+<p>　　因此，如果要改善应用程序的性能，一方面应尽量减少创建新对象的次数；同时，还应尽量减少T1、T3的时间，而这些均可以通过对象池技术来实现。</p>
+<p>　　对象池技术的基本原理</p>
+<p>　　对象池技术基本原理的核心有两点：缓存和共享，即对于那些被频繁使用的对象，在使用完后，不立即将它们释放，而是将它们缓存起来，以供后续的应用程序重复使用，从而减少创建对象和释放对象的次数，进而改善应用程序的性能。事实上，由于对象池技术将对象限制在一定的数量，也有效地减少了应用程序内存上的开销。</p>
+<p>　　实现一个对象池，一般会涉及到如下的类：</p>
+<p>　　1）对象池工厂（ObjectPoolFactory）类</p>
+<p>　　该类主要用于管理相同类型和设置的对象池（ObjectPool），它一般包含如下两个方法：</p>
+<p>　　·createPool：用于创建特定类型和设置的对象池；</p>
+<p>　　·destroyPool：用于释放指定的对象池；</p>
+<p>　　同时为保证ObjectPoolFactory的单一实例，可以采用Singleton设计模式，见下述getInstance方法的实现：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static ObjectPoolFactory <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">　<span class="keyword">if</span> (poolFactory == null) &#123;</span><br><span class="line">　　poolFactory = new ObjectPoolFactory();</span><br><span class="line">　&#125;</span><br><span class="line">　<span class="built_in">return</span> poolFactory;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　2）参数对象（ParameterObject）类</p>
+<p>　　该类主要用于封装所创建对象池的一些属性参数，如池中可存放对象的数目的最大值（maxCount）、最小值（minCount）等。</p>
+<p>　　3）对象池（ObjectPool）类</p>
+<p>　　用于管理要被池化对象的借出和归还，并通知PoolableObjectFactory完成相应的工作。它一般包含如下两个方法：</p>
+<p>　　　·getObject：用于从池中借出对象；<br>　　　·returnObject：将池化对象返回到池中，并通知所有处于等待状态的线程；</p>
+<p>　　4）池化对象工厂（PoolableObjectFactory）类</p>
+<p>　　该类主要负责管理池化对象的生命周期，就简单来说，一般包括对象的创建及销毁。该类同ObjectPoolFactory一样，也可将其实现为单实例。<br>　<br>通用对象池的实现</p>
+<p>　　对象池的构造和管理可以按照多种方式实现。最灵活的方式是将池化对象的Class类型在对象池之外指定，即在ObjectPoolFactory类创建对象池时，动态指定该对象池所池化对象的Class类型，其实现代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public ObjectPool createPool(ParameterObject paraObj,Class clsType) &#123;</span><br><span class="line">　<span class="built_in">return</span> new ObjectPool(paraObj, clsType);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中，paraObj参数用于指定对象池的特征属性，clsType参数则指定了该对象池所存放对象的类型。对象池（ObjectPool）创建以后，下面就是利用它来管理对象了，具体实现如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">public class ObjectPool &#123;</span><br><span class="line">　private ParameterObject paraObj;//该对象池的属性参数对象</span><br><span class="line">　private Class clsType;//该对象池中所存放对象的类型</span><br><span class="line">　private int currentNum = 0; //该对象池当前已创建的对象数目</span><br><span class="line">　private Object currentObj;//该对象池当前可以借出的对象</span><br><span class="line">　private Vector pool;//用于存放对象的池</span><br><span class="line">　public ObjectPool(ParameterObject paraObj, Class clsType) &#123;</span><br><span class="line">　　this.paraObj = paraObj;</span><br><span class="line">　　this.clsType = clsType;</span><br><span class="line">　　pool = new Vector();</span><br><span class="line">　&#125;</span><br><span class="line">　public Object <span class="function"><span class="title">getObject</span></span>() &#123;</span><br><span class="line">　　<span class="keyword">if</span> (pool.size() &lt;= paraObj.getM<span class="keyword">in</span>Count()) &#123;</span><br><span class="line">　　　<span class="keyword">if</span> (currentNum &lt;= paraObj.getMaxCount()) &#123;</span><br><span class="line">　　　　//如果当前池中无对象可用，而且已创建的对象数目小于所限制的最大值，就利用</span><br><span class="line">　　　　//PoolObjectFactory创建一个新的对象</span><br><span class="line">　　　　PoolableObjectFactory objFactory =PoolableObjectFactory.getInstance();</span><br><span class="line">　　　　currentObj = objFactory.create Object (clsType);</span><br><span class="line">　　　　currentNum++;</span><br><span class="line">　　　&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">　　　　//如果当前池中无对象可用，而且所创建的对象数目已达到所限制的最大值，</span><br><span class="line">　　　　//就只能等待其它线程返回对象到池中</span><br><span class="line">　　　　synchronized (this) &#123;</span><br><span class="line">　　　　　try &#123;</span><br><span class="line">　　　　　　<span class="built_in">wait</span>();</span><br><span class="line">　　　　　&#125; catch (InterruptedException e) &#123;</span><br><span class="line">　　　　　　System.out.println(e.getMessage());</span><br><span class="line">　　　　　　e.printStackTrace();</span><br><span class="line">　　　　　&#125;</span><br><span class="line">　　　　　currentObj = pool.firstElement();</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　　&#125;</span><br><span class="line">　　&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">　　　//如果当前池中有可用的对象，就直接从池中取出对象</span><br><span class="line">　　　currentObj = pool.firstElement();</span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="built_in">return</span> currentObj;</span><br><span class="line">&#125;</span><br><span class="line">　　public void <span class="built_in">return</span>Object(Object obj) &#123;</span><br><span class="line">　　　// 确保对象具有正确的类型</span><br><span class="line">　　　<span class="keyword">if</span> (obj.isInstance(clsType)) &#123;</span><br><span class="line">　　　　pool.addElement(obj);</span><br><span class="line">　　　　synchronized (this) &#123;</span><br><span class="line">　　　　　notifyAll();</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　　&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">　　　　throw new IllegalArgumentException(<span class="string">"该对象池不能存放指定的对象类型"</span>);</span><br><span class="line">　　　&#125;</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br><span class="line">```bash</span><br><span class="line">　从上述代码可以看出，ObjectPool利用一个java.util.Vector作为可扩展的对象池，并通过它的构造函数来指定池化对象的Class类型及对象池的一些属性。在有对象返回到对象池时，它将检查对象的类型是否正确。当对象池里不再有可用对象时，它或者等待已被使用的池化对象返回池中，或者创建一个新的对象实例。不过，新对象实例的创建并不在ObjectPool类中，而是由PoolableObjectFactory类的createObject方法来完成的，具体实现如下：</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">public Object createObject(Class clsType) &#123;</span><br><span class="line">　Object obj = null;</span><br><span class="line">　try &#123;</span><br><span class="line">　　obj = clsType.newInstance();</span><br><span class="line">　&#125; catch (Exception e) &#123;</span><br><span class="line">　　e.printStackTrace();</span><br><span class="line">　&#125; </span><br><span class="line">　<span class="built_in">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　这样，通用对象池的实现就算完成了，下面再看看客户端（Client）如何来使用它，假定池化对象的Class类型为StringBuffer：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//创建对象池工厂</span><br><span class="line">ObjectPoolFactory poolFactory = ObjectPoolFactory. getInstance ();</span><br><span class="line">//定义所创建对象池的属性</span><br><span class="line">ParameterObject paraObj = new ParameterObject(2,1);</span><br><span class="line">//利用对象池工厂,创建一个存放StringBuffer类型对象的对象池</span><br><span class="line">ObjectPool pool = poolFactory.createPool(paraObj,String Buffer.class);</span><br><span class="line">//从池中取出一个StringBuffer对象</span><br><span class="line">StringBuffer buffer = (StringBuffer)pool.getObject();</span><br><span class="line">//使用从池中取出的StringBuffer对象</span><br><span class="line">buffer.append(<span class="string">"hello"</span>);</span><br><span class="line">System.out.println(buffer.toString());</span><br></pre></td></tr></table></figure></p>
+<p>　可以看出，通用对象池使用起来还是很方便的，不仅可以方便地避免频繁创建对象的开销，而且通用程度高。但遗憾的是，由于需要使用大量的类型定型（cast）操作，再加上一些对Vector类的同步操作，使得它在某些情况下对性能的改进非常有限，尤其对那些创建周期比较短的对象。</p>
+<p>专用对象池的实现　　　　　</p>
+<p>　　由于通用对象池的管理开销比较大，某种程度上抵消了重用对象所带来的大部分优势。为解决该问题，可以采用专用对象池的方法。即对象池所池化对象的Class类型不是动态指定的，而是预先就已指定。这样，它在实现上也会较通用对象池简单些，可以不要ObjectPoolFactory和PoolableObjectFactory类，而将它们的功能直接融合到ObjectPool类，具体如下（假定被池化对象的Class类型仍为StringBuffer，而用省略号表示的地方，表示代码同通用对象池的实现）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class ObjectPool &#123;</span><br><span class="line">　private ParameterObject paraObj;//该对象池的属性参数对象</span><br><span class="line">　private int currentNum = 0; //该对象池当前已创建的对象数目</span><br><span class="line">　private StringBuffer currentObj;//该对象池当前可以借出的对象</span><br><span class="line">　private Vector pool;//用于存放对象的池</span><br><span class="line">　public ObjectPool(ParameterObject paraObj) &#123;</span><br><span class="line">　　this.paraObj = paraObj;</span><br><span class="line">　　pool = new Vector();</span><br><span class="line">　&#125;</span><br><span class="line">　public StringBuffer <span class="function"><span class="title">getObject</span></span>() &#123;</span><br><span class="line">　　<span class="keyword">if</span> (pool.size() &lt;= paraObj.getM<span class="keyword">in</span>Count()) &#123;</span><br><span class="line">　　　<span class="keyword">if</span> (currentNum &lt;= paraObj.getMaxCount()) &#123;</span><br><span class="line">　　　　currentObj = new StringBuffer();</span><br><span class="line">　　　　currentNum++;</span><br><span class="line">　　　&#125; </span><br><span class="line">　　　. . . </span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="built_in">return</span> currentObj;</span><br><span class="line">　&#125;</span><br><span class="line">　public void <span class="built_in">return</span>Object(Object obj) &#123;</span><br><span class="line">　　// 确保对象具有正确的类型</span><br><span class="line">　　<span class="keyword">if</span> (StringBuffer.isInstance(obj)) &#123;</span><br><span class="line">　　　. . . </span><br><span class="line">　　&#125;</span><br><span class="line">　&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结束语</p>
+<p>　　恰当地使用对象池技术，能有效地改善应用程序的性能。目前，对象池技术已得到广泛的应用，如对于网络和数据库连接这类重量级的对象，一般都会采用对象池技术。但在使用对象池技术时也要注意如下问题： </p>
+<p>　　并非任何情况下都适合采用对象池技术。基本上，只在重复生成某种对象的操作成为影响性能的关键因素的时候，才适合采用对象池技术。而如果进行池化所能带来的性能提高并不重要的话，还是不采用对象池化技术为佳，以保持代码的简明。</p>
+<p>　　要根据具体情况正确选择对象池的实现方式。如果是创建一个公用的对象池技术实现包，或需要在程序中动态指定所池化对象的Class类型时，才选择通用对象池。而大部分情况下，采用专用对象池就可以了。</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/java-高级/">java 高级</a>, <a href="/tags/分享/">分享</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/技术/">技术</a><small>12</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2016/03/30/Java对象池技术的原理及其实现-转载/">Java对象池技术的原理及其实现(转载)</a>
+      </li>
+    
+      <li>
+        <a href="/2016/03/27/spring-aop相关术语/">spring-aop相关术语</a>
+      </li>
+    
+      <li>
+        <a href="/2016/03/24/主副线程的交替打印（多线程编程）/">主副线程的交替运行(多线程编程)</a>
+      </li>
+    
+      <li>
+        <a href="/2016/03/24/多线程的几种方法？同步的几种方法？/">多线程的几种方法？同步的几种方法？</a>
+      </li>
+    
+      <li>
+        <a href="/2016/03/23/java8特性介绍(转载)/">java8特性介绍(转载)</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
+  
+    <li><a href="/tags/java-多线程编程/">java 多线程编程</a><small>1</small></li>
+  
+    <li><a href="/tags/java-新知/">java 新知</a><small>1</small></li>
+  
+    <li><a href="/tags/java-高级/">java 高级</a><small>1</small></li>
+  
+    <li><a href="/tags/java基础/">java基础</a><small>6</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/分享/">分享</a><small>2</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>1</small></li>
+  
+    <li><a href="/tags/后台/">后台</a><small>1</small></li>
+  
+    <li><a href="/tags/多线程编程/">多线程编程</a><small>2</small></li>
+  
+    <li><a href="/tags/概念/">概念</a><small>1</small></li>
+  
+    <li><a href="/tags/算法/">算法</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/Collection/" style="font-size: 15px;">Collection</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 15px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 15px;">多线程编程</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2016 Gengyukun
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>
