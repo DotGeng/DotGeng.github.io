@@ -64,6 +64,55 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-04-01T07:28:13.000Z"><a href="/2016/04/01/MySql外键设置中的Cascade-no-action-restrict-set-null-分享/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/01/MySql外键设置中的Cascade-no-action-restrict-set-null-分享/">MySql外键设置中的Cascade, no action,restrict ,set null(分享)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天项目的需要，需要mYSql数据库表中添加一些外键约束，本人由于对数据库的外键长时间不使用，已经全部归还给了老师，这次通过查找资料，也终于回想起来了，在这了分享给大家</p>
+<p>cascade 方式：<br> 在父表上做更新或者删除的时候，同步更新或者删除子表的匹配记录；</p>
+<p> no action方式<br> 如果子表中有匹配记录，那么则不允许对父表对应的候选键进行更新删除。</p>
+<p> restrict 方式<br> 同 no action,都是直接检查外键约束，如果有外键约束的话，就拒绝父表进行相应的更新删除。</p>
+<p>set null方式<br> 在父表上更新或者删除记录的时候，将子表上匹配记录的列设置为null；这里设计表的时候要注意，子表的外键列不能为null;</p>
+<p> 还有一种是set default 方式</p>
+<p> 父表有更新的时候，子表将外键类设置为一个默认的值。</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/数据库/">数据库</a>, <a href="/tags/分享/">分享</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>, <a href="/tags/随笔/">随笔</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-03-30T14:24:04.000Z"><a href="/2016/03/30/Java对象池技术的原理及其实现-转载/">2016-03-30</a></time>
       
       
@@ -127,7 +176,7 @@
         
   
   <div class="tags">
-    <a href="/tags/java-高级/">java 高级</a>, <a href="/tags/分享/">分享</a>
+    <a href="/tags/分享/">分享</a>, <a href="/tags/java-高级/">java 高级</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -687,56 +736,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-15T03:07:08.000Z"><a href="/2016/03/15/关于return语句是否立即返回/">2016-03-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/15/关于return语句是否立即返回/">关于return语句是否立即返回</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>java的return语句，好多程序员都认为自己对这个语句很了解，可是，事实是这样吗？请看下边的一个例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class TestClass &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TestClass tc = new TestClass();</span><br><span class="line">		int b = tc.getInt();</span><br><span class="line">		System.out.println(b);</span><br><span class="line">	&#125;</span><br><span class="line">	public int <span class="function"><span class="title">getInt</span></span>() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="built_in">return</span> 1;</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			<span class="built_in">return</span> 2;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上述程序打印的结果是什么呢？<br>答案是 2 </p>
-<p>为什么是2呢？ 这是因为，就好像是为主函数准备了一个容器，在调用子函数的过程中，遇到return语句，并不是立即返回，而是把结果放到函数栈中，此时的函数也不是立即返回，而是等到finally语句执行完后，才会真正返回。所以在finally语句结束后，返回结果是2，把2放入到函数栈中覆盖第一个返回值1，那么，程序的输出结果就是2了。</p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java基础/">java基础</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -771,6 +770,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2016/04/01/MySql外键设置中的Cascade-no-action-restrict-set-null-分享/">MySql外键设置中的Cascade, no action,restrict ,set null(分享)</a>
+      </li>
+    
+      <li>
         <a href="/2016/03/30/Java对象池技术的原理及其实现-转载/">Java对象池技术的原理及其实现(转载)</a>
       </li>
     
@@ -786,10 +789,6 @@
         <a href="/2016/03/24/多线程的几种方法？同步的几种方法？/">多线程的几种方法？同步的几种方法？</a>
       </li>
     
-      <li>
-        <a href="/2016/03/23/java8特性介绍(转载)/">java8特性介绍(转载)</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -801,6 +800,8 @@
   
     <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
   
+    <li><a href="/tags/object-Object/">[object Object]</a><small>1</small></li>
+  
     <li><a href="/tags/java-多线程编程/">java 多线程编程</a><small>1</small></li>
   
     <li><a href="/tags/java-新知/">java 新知</a><small>1</small></li>
@@ -811,7 +812,7 @@
   
     <li><a href="/tags/spring/">spring</a><small>1</small></li>
   
-    <li><a href="/tags/分享/">分享</a><small>2</small></li>
+    <li><a href="/tags/分享/">分享</a><small>3</small></li>
   
     <li><a href="/tags/前端/">前端</a><small>1</small></li>
   
@@ -819,9 +820,15 @@
   
     <li><a href="/tags/多线程编程/">多线程编程</a><small>2</small></li>
   
+    <li><a href="/tags/技术/">技术</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
+  
     <li><a href="/tags/概念/">概念</a><small>1</small></li>
   
     <li><a href="/tags/算法/">算法</a><small>1</small></li>
+  
+    <li><a href="/tags/随笔/">随笔</a><small>1</small></li>
   
   </ul>
 </div>
@@ -831,7 +838,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag-Cloud</h3>
   <div class="entry">
-    <a href="/tags/Collection/" style="font-size: 15px;">Collection</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 15px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 15px;">多线程编程</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+    <a href="/tags/Collection/" style="font-size: 13.33px;">Collection</a> <a href="/tags/object-Object/" style="font-size: 10px;">[object Object]</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 16.67px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 13.33px;">多线程编程</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
   </div>
 </div>
 
