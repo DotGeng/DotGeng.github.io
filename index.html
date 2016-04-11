@@ -64,6 +64,56 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-04-11T14:27:39.000Z"><a href="/2016/04/11/java主函数所在类的思考/">2016-04-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/11/java主函数所在类的思考/">java主函数所在类的思考</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天跟同学突然聊到关于java的main函数所在类的实例化问题；他突然问我，在程序运行时候，main函数所在的类是否会实例化，我还真一时脑袋没转过来，不过，还来想想，这个问题还是挺简单的。</p>
+<p>main函数所在类是否实例化，还是看你是否用法哦了该类的实例，是否写了new方法。</p>
+<p>其实，main所在的类和其他类没有什么区别，只是main函数式程序的入口。在程序启动时候，调用main函数。因为main函数是static的，所以，其所在的类及时不实例化，他也可以运行。当你用到该类的实例的时候，你会new出一个实例，这时候main函数所在类就实例化了。如果你没有用到该类的实例，那么你就不需要new出这么个实例，所以，这个时候就没有实例化main函数所在的类。</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/java基础/">java基础</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-04-01T07:28:13.000Z"><a href="/2016/04/01/MySql外键设置中的Cascade-no-action-restrict-set-null-分享/">2016-04-01</a></time>
       
       
@@ -683,59 +733,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-20T16:45:19.000Z"><a href="/2016/03/21/多线程对文件的读写/">2016-03-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/21/多线程对文件的读写/">多线程对文件的读写</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>题目：<br> 一个文件中有10000个数，用java实现一个多线程程序将这10000个数输入到五个不同的文件中（要求输入到每个文件中的数量相同）。要求启动10个线程，两两一组，分为五组。每组两个线程分别将文件中的奇数偶数输入到改组对应的文件中，需要偶数线程没打印10个偶数之后，就将技术线程打印10个奇数，如此交替进行。同时需要记录输入进度，没完成1000个数就在控制台打印当前完成的数量，并在所有线程结束后，在控制台打印”DONE”。</p>
-<p> 分析：（1）我们可以将10000个数字分成五份，每一份对应两个线程，每两个线程对应一个打印类实体（2）同时声明一个共享变量，用于记录当前线程输出的记录数，但应记录的输出进度；</p>
-<p> 代码如下：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"> import java.io.BufferedReader;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileReader;</span><br><span class="line">import java.io.FileWriter;</span><br><span class="line">import java.io.PrintWriter;</span><br><span class="line">import java.util.Random;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> 一个文件中有10000个数，用Java实现一个多线程程序将这个10000个数输出到5个不用文件中（不要求输出到每个文件中的数量相同）。</span><br><span class="line"> 要求启动10个线程，两两一组，分为5组。</span><br><span class="line"> 每组两个线程分别将文件中的奇数和偶数输出到该组对应的一个文件中，</span><br><span class="line"> 需要偶数线程每打印10个偶数以后，就将奇数线程打印10个奇数，如此交替进行。</span><br><span class="line"> 同时需要记录输出进度，每完成1000个数就在控制台中打印当前完成数量，并在所有线程结束后，在控制台打印”Done”.</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * 分析：可以将10000个数分成5份，每一份（2000个数）对应一组，即两个线程，来分别输出这一份的奇数和偶数，</span><br><span class="line"> * 同时声明一个共享变量，用于统计当前所有线程输出的个数，反映记录的输出进度</span><br><span class="line"> */</span><br><span class="line">public class PrintByThread &#123;</span><br><span class="line">     </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            //创建一个包含10000数字的输入文件</span><br><span class="line">            PrintWriter pw=new PrintWriter(new FileWriter(new File(<span class="string">"input.txt"</span>)),<span class="literal">true</span>);</span><br><span class="line">            Random random=new Random();</span><br><span class="line">            <span class="keyword">for</span> (int i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">                pw.print(Math.abs(random.nextInt())%100+<span class="string">","</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            pw.flush();</span><br><span class="line">            pw.close();</span><br><span class="line">            //读取文件中的数字，分5次读取，每次读取2000个</span><br><span class="line">            BufferedReader reader=new BufferedReader(new FileReader(<span class="string">"input.txt"</span>));</span><br><span class="line">            String str=reader.readLine();</span><br><span class="line">            reader.close();</span><br><span class="line">            String[] strs=str.split(<span class="string">","</span>);//将一行字符串全部解析为10000个数字</span><br><span class="line">            int j=0;//10000个数的索引计数</span><br><span class="line">            <span class="keyword">for</span> (int i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">                int records[]=new int[2000];</span><br><span class="line">                <span class="keyword">for</span> (int k = 0; k &lt; 2000; k++) &#123;</span><br><span class="line">                    records[k]=Integer.parseInt(strs[j]);</span><br><span class="line">                    j++;</span><br><span class="line">                &#125;</span><br><span class="line">                //定义输出文件</span><br><span class="line">                PrintWriter writer = new PrintWriter(new FileWriter(new File(<span class="string">"output"</span>+i+<span class="string">".txt"</span>)),<span class="literal">true</span>);</span><br><span class="line">                //定义实现的方法</span><br><span class="line">                ThreadGroup3 group = new ThreadGroup3(records, writer);</span><br><span class="line">                //开启一对儿线程</span><br><span class="line">                new Thread(group).start();</span><br><span class="line">                new Thread(group).start();    </span><br><span class="line">            &#125;          </span><br><span class="line">             </span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            // TODO: handle exception</span><br><span class="line">        &#125;      </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">class ThreadGroup3 implements Runnable&#123;</span><br><span class="line">    //所有类对象共享的同一个计数器count，记录总共输出的记录总数</span><br><span class="line">    private static int count=0;</span><br><span class="line">    //所有的ThreadGroup类对象共享一个锁，用于count变量的同步，任何一个线程需要修改count变量，必须取得该锁</span><br><span class="line">    private static Object lock=new Object();</span><br><span class="line">    public static final int EVEN=0;//代表偶数</span><br><span class="line">    public static final int ODD=-1;//代表奇数（此处一定要是-1，因为后边 <span class="built_in">type</span> = ~ <span class="built_in">type</span>的代码，0的按位取反（~）结果是-1，切记切记）</span><br><span class="line">     </span><br><span class="line">    //*********以上静态变量，属于整个类所有***********</span><br><span class="line">    private int <span class="built_in">type</span>;</span><br><span class="line">    private int records[];</span><br><span class="line">    private PrintWriter writer;//每组共享一个writer，输出到同一个文件</span><br><span class="line">    private int oddPoint=0;//记录每次打印奇数的起始位置</span><br><span class="line">    private int evenPoint=0;//记录每次打印偶数的起始位置</span><br><span class="line">     </span><br><span class="line">    public ThreadGroup3(int[] records,PrintWriter writer)&#123;</span><br><span class="line">        this.records=records;</span><br><span class="line">        this.writer=writer;</span><br><span class="line">        this.type=EVEN;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    //线程方法实现</span><br><span class="line">    public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">print</span>());</span><br><span class="line">         </span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    private synchronized boolean <span class="function"><span class="title">print</span></span>()&#123;</span><br><span class="line">        <span class="keyword">for</span>(int i=0;i&lt;10;)&#123;</span><br><span class="line">            //如果奇数和偶数都打印完成以后，就直接停止打印循环，等待该线程自己结束</span><br><span class="line">            <span class="keyword">if</span> (oddPoint&gt;=records.length&amp;&amp;evenPoint&gt;=records.length) &#123;</span><br><span class="line">                notifyAll();</span><br><span class="line">                <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            //如果该线程该打印奇数，但奇数已经打印晚了，就直接停止本次10个数的打印，</span><br><span class="line">            //同理偶数，等下次切换打印类型后，再开始打印另外一种类型</span><br><span class="line">            <span class="keyword">if</span> ((oddPoint&gt;=records.length&amp;&amp;<span class="built_in">type</span>==ODD)||(evenPoint&gt;=records.length&amp;&amp;<span class="built_in">type</span>==EVEN)) &#123;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            //判断开始打印偶数</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">type</span>==EVEN) &#123;</span><br><span class="line">                <span class="keyword">if</span> (records[evenPoint]%2==0) &#123;</span><br><span class="line">                    i++;</span><br><span class="line">                    writer.print(records[evenPoint]+<span class="string">","</span>);</span><br><span class="line">                    writer.flush();</span><br><span class="line">                    //锁定全局变量方便线程输出后计数</span><br><span class="line">                    synchronized (lock) &#123;</span><br><span class="line">                        count++;</span><br><span class="line">                        <span class="keyword">if</span> (count%1000==0) &#123;</span><br><span class="line">                            System.out.println(<span class="string">"当前完成数量："</span>+count);</span><br><span class="line">                            <span class="keyword">if</span> (count==10000) &#123;</span><br><span class="line">                                System.out.println(<span class="string">"Done!"</span>);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                //无论是否是偶数，打印成功一个后，偶数的起始位置都要后移</span><br><span class="line">                evenPoint++;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                //打印奇数</span><br><span class="line">                <span class="keyword">if</span> (records[oddPoint]%2==1) &#123;</span><br><span class="line">                    i++;</span><br><span class="line">                    writer.print(records[oddPoint]+<span class="string">","</span>);</span><br><span class="line">                    writer.flush();</span><br><span class="line">                    //锁定全局变量方便线程输出后计数</span><br><span class="line">                    synchronized (lock) &#123;</span><br><span class="line">                        count++;</span><br><span class="line">                        <span class="keyword">if</span> (count%1000==0) &#123;</span><br><span class="line">                            System.out.println(<span class="string">"当前完成数量："</span>+count);</span><br><span class="line">                            <span class="keyword">if</span> (count==10000) &#123;</span><br><span class="line">                                System.out.println(<span class="string">"Done!"</span>);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                //无论是否是奇数，打印成功一个后，偶数的起始位置都要后移</span><br><span class="line">                oddPoint++;</span><br><span class="line">            &#125;</span><br><span class="line">             </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">type</span>=~<span class="built_in">type</span>;//切换打印类型</span><br><span class="line">        notifyAll();//一组中的任一线程打印完后唤醒另一个线程</span><br><span class="line">        try &#123;</span><br><span class="line">            <span class="built_in">wait</span>();//释放锁进入等待状态，等待另一线程打印</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            // TODO: handle exception</span><br><span class="line">        	e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>（以下结果是完全真实运行的结果，读者可以拿来验证）<br> 在控制台的输出结果：<br>当前完成数量：1000<br>当前完成数量：2000<br>当前完成数量：3000<br>当前完成数量：4000<br>当前完成数量：5000<br>当前完成数量：6000<br>当前完成数量：7000<br>当前完成数量：8000<br>当前完成数量：9000<br>当前完成数量：10000<br>Done!</p>
-<p>在input.txt中，部分数据内容如下：<br><img src="../../images/input.png" alt="Alt text"></p>
-<p>在output0.txt文件中，部分内容如下：<br><img src="../../images/output0.png" alt="Alt text"><br>在input1.txt文件中，内容和在output0.txt内容相似，这里不再赘述。</p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java-多线程编程/">java 多线程编程</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -758,7 +755,7 @@
   <h3 class="title">Kategorien</h3>
   <ul class="entry">
   
-    <li><a href="/categories/技术/">技术</a><small>12</small></li>
+    <li><a href="/categories/技术/">技术</a><small>13</small></li>
   
   </ul>
 </div>
@@ -768,6 +765,10 @@
 <div class="widget tag">
   <h3 class="title">Neueste Artikel</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2016/04/11/java主函数所在类的思考/">java主函数所在类的思考</a>
+      </li>
     
       <li>
         <a href="/2016/04/01/MySql外键设置中的Cascade-no-action-restrict-set-null-分享/">MySql外键设置中的Cascade, no action,restrict ,set null(分享)</a>
@@ -783,10 +784,6 @@
     
       <li>
         <a href="/2016/03/24/主副线程的交替打印（多线程编程）/">主副线程的交替运行(多线程编程)</a>
-      </li>
-    
-      <li>
-        <a href="/2016/03/24/多线程的几种方法？同步的几种方法？/">多线程的几种方法？同步的几种方法？</a>
       </li>
     
   </ul>
@@ -808,7 +805,7 @@
   
     <li><a href="/tags/java-高级/">java 高级</a><small>1</small></li>
   
-    <li><a href="/tags/java基础/">java基础</a><small>6</small></li>
+    <li><a href="/tags/java基础/">java基础</a><small>7</small></li>
   
     <li><a href="/tags/spring/">spring</a><small>1</small></li>
   
