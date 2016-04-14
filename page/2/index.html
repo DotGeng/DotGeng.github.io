@@ -64,6 +64,81 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-03-21T13:39:00.000Z"><a href="/2016/03/21/Comparable和Comparator的区别/">2016-03-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/03/21/Comparable和Comparator的区别/">Comparable和Comparator的区别</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Comparator和Comparable 都是用来实现集合中元素的比较。排序的，知识，Comparable实现的排序实在java集合内部实现的，而Comparator的排序实在java集合外部实现的排序，所以，如果想实现排序，那就需要在集合内实现Comparable接口或者在集合外部实现Comparator接口</p>
+<p>另外，就从所处的包来说： Comparator位于java.util下，而Comparable位于包java.lang下</p>
+<p>下边我们详细说下两者的异同：<br>1 Comaprable和Comaprator相同的地方<br>他们都是一个java接口，并且都是用来对定义的class比较大小的，什么是是自定义的class，如public class person {。。。}<br> 当我们有这么一个personList,里面包含了person1, person2, persion3….., 我们用Collections.sort( personList ),<br>是得不到预期的结果的. 这时肯定有人要问, 那为什么可以排序一个字符串list呢:</p>
+<p>如 StringList{“hello1” , “hello3” , “hello2”}, Collections.sort( stringList ) 能够得到正确的排序, 那是因为<br>String 这个对象已经帮我们实现了 Comparable接口 , 所以我们的 Person 如果想排序, 也要实现一个比较器。</p>
+<ol>
+<li>Comparator 和 Comparable 的区别</li>
+</ol>
+<p>Comparable</p>
+<p>Comparable 定义在 Person类的内部:</p>
+<p>public class Persion implements Comparable {..比较Person的大小..},</p>
+<p> 因为已经实现了比较器,那么我们的Person现在是一个可以比较大小的对象了,它的比较功能和String完全一样,可以随时随地的拿来<br>比较大小,因为Person现在自身就是有大小之分的。Collections.sort(personList)可以得到正确的结果。</p>
+<p>Comparator</p>
+<p>Comparator 是定义在Person的外部的, 此时我们的Person类的结构不需要有任何变化,如</p>
+<p>public class Person{ String name; int age },</p>
+<p>然后我们另外定义一个比较器:</p>
+<p>public PersonComparator implements Comparator() {..比较Person的大小..},</p>
+<p>在PersonComparator里面实现了怎么比较两个Person的大小. 所以,用这种方法,当我们要对一个 personList进行排序的时候,<br>我们除了了要传递personList过去, 还需要把PersonComparator传递过去,因为怎么比较Person的大小是在PersonComparator<br>里面实现的, 如:</p>
+<p>Collections.sort( personList , new PersonComparator() ).</p>
+<ol>
+<li>Comparator 和 Comparable 的实例</li>
+</ol>
+<p>Comparable:</p>
+<p>实现Comparable接口要覆盖compareTo方法, 在compareTo方法里面实现比较：<br>public class Person implements Comparable {<br>     String name;<br>     int age<br>     public int compareTo(Person another) {<br>          int i = 0;<br>          i = name.compareTo(another.name); // 使用字符串的比较<br>          if(i == 0) { // 如果名字一样,比较年龄, 返回比较年龄结果<br>               return age - another.age;<br>          } else {<br>               return i; // 名字不一样, 返回比较名字的结果.<br>          }<br>     }<br>}<br>   这时我们可以直接用 Collections.sort( personList ) 对其排序了.</p>
+<p>Comparator:</p>
+<p>实现Comparator需要覆盖 compare 方法：<br>public class Person{<br>     String name;<br>     int age<br>}</p>
+<p>class PersonComparator implements Comparator {<br>     public int compare(Person one, Person another) {<br>          int i = 0;<br>          i = one.name.compareTo(another.name); // 使用字符串的比较<br>          if(i == 0) { // 如果名字一样,比较年龄,返回比较年龄结果<br>               return one.age - another.age;<br>          } else {<br>               return i; // 名字不一样, 返回比较名字的结果.<br>          }<br>     }<br>}<br>   Collections.sort( personList , new PersonComparator()) 可以对其排序</p>
+<p> 4:总结</p>
+<p>两种方法各有优劣, 用Comparable 简单, 只要实现Comparable 接口的对象直接就成为一个可以比较的对象,<br>但是需要修改源代码, 用Comparator 的好处是不需要修改源代码, 而是另外实现一个比较器, 当某个自定义<br>的对象需要作比较的时候,把比较器和对象一起传递过去就可以比大小了, 并且在Comparator 里面用户可以自<br>己实现复杂的可以通用的逻辑,使其可以匹配一些比较简单的对象,那样就可以节省很多重复劳动了。</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/java基础/">java基础</a>, <a href="/tags/Collection/">Collection</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-03-20T16:45:19.000Z"><a href="/2016/03/21/多线程对文件的读写/">2016-03-21</a></time>
       
       
@@ -343,6 +418,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2016/04/14/算法世界/">算法世界</a>
+      </li>
+    
+      <li>
         <a href="/2016/04/11/java主函数所在类的思考/">java主函数所在类的思考</a>
       </li>
     
@@ -358,10 +437,6 @@
         <a href="/2016/03/27/spring-aop相关术语/">spring-aop相关术语</a>
       </li>
     
-      <li>
-        <a href="/2016/03/24/主副线程的交替打印（多线程编程）/">主副线程的交替运行(多线程编程)</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -374,6 +449,8 @@
     <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
   
     <li><a href="/tags/object-Object/">[object Object]</a><small>1</small></li>
+  
+    <li><a href="/tags/categories/">categories</a><small>1</small></li>
   
     <li><a href="/tags/java-多线程编程/">java 多线程编程</a><small>1</small></li>
   
@@ -393,13 +470,13 @@
   
     <li><a href="/tags/多线程编程/">多线程编程</a><small>2</small></li>
   
-    <li><a href="/tags/技术/">技术</a><small>1</small></li>
+    <li><a href="/tags/技术/">技术</a><small>2</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/tags/概念/">概念</a><small>1</small></li>
   
-    <li><a href="/tags/算法/">算法</a><small>1</small></li>
+    <li><a href="/tags/算法/">算法</a><small>2</small></li>
   
     <li><a href="/tags/随笔/">随笔</a><small>1</small></li>
   
@@ -411,7 +488,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag-Cloud</h3>
   <div class="entry">
-    <a href="/tags/Collection/" style="font-size: 13.33px;">Collection</a> <a href="/tags/object-Object/" style="font-size: 10px;">[object Object]</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 16.67px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 13.33px;">多线程编程</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    <a href="/tags/Collection/" style="font-size: 13.33px;">Collection</a> <a href="/tags/object-Object/" style="font-size: 10px;">[object Object]</a> <a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 16.67px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 13.33px;">多线程编程</a> <a href="/tags/技术/" style="font-size: 13.33px;">技术</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 13.33px;">算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
   </div>
 </div>
 
