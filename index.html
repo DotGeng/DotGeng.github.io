@@ -64,6 +64,56 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-04-16T15:29:26.000Z"><a href="/2016/04/16/二维数组的查找/">2016-04-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/16/二维数组的查找/">二维数组的查找</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>这是一道来自牛客网的一道编程题，有人写了下边的代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean Find(int [][] array,int target) &#123;</span><br><span class="line">		int m = array.length - 1;</span><br><span class="line">        int i = 0;</span><br><span class="line">        <span class="keyword">while</span>(m &gt;= 0 &amp;&amp; i &lt; array[0].length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[m][i] &gt; target)</span><br><span class="line">                m--;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(array[m][i] &lt; target)</span><br><span class="line">                i++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个算法，牛客网竟然通过了，不可思议。仔细分析一下，这个算法是错误的。比如我输入这样一个二维数组：</p>
+<p>1 11 23 49<br>2 15 24 50<br>3 25 27 51<br>4 29 31 52</p>
+<p>target = 25 </p>
+<p>这个时候，就查不到了，就会返回false；但是实际的数组中是存在 25 这个数字的。</p>
+<p>我的想法：</p>
+<p>根据二分查找方法，现在第一行数字之间找到该数字<strong>最</strong>可能所在的列。比如25所在的可能列是</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/算法/">算法</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-04-13T16:06:57.000Z"><a href="/2016/04/14/算法世界/">2016-04-14</a></time>
       
       
@@ -89,7 +139,7 @@
         
   
   <div class="tags">
-    <a href="/tags/技术/">技术</a>, <a href="/tags/算法/">算法</a>, <a href="/tags/categories/">categories</a>
+    <a href="/tags/算法/">算法</a>, <a href="/tags/技术/">技术</a>, <a href="/tags/categories/">categories</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -188,7 +238,7 @@
         
   
   <div class="tags">
-    <a href="/tags/分享/">分享</a>, <a href="/tags/数据库/">数据库</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>, <a href="/tags/随笔/">随笔</a>
+    <a href="/tags/分享/">分享</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>, <a href="/tags/数据库/">数据库</a>, <a href="/tags/随笔/">随笔</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -653,60 +703,11 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-21T14:16:13.000Z"><a href="/2016/03/21/ArrayList和Vector的区别/">2016-03-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/21/ArrayList和Vector的区别/">ArrayList和Vector的区别</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>这两个类都实现了List接口（List接口继承了Collection接口），他们都是有序集合，级存贮在这两个集合中的元素都是有序的，他们的底层实现就是用数组。我们可以按照集合中元素的索引号取出某个元素，并且其中元素是可以重复的（比较和HashTable以及HashMap的区别）。</p>
-<p>接下来我们详细说明两者的区别：<br>1 同步性<br>    Vector是线程安全的，也就是说他的方法之间是线程同步的，而Arraylist是线程不安全的，他的方法之间不是线程同步的，如果只有一个线程会访问到集合，那么我们就应该用ArrayList，因为他不需要考虑线程的安全性，效率更高；如果有多个线程访问该集合，那么最好使用Vector，因为他是贤臣安全的，我们就不要在考虑和编写线程安全的代码。<br>2 数据增长<br>    Arraylist与Vector都有一个初始的容量大小，当存储在他们里边的元素的个数超过了该容量，就需要增加ArrayList和Vector的大小，每次要增加存储空间的时候，不是增加一个存储空间，而是增加多个存储空间，Vector增加默认增加为原来的两倍，Arraylist增加为原来的1.5倍（在源码中可以看到）。他们也可以设置增长空间大小，比如用resize方法</p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java基础/">java基础</a>, <a href="/tags/Collection/">Collection</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Nächste Seite &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </nav>
@@ -714,14 +715,14 @@
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="Search">
     <input type="hidden" name="q" value="site:yoursite.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Kategorien</h3>
+  <h3 class="title">Categories</h3>
   <ul class="entry">
   
     <li><a href="/categories/技术/">技术</a><small>13</small></li>
@@ -732,8 +733,12 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Neueste Artikel</h3>
+  <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2016/04/16/二维数组的查找/">二维数组的查找</a>
+      </li>
     
       <li>
         <a href="/2016/04/14/算法世界/">算法世界</a>
@@ -751,10 +756,6 @@
         <a href="/2016/03/30/Java对象池技术的原理及其实现-转载/">Java对象池技术的原理及其实现(转载)</a>
       </li>
     
-      <li>
-        <a href="/2016/03/27/spring-aop相关术语/">spring-aop相关术语</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -766,7 +767,7 @@
   
     <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
   
-    <li><a href="/tags/object-Object/">[object Object]</a><small>1</small></li>
+    <li><a href="/tags/object-Object/">[object Object]</a><small>2</small></li>
   
     <li><a href="/tags/categories/">categories</a><small>1</small></li>
   
@@ -788,13 +789,13 @@
   
     <li><a href="/tags/多线程编程/">多线程编程</a><small>2</small></li>
   
-    <li><a href="/tags/技术/">技术</a><small>2</small></li>
+    <li><a href="/tags/技术/">技术</a><small>3</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/tags/概念/">概念</a><small>1</small></li>
   
-    <li><a href="/tags/算法/">算法</a><small>2</small></li>
+    <li><a href="/tags/算法/">算法</a><small>3</small></li>
   
     <li><a href="/tags/随笔/">随笔</a><small>1</small></li>
   
@@ -804,9 +805,9 @@
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag-Cloud</h3>
+  <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/Collection/" style="font-size: 13.33px;">Collection</a> <a href="/tags/object-Object/" style="font-size: 10px;">[object Object]</a> <a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 16.67px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 13.33px;">多线程编程</a> <a href="/tags/技术/" style="font-size: 13.33px;">技术</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 13.33px;">算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    <a href="/tags/Collection/" style="font-size: 13.33px;">Collection</a> <a href="/tags/object-Object/" style="font-size: 13.33px;">[object Object]</a> <a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 16.67px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 13.33px;">多线程编程</a> <a href="/tags/技术/" style="font-size: 16.67px;">技术</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
   </div>
 </div>
 

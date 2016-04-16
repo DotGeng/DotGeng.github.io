@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>Page 2 | Archives: 2016/3 | DotGeng</title>
+  <title>二维数组的查找 | DotGeng</title>
   <meta name="author" content="Gengyukun" />
 
   
@@ -14,7 +14,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  
+  <meta property="og:title" content="二维数组的查找" />
   <meta property="og:site_name" content="DotGeng" />
 
   
@@ -57,49 +57,54 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2016/3</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-16T15:29:26.000Z"><a href="/2016/04/16/二维数组的查找/">2016-04-16</a></time>
+      
+      
+  
+    <h1 class="title">二维数组的查找</h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>这是一道来自牛客网的一道编程题，有人写了下边的代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean Find(int [][] array,int target) &#123;</span><br><span class="line">		int m = array.length - 1;</span><br><span class="line">        int i = 0;</span><br><span class="line">        <span class="keyword">while</span>(m &gt;= 0 &amp;&amp; i &lt; array[0].length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[m][i] &gt; target)</span><br><span class="line">                m--;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(array[m][i] &lt; target)</span><br><span class="line">                i++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个算法，牛客网竟然通过了，不可思议。仔细分析一下，这个算法是错误的。比如我输入这样一个二维数组：</p>
+<p>1 11 23 49<br>2 15 24 50<br>3 25 27 51<br>4 29 31 52</p>
+<p>target = 25 </p>
+<p>这个时候，就查不到了，就会返回false；但是实际的数组中是存在 25 这个数字的。</p>
+<p>我的想法：</p>
+<p>根据二分查找方法，现在第一行数字之间找到该数字<strong>最</strong>可能所在的列。比如25所在的可能列是</p>
 
-  <div class="archive">
+      
+    </div>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-03-14T08:43:15.000Z"><a href="/2016/03/14/内部类详解/">2016-03-14</a></time>
-            
-              <h1 class="title"><a href="/2016/03/14/内部类详解/">内部类详解</a></h1>
-            
-          </header>
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-03-12T09:05:05.000Z"><a href="/2016/03/12/the-first-blog/">2016-03-12</a></time>
-            
-              <h1 class="title"><a href="/2016/03/12/the-first-blog/">the first blog</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-03-11T17:19:52.594Z"><a href="/2016/03/12/hello-world/">2016-03-12</a></time>
-            
-              <h1 class="title"><a href="/2016/03/12/hello-world/">Hello World</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/算法/">算法</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>
   </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
