@@ -75,12 +75,10 @@
       
         <p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
 <p>这是一道来自牛客网的一道编程题，有人写了下边的代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean Find(int [][] array,int target) &#123;</span><br><span class="line">		int m = array.length - 1;</span><br><span class="line">        int i = 0;</span><br><span class="line">        <span class="keyword">while</span>(m &gt;= 0 &amp;&amp; i &lt; array[0].length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[m][i] &gt; target)</span><br><span class="line">                m--;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(array[m][i] &lt; target)</span><br><span class="line">                i++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这个算法，牛客网竟然通过了，不可思议。仔细分析一下，这个算法是错误的。比如我输入这样一个二维数组：</p>
-<p>1 11 23 49<br>2 15 24 50<br>3 25 27 51<br>4 29 31 52</p>
-<p>target = 25 </p>
-<p>这个时候，就查不到了，就会返回false；但是实际的数组中是存在 25 这个数字的。</p>
-<p>我的想法：</p>
-<p>根据二分查找方法，现在第一行数字之间找到该数字<strong>最</strong>可能所在的列。比如25所在的可能列是</p>
+<p>算法分析：<br>解法一：对于这样一个二维数组，我们可以直接用暴力解决：用两重循环重头开始遍历。（代码比较简单，这里省略，以后有时间补上）（时间复杂度是O(n^2）)。</p>
+<p>解法二：由于每行都是有序的数组，这个时候我们也比较容易想到二分查找。我们可以对每行进行二分查找（时间复杂度是O(n*log2(底数)n)）。</p>
+<p>解法三；即上边的算法。这个时候的时间为（O（n））（1^2 + 2^2 + 3^2 + 4^2 + … n^2 +(n+1)(n-1)+(n+2)(n-2)+(n+3)(n-3)+…+(n+n-1)(n-(n-1))）/n^2</p>
+<p>综上解法三最省时间，是最优算法。</p>
 
       
     </div>
@@ -94,7 +92,7 @@
         
   
   <div class="tags">
-    <a href="/tags/算法/">算法</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>
+    <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>, <a href="/tags/算法/">算法</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -109,14 +107,14 @@
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="search" name="q" results="0" placeholder="Buscar">
     <input type="hidden" name="q" value="site:yoursite.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Categories</h3>
+  <h3 class="title">Categorías</h3>
   <ul class="entry">
   
     <li><a href="/categories/技术/">技术</a><small>13</small></li>
@@ -127,7 +125,7 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Recent Posts</h3>
+  <h3 class="title">Entradas Recientes</h3>
   <ul class="entry">
     
       <li>
@@ -156,7 +154,7 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">Etiquetas</h3>
   <ul class="entry">
   
     <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
@@ -199,7 +197,7 @@
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">Nube de Etiquetas</h3>
   <div class="entry">
     <a href="/tags/Collection/" style="font-size: 13.33px;">Collection</a> <a href="/tags/object-Object/" style="font-size: 13.33px;">[object Object]</a> <a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 16.67px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 13.33px;">多线程编程</a> <a href="/tags/技术/" style="font-size: 16.67px;">技术</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
   </div>
