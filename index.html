@@ -64,6 +64,54 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-04-19T15:58:09.000Z"><a href="/2016/04/19/非递归方式实现斐波那契数列/">2016-04-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/19/非递归方式实现斐波那契数列/">非递归方式实现斐波那契数列</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天做的是一道关于斐波那契数列的题目，本来在牛客网上准备用递归实现，但是递归的时间到达不到牛客网的要求，所以改用非递归的方式；</p>
+<p>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项；</p>
+<p>斐波那契数列的介绍</p>
+<p>斐波那契数列，又称黄金分割数列，指的是这样一个数列：0、1、1、2、3、5、8、13、21、34、……在数学上，斐波纳契数列以如下被以递归的方法定义：F（0）=0，F（1）=1，F（n）=F(n-1)+F(n-2)（n≥2，n∈N*）；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int Fibonacci(int n) &#123;</span><br><span class="line">        <span class="keyword">if</span>(n == 0 ) &#123;</span><br><span class="line">            <span class="built_in">return</span> 0;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n == 1) &#123;</span><br><span class="line">            <span class="built_in">return</span> 1;</span><br><span class="line">        &#125;</span><br><span class="line">				int a = 0;</span><br><span class="line">        int b = 1; </span><br><span class="line">        int c = 1;</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt; n; i ++) &#123;</span><br><span class="line">            c = a + b ;</span><br><span class="line">            a = b;</span><br><span class="line">            b = c ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我做题的思想： 设置两个游标a,b,分别记录x-1项的值和x-2的值，然后设置游标c的值为前两项之和。每进行一次计算，游标a,b都要向后移动一个位置。这个直到游标c移动到n位置。则计算结束。</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/算法/">算法</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-04-16T15:29:26.000Z"><a href="/2016/04/16/二维数组的查找/">2016-04-16</a></time>
       
       
@@ -93,7 +141,7 @@
         
   
   <div class="tags">
-    <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>, <a href="/tags/算法/">算法</a>
+    <a href="/tags/算法/">算法</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -137,7 +185,7 @@
         
   
   <div class="tags">
-    <a href="/tags/技术/">技术</a>, <a href="/tags/算法/">算法</a>, <a href="/tags/categories/">categories</a>
+    <a href="/tags/算法/">算法</a>, <a href="/tags/技术/">技术</a>, <a href="/tags/categories/">categories</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -318,7 +366,7 @@
         
   
   <div class="tags">
-    <a href="/tags/java-高级/">java 高级</a>, <a href="/tags/分享/">分享</a>
+    <a href="/tags/分享/">分享</a>, <a href="/tags/java-高级/">java 高级</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -422,7 +470,7 @@
         
   
   <div class="tags">
-    <a href="/tags/分享/">分享</a>, <a href="/tags/多线程编程/">多线程编程</a>
+    <a href="/tags/多线程编程/">多线程编程</a>, <a href="/tags/分享/">分享</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -653,59 +701,11 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-21T17:25:25.000Z"><a href="/2016/03/22/java中Sort方法底层实现/">2016-03-22</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/22/java中Sort方法底层实现/">java中Sort方法底层实现</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>java中Arrays.sort使用了两种排序方法，快速排序和优化的合并排序。<br>快速排序主要是对哪些基本类型数据（int,short,long等）排序， 而合并排序用于对对象类型进行排序。<br>使用不同类型的排序算法主要是由于快速排序是不稳定的，而合并排序是稳定的。这里的稳定是指比较相等的数据在排序之后仍然按照排序之前的前后顺序排列。对于基本数据类型，稳定性没有意义，而对于对象类型，稳定性是比较重要的，因为对象相等的判断可能只是判断关键属性，最好保持相等对象的非关键属性的顺序与排序前一直；另外一个原因是由于合并排序相对而言比较次数比快速排序少，移动（对象引用的移动）次数比快速排序多，而对于对象来说，比较一般比移动耗时。<br>补充一点合并排序的时间复杂度是n<em>logn, 快速排序的平均时间复杂度也是n</em>logn，但是合并排序的需要额外的n个引用的空间 ……<br>转自：<a href="http://blog.sina.com.cn/s/blog_7337d6a00100xpd5.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_7337d6a00100xpd5.html</a></p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java基础/">java基础</a>, <a href="/tags/算法/">算法</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Siguiente &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </nav>
@@ -713,14 +713,14 @@
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Buscar">
+    <input type="search" name="q" results="0" placeholder="Search">
     <input type="hidden" name="q" value="site:yoursite.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Categorías</h3>
+  <h3 class="title">Categories</h3>
   <ul class="entry">
   
     <li><a href="/categories/技术/">技术</a><small>13</small></li>
@@ -731,8 +731,12 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Entradas Recientes</h3>
+  <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2016/04/19/非递归方式实现斐波那契数列/">非递归方式实现斐波那契数列</a>
+      </li>
     
       <li>
         <a href="/2016/04/16/二维数组的查找/">二维数组的查找</a>
@@ -750,22 +754,18 @@
         <a href="/2016/04/01/MySql外键设置中的Cascade-no-action-restrict-set-null-分享/">MySql外键设置中的Cascade, no action,restrict ,set null(分享)</a>
       </li>
     
-      <li>
-        <a href="/2016/03/30/Java对象池技术的原理及其实现-转载/">Java对象池技术的原理及其实现(转载)</a>
-      </li>
-    
   </ul>
 </div>
 
 
   
 <div class="widget tag">
-  <h3 class="title">Etiquetas</h3>
+  <h3 class="title">Tags</h3>
   <ul class="entry">
   
     <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
   
-    <li><a href="/tags/object-Object/">[object Object]</a><small>2</small></li>
+    <li><a href="/tags/object-Object/">[object Object]</a><small>3</small></li>
   
     <li><a href="/tags/categories/">categories</a><small>1</small></li>
   
@@ -787,13 +787,13 @@
   
     <li><a href="/tags/多线程编程/">多线程编程</a><small>2</small></li>
   
-    <li><a href="/tags/技术/">技术</a><small>3</small></li>
+    <li><a href="/tags/技术/">技术</a><small>4</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/tags/概念/">概念</a><small>1</small></li>
   
-    <li><a href="/tags/算法/">算法</a><small>3</small></li>
+    <li><a href="/tags/算法/">算法</a><small>4</small></li>
   
     <li><a href="/tags/随笔/">随笔</a><small>1</small></li>
   
@@ -803,9 +803,9 @@
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Nube de Etiquetas</h3>
+  <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/Collection/" style="font-size: 13.33px;">Collection</a> <a href="/tags/object-Object/" style="font-size: 13.33px;">[object Object]</a> <a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 16.67px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 13.33px;">多线程编程</a> <a href="/tags/技术/" style="font-size: 16.67px;">技术</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    <a href="/tags/Collection/" style="font-size: 12.5px;">Collection</a> <a href="/tags/object-Object/" style="font-size: 15px;">[object Object]</a> <a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/java-多线程编程/" style="font-size: 10px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 15px;">分享</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/多线程编程/" style="font-size: 12.5px;">多线程编程</a> <a href="/tags/技术/" style="font-size: 17.5px;">技术</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 17.5px;">算法</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
   </div>
 </div>
 

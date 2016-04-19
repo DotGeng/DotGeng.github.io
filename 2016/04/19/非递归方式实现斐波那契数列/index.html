@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>MySql外键设置中的Cascade, no action,restrict ,set null(分享) | DotGeng</title>
+  <title>非递归方式实现斐波那契数列 | DotGeng</title>
   <meta name="author" content="Gengyukun" />
 
   
@@ -14,7 +14,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="MySql外键设置中的Cascade, no action,restrict ,set null(分享)" />
+  <meta property="og:title" content="非递归方式实现斐波那契数列" />
   <meta property="og:site_name" content="DotGeng" />
 
   
@@ -63,23 +63,22 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-04-01T07:28:13.000Z"><a href="/2016/04/01/MySql外键设置中的Cascade-no-action-restrict-set-null-分享/">2016-04-01</a></time>
+        <time datetime="2016-04-19T15:58:09.000Z"><a href="/2016/04/19/非递归方式实现斐波那契数列/">2016-04-19</a></time>
       
       
   
-    <h1 class="title">MySql外键设置中的Cascade, no action,restrict ,set null(分享)</h1>
+    <h1 class="title">非递归方式实现斐波那契数列</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>今天项目的需要，需要mYSql数据库表中添加一些外键约束，本人由于对数据库的外键长时间不使用，已经全部归还给了老师，这次通过查找资料，也终于回想起来了，在这了分享给大家</p>
-<p>cascade 方式：<br> 在父表上做更新或者删除的时候，同步更新或者删除子表的匹配记录；</p>
-<p> no action方式<br> 如果子表中有匹配记录，那么则不允许对父表对应的候选键进行更新删除。</p>
-<p> restrict 方式<br> 同 no action,都是直接检查外键约束，如果有外键约束的话，就拒绝父表进行相应的更新删除。</p>
-<p>set null方式<br> 在父表上更新或者删除记录的时候，将子表上匹配记录的列设置为null；这里设计表的时候要注意，子表的外键列不能为null;</p>
-<p> 还有一种是set default 方式</p>
-<p> 父表有更新的时候，子表将外键类设置为一个默认的值。</p>
+        <p>今天做的是一道关于斐波那契数列的题目，本来在牛客网上准备用递归实现，但是递归的时间到达不到牛客网的要求，所以改用非递归的方式；</p>
+<p>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项；</p>
+<p>斐波那契数列的介绍</p>
+<p>斐波那契数列，又称黄金分割数列，指的是这样一个数列：0、1、1、2、3、5、8、13、21、34、……在数学上，斐波纳契数列以如下被以递归的方法定义：F（0）=0，F（1）=1，F（n）=F(n-1)+F(n-2)（n≥2，n∈N*）；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int Fibonacci(int n) &#123;</span><br><span class="line">        <span class="keyword">if</span>(n == 0 ) &#123;</span><br><span class="line">            <span class="built_in">return</span> 0;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n == 1) &#123;</span><br><span class="line">            <span class="built_in">return</span> 1;</span><br><span class="line">        &#125;</span><br><span class="line">				int a = 0;</span><br><span class="line">        int b = 1; </span><br><span class="line">        int c = 1;</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt; n; i ++) &#123;</span><br><span class="line">            c = a + b ;</span><br><span class="line">            a = b;</span><br><span class="line">            b = c ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我做题的思想： 设置两个游标a,b,分别记录x-1项的值和x-2的值，然后设置游标c的值为前两项之和。每进行一次计算，游标a,b都要向后移动一个位置。这个直到游标c移动到n位置。则计算结束。</p>
 
       
     </div>
@@ -93,7 +92,7 @@
         
   
   <div class="tags">
-    <a href="/tags/分享/">分享</a>, <a href="/tags/数据库/">数据库</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>, <a href="/tags/随笔/">随笔</a>
+    <a href="/tags/算法/">算法</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>
   </div>
 
         <!-- partial('post/share') -->
