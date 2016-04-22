@@ -93,7 +93,7 @@
 <p>将方法interrupt() 和return结合使用也能实现线程的停止的效果。</p>
 <p>看下边的例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package exthread;</span><br><span class="line"></span><br><span class="line">public class MyThread extends Thread&#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span>(this.isInterrupted()) &#123;</span><br><span class="line">				System.out.println(<span class="string">"被停止了！"</span>);</span><br><span class="line">				<span class="built_in">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(<span class="string">"timer = "</span> + System.currentTimeMillis());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Run.java 代码为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package exthread;</span><br><span class="line"></span><br><span class="line">public class Run &#123;</span><br><span class="line">	public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">		MyThread thread  = new MyThread();</span><br><span class="line">		thread.start();</span><br><span class="line">		Thread.sleep(2000);</span><br><span class="line">		thread.interrupt();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行结果是:<br><a href="../../images/interruptandreturn.png">Alt text</a><br>可以看书线程被终止了。</p>
+<p>运行结果是:<br><a href="../../images/interruptandreturn.png">Alt text</a><br>可以看出线程被终止了。</p>
 <p>不过还是建议使用”抛异常”的方法来实现线程的停止，因为在catch块中还能将异常向上抛，使线程停止的事件得以传播。</p>
 
       
@@ -352,7 +352,7 @@
         
   
   <div class="tags">
-    <a href="/tags/分享/">分享</a>, <a href="/tags/数据库/">数据库</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>, <a href="/tags/随笔/">随笔</a>
+    <a href="/tags/数据库/">数据库</a>, <a href="/tags/分享/">分享</a>, <a href="/tags/object-Object/">[object Object]</a>, <a href="/tags/技术/">技术</a>, <a href="/tags/随笔/">随笔</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -434,7 +434,7 @@
         
   
   <div class="tags">
-    <a href="/tags/java-高级/">java 高级</a>, <a href="/tags/分享/">分享</a>
+    <a href="/tags/分享/">分享</a>, <a href="/tags/java-高级/">java 高级</a>
   </div>
 
         <!-- partial('post/share') -->
