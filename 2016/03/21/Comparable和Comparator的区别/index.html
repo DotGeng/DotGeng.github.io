@@ -78,9 +78,7 @@
     </header>
     <div class="entry">
       
-        <p>Comparator和Comparable 都是用来实现集合中元素的比较。排序的，知识，Comparable实现的排序实在java集合内部实现的，而Comparator的排序实在java集合外部实现的排序，所以，如果想实现排序，那就需要在集合内实现Comparable接口或者在集合外部实现Comparator接口</p>
-<p>另外，就从所处的包来说： Comparator位于java.util下，而Comparable位于包java.lang下</p>
-<p>下边我们详细说下两者的异同：<br>1 Comaprable和Comaprator相同的地方<br>他们都是一个java接口，并且都是用来对定义的class比较大小的，什么是是自定义的class，如public class person {。。。}<br> 当我们有这么一个personList,里面包含了person1, person2, persion3….., 我们用Collections.sort( personList ),<br>是得不到预期的结果的. 这时肯定有人要问, 那为什么可以排序一个字符串list呢:</p>
+        <p>Comparator和Comparable 都是用来实现集合中元素的比较。排序的，知识，Comparable实现的排序实在java集合内部实现的，而Comparator的排序实在java集合外部实现的排序，所以，如果想实现排序，那就需要在集合内实现Comparable接口或者在集合外部实现Comparator接口<br>另外，就从所处的包来说： Comparator位于java.util下，而Comparable位于包java.lang下<br>下边我们详细说下两者的异同：<br><a id="more"></a><br>1 Comaprable和Comaprator相同的地方<br>他们都是一个java接口，并且都是用来对定义的class比较大小的，什么是是自定义的class，如public class person {。。。}<br> 当我们有这么一个personList,里面包含了person1, person2, persion3….., 我们用Collections.sort( personList ),<br>是得不到预期的结果的. 这时肯定有人要问, 那为什么可以排序一个字符串list呢:</p>
 <p>如 StringList{“hello1” , “hello3” , “hello2”}, Collections.sort( stringList ) 能够得到正确的排序, 那是因为<br>String 这个对象已经帮我们实现了 Comparable接口 , 所以我们的 Person 如果想排序, 也要实现一个比较器。</p>
 <ol>
 <li>Comparator 和 Comparable 的区别</li>
