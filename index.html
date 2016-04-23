@@ -79,7 +79,7 @@
     </header>
     <div class="entry">
       
-        <!--查看更多-->
+        <a id="more"></a>
 <p>suspend方法调用后，线程放弃cpu，但是一直持有其他的资源，知道resume将程序重新启动，这时候会再次获得cup。<br>而yield方法调用后，线程放弃cpu，但放弃多长时间不一定，有可能刚刚放弃cpu，就马上又获得了cpu了。</p>
 
       
@@ -130,18 +130,15 @@
     </header>
     <div class="entry">
       
-        <p>暂停线程意味着此线程还可以恢复执行。在java多线程中，可以使用suspend()方法暂停线程，使用resume()方法恢复线程的执行。<br><!-- 查看更多 --></p>
-<p>1 suspend()方法使用：<br>thread.suspend();<br>resume()方法使用：<br>thread.resume();<br>2 suspend与resume的方法的缺点：<br>    2.1 独占<br>        在使用suspend和resume方法时候，如果使用不当，极易造成公共的同步对象的独占，使得其他线程无法正常访问文公同步对象。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package exthread;</span><br><span class="line"></span><br><span class="line">public class SynchronizedObject &#123;</span><br><span class="line">	synchronized public void <span class="function"><span class="title">printString</span></span>() &#123;</span><br><span class="line">		System.out.println(<span class="string">"begin"</span>);</span><br><span class="line">		<span class="keyword">if</span>(Thread.currentThread().getName().equals(<span class="string">"a"</span>) )&#123;</span><br><span class="line">			System.out.println(<span class="string">"a 线程被永远的 suspend 了！"</span>);</span><br><span class="line">			Thread.currentThread().suspend();</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"end"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<pre><code>文件Run.java代码如下：
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package exthread;</span><br><span class="line"></span><br><span class="line">public class Run &#123;</span><br><span class="line">	public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">		final SynchronizedObject object = new SynchronizedObject();</span><br><span class="line">		Thread thread1 = new <span class="function"><span class="title">Thread</span></span>() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">				object.printString();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		thread1.setName(<span class="string">"a"</span>);</span><br><span class="line">		thread1.start();</span><br><span class="line">		Thread.sleep(1000);</span><br><span class="line">		Thread thread2 = new <span class="function"><span class="title">Thread</span></span>() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">				System.out.println(<span class="string">"thread2启动了，但是进入不到printString方法，只打印一个begin"</span>);</span><br><span class="line">				System.out.println(<span class="string">"因为printString方法被线程a锁定了，并且永远的suspend了"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		thread2.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果如下所示：</p>
-<p><img src="../images/suspendforsynchronized.PNG" alt=""><br>        另外有一种独占所的情况也要注意，稍有不慎，就会出现意想不到的错误；请看下边的println()源码：<br>        public void println(long x) {<br>            synchronized(this) {<br>                println(x);<br>                newLine();<br>            }<br>        }<br>        我们可以看到这里有一个同步的代码块。在这个代码块里边，所以在线程执行println方法的时候，我们不要suspend线程，否则，该方法其他的线程将不能使用。<br>    2.2 易导致数据的不同步<br>        在使用suspend和resume容易出现因为线程的暂停，而导致数据不同步的情况。<br>        我们看下边的代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package exthread;</span><br><span class="line"></span><br><span class="line">public class MyObject &#123;</span><br><span class="line">	private String username = <span class="string">"1"</span>;</span><br><span class="line">	private String password = <span class="string">"11"</span>;</span><br><span class="line">	public void <span class="built_in">set</span>Value(String u, String p) &#123;</span><br><span class="line">		this.username = u;</span><br><span class="line">		<span class="keyword">if</span>(Thread.currentThread().getName().equals(<span class="string">"a"</span>)) &#123;</span><br><span class="line">			System.out.println(<span class="string">"停止a线程"</span>);</span><br><span class="line">			Thread.currentThread().suspend();</span><br><span class="line">		&#125;</span><br><span class="line">		this.password = p;</span><br><span class="line">	&#125;</span><br><span class="line">	public void <span class="function"><span class="title">printUsernamePassword</span></span>() &#123;</span><br><span class="line">		System.out.println(username + <span class="string">" "</span> + password);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Run.java 文件代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package exthread;</span><br><span class="line"></span><br><span class="line">public class Run &#123;</span><br><span class="line">	public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">		final MyObject myobject  = new MyObject();</span><br><span class="line">		Thread thread1 = new <span class="function"><span class="title">Thread</span></span>() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">				myobject.setValue(<span class="string">"a"</span>, <span class="string">"aa"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		thread1.setName(<span class="string">"a"</span>);</span><br><span class="line">		thread1.start();</span><br><span class="line">		thread1.sleep(500);</span><br><span class="line">		Thread thread2  = new <span class="function"><span class="title">Thread</span></span>() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">				myobject.printUsernamePassword();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		thread2.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>程序运行结果如下：</p>
-<p><img src="../images/Datainconsistency.PNG" alt=""><br>所以在程序中只用suspend要格外的小心。关于如何解决此类问题，请持续关注本博客。欢迎大家在本博客下边评论指正。</p>
-
+        <p>暂停线程意味着此线程还可以恢复执行。在java多线程中，可以使用suspend()方法暂停线程，使用resume()方法恢复线程的执行。<br>
       
     </div>
+    
+    <footer>
+      <div class="alignleft">
+        <a href="/2016/04/23/线程的暂停/#more" class="more-link">More</a>
+      </div>
+    </footer>
     
     <footer>
         <div class="alignright">
@@ -486,7 +483,7 @@
         
   
   <div class="tags">
-    <a href="/tags/数据库/">数据库</a>, <a href="/tags/分享/">分享</a>
+    <a href="/tags/分享/">分享</a>, <a href="/tags/数据库/">数据库</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -570,7 +567,7 @@
         
   
   <div class="tags">
-    <a href="/tags/分享/">分享</a>, <a href="/tags/java-高级/">java 高级</a>
+    <a href="/tags/java-高级/">java 高级</a>, <a href="/tags/分享/">分享</a>
   </div>
 
         <!-- partial('post/share') -->
