@@ -79,16 +79,15 @@
     </header>
     <div class="entry">
       
-        <p>在java语言中提供了各种各样的输入和输出流Stream，使我们能够方便的对数据进行操作，其中管道流（pipeStream）是一种特殊流，用于在不同的线程间直接传送数据。一个线程发送数据到输出管道，另一个线程输出管道中获取数据，中间介质是内存。实现不同线程之间的通信，而无需借助中间临时文件。</p>
-<p>在java的jdk中提供了四种类来实现线程间的通信：<br>1） PipeInputStream和PipeOutputSteam : 这两个类操纵的是字节流；<br>2） PipeReader 和 PipeWriter： 这两个类操作的是字符流；<br>下边我们看下字节流通信实例：<br>WriteData.java代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">package service;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.PipedOutputStream;</span><br><span class="line"></span><br><span class="line">public class WriteData &#123;</span><br><span class="line">	public void writeMethod(PipedOutputStream out) &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			System.out.println(<span class="string">"write:"</span>);</span><br><span class="line">			<span class="keyword">for</span>(int i = 0 ;i &lt; 3000; i ++) &#123;</span><br><span class="line">				String outData = <span class="string">""</span> + (i + 1);</span><br><span class="line">				out.write(outData.getBytes());//往输出管道输出数据，所以用PipedOutputStream</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">			out.close();</span><br><span class="line">		&#125;catch(IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>ReadData.java代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package service;</span><br><span class="line"></span><br><span class="line">import java.io.PipedInputStream;</span><br><span class="line"></span><br><span class="line">public class ReadData &#123;</span><br><span class="line">	public void <span class="built_in">read</span>Method(PipedInputStream input) &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			System.out.println(<span class="string">"read:"</span>);</span><br><span class="line">			byte[] byteArray = new byte[20];</span><br><span class="line">			byteArray[0] = 1;</span><br><span class="line">			int <span class="built_in">read</span>Length = input.read(byteArray);//从管道流中读取数据，如果管道流中没有数据，那么这个方法阻塞</span><br><span class="line">			<span class="keyword">while</span>(<span class="built_in">read</span>Length != -1) &#123;</span><br><span class="line">				String newData = new String(byteArray, 0, <span class="built_in">read</span>Length);</span><br><span class="line">				System.out.println(newData);</span><br><span class="line">				<span class="built_in">read</span>Length = input.read(byteArray);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">			input.close();</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>ThreadWrite.java代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package exthread;</span><br><span class="line"></span><br><span class="line">import java.io.PipedOutputStream;</span><br><span class="line"></span><br><span class="line">import service.WriteData;</span><br><span class="line"></span><br><span class="line">public final class ThreadWrite extends Thread&#123;</span><br><span class="line">	private WriteData write;</span><br><span class="line">	private PipedOutputStream out;</span><br><span class="line">	public ThreadWrite(WriteData write, PipedOutputStream out) &#123;</span><br><span class="line">		this.write = write;</span><br><span class="line">		this.out = out;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">		write.writeMethod(out);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>ThreadRead.java代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package exthread;</span><br><span class="line"></span><br><span class="line">import java.io.PipedInputStream;</span><br><span class="line"></span><br><span class="line">import service.ReadData;</span><br><span class="line"></span><br><span class="line">public class ThreadRead extends Thread&#123;</span><br><span class="line">	private ReadData <span class="built_in">read</span>;</span><br><span class="line">	private PipedInputStream input;</span><br><span class="line">	public ThreadRead(ReadData <span class="built_in">read</span>,PipedInputStream input) &#123;</span><br><span class="line">		this.read = <span class="built_in">read</span>;</span><br><span class="line">		this.input = input;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">		read.readMethod(input);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Run.java代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package <span class="built_in">test</span>;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.PipedInputStream;</span><br><span class="line">import java.io.PipedOutputStream;</span><br><span class="line"></span><br><span class="line">import exthread.ThreadRead;</span><br><span class="line">import exthread.ThreadWrite;</span><br><span class="line"></span><br><span class="line">import service.ReadData;</span><br><span class="line">import service.WriteData;</span><br><span class="line"></span><br><span class="line">public class Run &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			WriteData write = new WriteData();</span><br><span class="line">			ReadData <span class="built_in">read</span> = new ReadData();</span><br><span class="line">			</span><br><span class="line">			PipedOutputStream out = new PipedOutputStream();</span><br><span class="line">			PipedInputStream input = new PipedInputStream();</span><br><span class="line">			out.connect(input);</span><br><span class="line"></span><br><span class="line">			ThreadRead threadRead = new ThreadRead(<span class="built_in">read</span>,input);</span><br><span class="line">			threadRead.start();</span><br><span class="line">			//Thread.sleep(2000);</span><br><span class="line">			ThreadWrite threadWrite = new ThreadWrite(write,out);</span><br><span class="line">			threadWrite.start();</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">		&#125;catch(Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行结果如下：<br><img src="/images/pipedstreambybyte.PNG" alt=""><br>注意：使用代码inputStream.connect(outputStream)或者outPutStream.connect(inputStream)的作用使两个Stream之间产生通信连接，这样才可以将数据写入写出。</p>
-
+        <p>在java语言中提供了各种各样的输入和输出流Stream，使我们能够方便的对数据进行操作，其中管道流（pipeStream）是一种特殊流，用于在不同的线程间直接传送数据。一个线程发送数据到输出管道，另一个线程输出管道中获取数据，中间介质是内存。实现不同线程之间的通信，而无需借助中间临时文件。<br>
       
     </div>
+    
+    <footer>
+      <div class="alignleft">
+        <a href="/2016/04/25/通过管道进行线程间的通信：字节流/#more" class="more-link">More</a>
+      </div>
+    </footer>
     
     <footer>
         <div class="alignright">
@@ -539,7 +538,7 @@
         
   
   <div class="tags">
-    <a href="/tags/数据库/">数据库</a>, <a href="/tags/分享/">分享</a>
+    <a href="/tags/分享/">分享</a>, <a href="/tags/数据库/">数据库</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -595,7 +594,7 @@
         
   
   <div class="tags">
-    <a href="/tags/分享/">分享</a>, <a href="/tags/java-高级/">java 高级</a>
+    <a href="/tags/java-高级/">java 高级</a>, <a href="/tags/分享/">分享</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -612,7 +611,7 @@
 <nav id="pagination">
   
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Вперед &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Nächste Seite &raquo;</a>
   </nav>
 
 </nav>
@@ -620,7 +619,7 @@
     <aside id="sidebar" class="alignright">
   
 <div class="widget tag">
-  <h3 class="title">Метки</h3>
+  <h3 class="title">Tags</h3>
   <ul class="entry">
   
     <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
@@ -653,7 +652,7 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Recent Posts</h3>
+  <h3 class="title">Neueste Artikel</h3>
   <ul class="entry">
     
       <li>
