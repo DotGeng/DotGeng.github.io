@@ -78,8 +78,10 @@
     </header>
     <div class="entry">
       
-        <p>方法joinde 作用是所属的线程对象x正常执行run()方法中的任务，而使当前的线程z进行无限期的阻塞，等待线程x销毁后在继续执行线程z后边的代码。<br>方法join具有是线程排队运行的作用，有些类似同步的运行效果。join和synchronized的区别是：join在内部使用的wait方法运行等待，而synchronized关键字使用的是“对象监视器”原理作为同步的。</p>
-<p>当运行join方法时候，因为join底层使用的是wait方法，所以，当其被interrupt时候，就会报interruptedException异常。</p>
+        <p>一 方法joinde 作用是所属的线程对象x正常执行run()方法中的任务，而使当前的线程z进行无限期的阻塞，等待线程x销毁后在继续执行线程z后边的代码。<br>    方法join具有是线程排队运行的作用，有些类似同步的运行效果。join和synchronized的区别是：join在内部使用的wait方法运行等待，而synchronized关键字使用的是“对象监视器”原理作为同步的。</p>
+<p>二 当运行join方法时候，因为join底层使用的是wait方法，所以，当其被interrupt时候，就会报interruptedException异常。</p>
+<p>三 方法join（long） 的作用<br>    使主程序在此处等待子程序运行执行时候后，主程序不在等待，继续往下执行。他和sleep(long) 方法有什么区别呢？ 区别主要就是同步的处理上，请接着往下看。</p>
+<p>四 方法 join(long) 和 sleep(long)的区别<br>    方法join(long) 具有释放锁的特点（因为其底层是用wait实现的），然而sleep(long) 不会释放锁。</p>
 
       
     </div>
@@ -111,7 +113,7 @@
 
 
 <section id="comment">
-  <h1 class="title">Комментарии</h1>
+  <h1 class="title">Comments</h1>
 
   <!-- 多说评论框 start -->
   <div class="ds-thread" data-thread-key="post-java多线程编程中join方法" data-title="java多线程编程中join方法" data-url="http://yoursite.com/2016/04/26/java多线程编程中join方法/"></div>
@@ -137,7 +139,7 @@
     <aside id="sidebar" class="alignright">
   
 <div class="widget tag">
-  <h3 class="title">Метки</h3>
+  <h3 class="title">Tags</h3>
   <ul class="entry">
   
     <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
@@ -172,7 +174,7 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Neueste Artikel</h3>
+  <h3 class="title">Recent Posts</h3>
   <ul class="entry">
     
       <li>
