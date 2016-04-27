@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>关于return语句是否立即返回 | DotGeng</title>
+  <title>gc | DotGeng</title>
   <meta name="author" content="Gengyukun" />
 
   
@@ -14,7 +14,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="关于return语句是否立即返回" />
+  
   <meta property="og:site_name" content="DotGeng" />
 
   <meta name="google-site-verification" content="NCXVSqxqB-os803-VFMtIEd1SUNJVOIjctCfNYUwD0w" />
@@ -62,78 +62,25 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-15T03:07:08.000Z"><a href="/2016/03/15/关于return语句是否立即返回/">2016-03-15</a></time>
-      
-      
-  
-    <h1 class="title">关于return语句是否立即返回</h1>
-  
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">gc</h2>
 
-    </header>
-    <div class="entry">
-      
-        <p>java的return语句，好多程序员都认为自己对这个语句很了解，可是，事实是这样吗？请看下边的一个例子：<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class TestClass &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TestClass tc = new TestClass();</span><br><span class="line">		int b = tc.getInt();</span><br><span class="line">		System.out.println(b);</span><br><span class="line">	&#125;</span><br><span class="line">	public int <span class="function"><span class="title">getInt</span></span>() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="built_in">return</span> 1;</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			<span class="built_in">return</span> 2;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上述程序打印的结果是什么呢？<br>答案是 2 </p>
-<p>为什么是2呢？ 这是因为，就好像是为主函数准备了一个容器，在调用子函数的过程中，遇到return语句，并不是立即返回，而是把结果放到函数栈中，此时的函数也不是立即返回，而是等到finally语句执行完后，才会真正返回。所以在finally语句结束后，返回结果是2，把2放入到函数栈中覆盖第一个返回值1，那么，程序的输出结果就是2了。</p>
 
-      
-    </div>
+  <div class="archive">
     
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/03/15/关于return语句是否立即返回/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+      <article class="post">
+        <div class="post-content">
+          <header>
+            <div class="icon"></div>
+            <time datetime="2016-04-27T02:21:47.000Z"><a href="/2016/04/27/gc日志查看（转载）/">2016-04-27</a></time>
+            
+              <h1 class="title"><a href="/2016/04/27/gc日志查看（转载）/">gc日志查看（转载）</a></h1>
+            
+          </header>
         </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
+      </article>
+    
   </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java基础/">java基础</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-<section id="comment">
-  <h1 class="title">Comentarios</h1>
-
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="post-关于return语句是否立即返回" data-title="关于return语句是否立即返回" data-url="http://yoursite.com/2016/03/15/关于return语句是否立即返回/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:'fl-it-ebooks'};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-       || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-  <!-- 多说公共JS代码 end -->
-
-</section>
-
-
 </div></div>
     <aside id="sidebar" class="alignright">
   

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>Page 2 | DotGeng</title>
+  <title>Página 2 | DotGeng</title>
   <meta name="author" content="Gengyukun" />
 
   
@@ -63,6 +63,58 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-11T14:27:39.000Z"><a href="/2016/04/11/java主函数所在类的思考/">2016-04-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/11/java主函数所在类的思考/">java主函数所在类的思考</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天跟同学突然聊到关于java的main函数所在类的实例化问题；他突然问我，在程序运行时候，main函数所在的类是否会实例化，我还真一时脑袋没转过来，不过，还来想想，这个问题还是挺简单的。</p>
+<p>main函数所在类是否实例化，还是看你是否用法哦了该类的实例，是否写了new方法。</p>
+<p>其实，main所在的类和其他类没有什么区别，只是main函数式程序的入口。在程序启动时候，调用main函数。因为main函数是static的，所以，其所在的类及时不实例化，他也可以运行。当你用到该类的实例的时候，你会new出一个实例，这时候main函数所在类就实例化了。如果你没有用到该类的实例，那么你就不需要new出这么个实例，所以，这个时候就没有实例化main函数所在的类。</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href="/2016/04/11/java主函数所在类的思考/#comment" class="comment-link">评论</a>
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/java基础/">java基础</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -562,68 +614,11 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-20T16:45:19.000Z"><a href="/2016/03/21/多线程对文件的读写/">2016-03-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/21/多线程对文件的读写/">多线程对文件的读写</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>题目：<br> 一个文件中有10000个数，用java实现一个多线程程序将这10000个数输入到五个不同的文件中（要求输入到每个文件中的数量相同）。要求启动10个线程，两两一组，分为五组。每组两个线程分别将文件中的奇数偶数输入到改组对应的文件中，需要偶数线程没打印10个偶数之后，就将技术线程打印10个奇数，如此交替进行。同时需要记录输入进度，没完成1000个数就在控制台打印当前完成的数量，并在所有线程结束后，在控制台打印”DONE”。</p>
-<p> 分析：（1）我们可以将10000个数字分成五份，每一份对应两个线程，每两个线程对应一个打印类实体（2）同时声明一个共享变量，用于记录当前线程输出的记录数，但应记录的输出进度；</p>
-<p> 代码如下：<br>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/03/21/多线程对文件的读写/#more" class="more-link">More</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/03/21/多线程对文件的读写/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java-多线程编程/">java 多线程编程</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Anterior</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Siguiente &raquo;</a>
   </nav>
 
 </nav>
@@ -631,10 +626,12 @@
     <aside id="sidebar" class="alignright">
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">Etiquetas</h3>
   <ul class="entry">
   
     <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
+  
+    <li><a href="/tags/gc/">gc</a><small>1</small></li>
   
     <li><a href="/tags/java-多线程/">java 多线程</a><small>1</small></li>
   
@@ -666,8 +663,12 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Recent Posts</h3>
+  <h3 class="title">Entradas Recientes</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2016/04/27/gc日志查看（转载）/">gc日志查看（转载）</a>
+      </li>
     
       <li>
         <a href="/2016/04/26/java多线程编程中join方法/">java多线程编程中join方法</a>
@@ -683,10 +684,6 @@
     
       <li>
         <a href="/2016/04/23/线程中suspend和yield方法的区别/">线程中suspend和yield方法的区别</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/23/线程的暂停/">线程的暂停总结</a>
       </li>
     
   </ul>
