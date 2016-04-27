@@ -80,7 +80,7 @@
       
         <p>Java GC类型</p>
 <p>Java中的GC有哪几种类型？</p>
-<p>参数<br>描述<br>UseSerialGC<br>虚拟机运行在Client模式的默认值，打开此开关参数后，<br>使用Serial+Serial Old收集器组合进行垃圾收集。<br>UseParNewGC<br>打开此开关参数后，使用ParNew+Serial Old收集器组合进行垃圾收集。<br>UseConcMarkSweepGC<br>打开此开关参数后，使用ParNew+CMS+Serial Old收集器组合进行垃圾收集。Serial Old作为CMS收集器出现Concurrent Mode Failure的备用垃圾收集器。<br>UseParallelGC<br>虚拟机运行在Server模式的默认值，打开此开关参数后，使用Parallel Scavenge+Serial Old收集器组合进行垃圾收集。<br>UseParallelOldGC<br>打开此开关参数后，使用Parallel Scavenge+Parallel Old收集器组合进行垃圾收集。<br>&lt;!–more-&gt;</p>
+<p>参数<br>描述<br>UseSerialGC<br>虚拟机运行在Client模式的默认值，打开此开关参数后，<br>使用Serial+Serial Old收集器组合进行垃圾收集。<br>UseParNewGC<br>打开此开关参数后，使用ParNew+Serial Old收集器组合进行垃圾收集。<br>UseConcMarkSweepGC<br>打开此开关参数后，使用ParNew+CMS+Serial Old收集器组合进行垃圾收集。Serial Old作为CMS收集器出现Concurrent Mode Failure的备用垃圾收集器。<br>UseParallelGC<br>虚拟机运行在Server模式的默认值，打开此开关参数后，使用Parallel Scavenge+Serial Old收集器组合进行垃圾收集。<br>UseParallelOldGC<br>打开此开关参数后，使用Parallel Scavenge+Parallel Old收集器组合进行垃圾收集。<br><a id="more"></a></p>
 <p>在Java程序启动完成后，通过jps观察进程来查询到当前运行的java进程，使用<br>Java代码  收藏代码<br>jinfo –flag UseSerialGC 进程  </p>
 <p>的方式可以定位其使用的gc策略，因为这些参数都是boolean型的常量，如果使用该种gc策略会出现＋号，否则－号。</p>
 <p>使用-XX:+上述GC策略可以开启对应的GC策略。</p>

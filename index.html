@@ -81,27 +81,15 @@
       
         <p>Java GC类型</p>
 <p>Java中的GC有哪几种类型？</p>
-<p>参数<br>描述<br>UseSerialGC<br>虚拟机运行在Client模式的默认值，打开此开关参数后，<br>使用Serial+Serial Old收集器组合进行垃圾收集。<br>UseParNewGC<br>打开此开关参数后，使用ParNew+Serial Old收集器组合进行垃圾收集。<br>UseConcMarkSweepGC<br>打开此开关参数后，使用ParNew+CMS+Serial Old收集器组合进行垃圾收集。Serial Old作为CMS收集器出现Concurrent Mode Failure的备用垃圾收集器。<br>UseParallelGC<br>虚拟机运行在Server模式的默认值，打开此开关参数后，使用Parallel Scavenge+Serial Old收集器组合进行垃圾收集。<br>UseParallelOldGC<br>打开此开关参数后，使用Parallel Scavenge+Parallel Old收集器组合进行垃圾收集。<br>&lt;!–more-&gt;</p>
-<p>在Java程序启动完成后，通过jps观察进程来查询到当前运行的java进程，使用<br>Java代码  收藏代码<br>jinfo –flag UseSerialGC 进程  </p>
-<p>的方式可以定位其使用的gc策略，因为这些参数都是boolean型的常量，如果使用该种gc策略会出现＋号，否则－号。</p>
-<p>使用-XX:+上述GC策略可以开启对应的GC策略。</p>
-<p>GC日志查看</p>
-<p>可以通过在java命令种加入参数来指定对应的gc类型，打印gc日志信息并输出至文件等策略。</p>
-<p>GC的日志是以替换的方式(&gt;)写入的，而不是追加(&gt;&gt;)，如果下次写入到同一个文件中的话，以前的GC内容会被清空。</p>
-<p>对应的参数列表<br>Java代码  收藏代码<br>-XX:+PrintGC 输出GC日志<br>-XX:+PrintGCDetails 输出GC的详细日志<br>-XX:+PrintGCTimeStamps 输出GC的时间戳（以基准时间的形式）<br>-XX:+PrintGCDateStamps 输出GC的时间戳（以日期的形式，如 2013-05-04T21:53:59.234+0800）<br>-XX:+PrintHeapAtGC 在进行GC的前后打印出堆的信息<br>-Xloggc:../logs/gc.log 日志文件的输出路径  </p>
-<p>这里使用如下的参数来进行日志的打印：<br>Java代码  收藏代码<br>-XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xloggc:./gclogs  </p>
-<p>对于新生代回收的一行日志，其基本内容如下：<br>Java代码  收藏代码<br>2014-07-18T16:02:17.606+0800: 611.633: [GC 611.633: [DefNew: 843458K-&gt;2K(948864K), 0.0059180 secs] 2186589K-&gt;1343132K(3057292K), 0.0059490 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]  </p>
-<p>其含义大概如下：<br>Java代码  收藏代码<br>2014-07-18T16:02:17.606+0800（当前时间戳）: 611.633（时间戳）: [GC（表示Young GC） 611.633: [DefNew（单线程Serial年轻代GC）: 843458K（年轻代垃圾回收前的大小）-&gt;2K（年轻代回收后的大小）(948864K（年轻代总大小）), 0.0059180 secs（本次回收的时间）] 2186589K（整个堆回收前的大小）-&gt;1343132K（整个堆回收后的大小）(3057292K（堆总大小）), 0.0059490 secs（回收时间）] [Times: user=0.00（用户耗时） sys=0.00（系统耗时）, real=0.00 secs（实际耗时）]  </p>
-<p>老年代回收的日志如下：<br>Java代码  收藏代码<br>2014-07-18T16:19:16.794+0800: 1630.821: [GC 1630.821: [DefNew: 1005567K-&gt;111679K(1005568K), 0.9152360 secs]1631.736: [Tenured:<br>2573912K-&gt;1340650K(2574068K), 1.8511050 secs] 3122548K-&gt;1340650K(3579636K), [Perm : 17882K-&gt;17882K(21248K)], 2.7854350 secs] [Times: user=2.57 sys=0.22, real=2.79 secs]  </p>
-<p>gc日志中的最后貌似是系统运行完成前的快照：<br>Java代码  收藏代码<br>Heap<br> def new generation   total 1005568K, used 111158K [0x00000006fae00000, 0x000000073f110000, 0x0000000750350000)<br>  eden space 893888K,  12% used [0x00000006fae00000, 0x0000000701710e90, 0x00000007316f0000)<br>  from space 111680K,   3% used [0x0000000738400000, 0x000000073877c9b0, 0x000000073f110000)<br>  to   space 111680K,   0% used [0x00000007316f0000, 0x00000007316f0000, 0x0000000738400000)<br> tenured generation   total 2234420K, used 1347671K [0x0000000750350000, 0x00000007d895d000, 0x00000007fae00000)<br>   the space 2234420K,  60% used [0x0000000750350000, 0x00000007a2765cb8, 0x00000007a2765e00, 0x00000007d895d000)<br> compacting perm gen  total 21248K, used 17994K [0x00000007fae00000, 0x00000007fc2c0000, 0x0000000800000000)<br>   the space 21248K,  84% used [0x00000007fae00000, 0x00000007fbf92a50, 0x00000007fbf92c00, 0x00000007fc2c0000)<br>No shared spaces configured.  </p>
-<p>GC日志的离线分析</p>
-<p>可以使用一些离线的工具来对GC日志进行分析，比如sun的gchisto(<a href="https://java.net/projects/gchisto)，gcviewer（https://github.com/chewiebug/GCViewer" target="_blank" rel="external">https://java.net/projects/gchisto)，gcviewer（https://github.com/chewiebug/GCViewer</a> ），这些都是开源的工具，用户可以直接通过版本控制工具下载其源码，进行离线分析。</p>
-<p>下面就已gcviewer为例，简要分析一下gc日志的离线分析，gcviewer源代码工程是maven结构的，可以直接用maven进行package，这里编译的是1.34版本，本版本的快照已经上传至附件中。</p>
-<p>需要说明的是，gcviewer支持多种参数生成的gc日志，直接通过java –jar的方式运行，加载生成的gc日志即可：<br>!{](/images/gcLog.png)</p>
-<p>转自：<a href="http://brandnewuser.iteye.com/blog/2101501" target="_blank" rel="external">http://brandnewuser.iteye.com/blog/2101501</a></p>
-
+<p>参数<br>描述<br>UseSerialGC<br>虚拟机运行在Client模式的默认值，打开此开关参数后，<br>使用Serial+Serial Old收集器组合进行垃圾收集。<br>UseParNewGC<br>打开此开关参数后，使用ParNew+Serial Old收集器组合进行垃圾收集。<br>UseConcMarkSweepGC<br>打开此开关参数后，使用ParNew+CMS+Serial Old收集器组合进行垃圾收集。Serial Old作为CMS收集器出现Concurrent Mode Failure的备用垃圾收集器。<br>UseParallelGC<br>虚拟机运行在Server模式的默认值，打开此开关参数后，使用Parallel Scavenge+Serial Old收集器组合进行垃圾收集。<br>UseParallelOldGC<br>打开此开关参数后，使用Parallel Scavenge+Parallel Old收集器组合进行垃圾收集。<br>
       
     </div>
+    
+    <footer>
+      <div class="alignleft">
+        <a href="/2016/04/27/gc日志查看（转载）/#more" class="more-link">More</a>
+      </div>
+    </footer>
     
     <footer>
         <div class="alignright">
