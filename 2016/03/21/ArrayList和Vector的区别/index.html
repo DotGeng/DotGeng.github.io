@@ -79,7 +79,8 @@
     <div class="entry">
       
         <p>这两个类都实现了List接口（List接口继承了Collection接口），他们都是有序集合，级存贮在这两个集合中的元素都是有序的，他们的底层实现就是用数组。我们可以按照集合中元素的索引号取出某个元素，并且其中元素是可以重复的（比较和HashTable以及HashMap的区别）。<br><a id="more"></a></p>
-<p>接下来我们详细说明两者的区别：<br>1 同步性<br>    Vector是线程安全的，也就是说他的方法之间是线程同步的，而Arraylist是线程不安全的，他的方法之间不是线程同步的，如果只有一个线程会访问到集合，那么我们就应该用ArrayList，因为他不需要考虑线程的安全性，效率更高；如果有多个线程访问该集合，那么最好使用Vector，因为他是贤臣安全的，我们就不要在考虑和编写线程安全的代码。<br>2 数据增长<br>    Arraylist与Vector都有一个初始的容量大小，当存储在他们里边的元素的个数超过了该容量，就需要增加ArrayList和Vector的大小，每次要增加存储空间的时候，不是增加一个存储空间，而是增加多个存储空间，Vector增加默认增加为原来的两倍，Arraylist增加为原来的1.5倍（在源码中可以看到）。他们也可以设置增长空间大小，比如用resize方法</p>
+<p>接下来我们详细说明两者的区别：<br>1 同步性<br>    Vector是线程安全的，也就是说他的方法之间是线程同步的，而Arraylist是线程不安全的，他的方法之间不是线程同步的，如果只有一个线程会访问到集合，那么我们就应该用ArrayList，因为他不需要考虑线程的安全性，效率更高；如果有多个线程访问该集合，那么最好使用Vector，因为他是贤臣安全的，我们就不要在考虑和编写线程安全的代码。</p>
+<p>2 数据增长<br>    Arraylist与Vector都有一个初始的容量大小，当存储在他们里边的元素的个数超过了该容量，就需要增加ArrayList和Vector的大小，每次要增加存储空间的时候，不是增加一个存储空间，而是增加多个存储空间，Vector增加默认增加为原来的两倍，Arraylist增加为原来的1.5倍（在源码中可以看到）。他们也可以设置增长空间大小，比如用resize方法</p>
 
       
     </div>
@@ -111,7 +112,7 @@
 
 
 <section id="comment">
-  <h1 class="title">Kommentare</h1>
+  <h1 class="title">Comentarios</h1>
 
   <!-- 多说评论框 start -->
   <div class="ds-thread" data-thread-key="post-ArrayList和Vector的区别" data-title="ArrayList和Vector的区别" data-url="http://yoursite.com/2016/03/21/ArrayList和Vector的区别/"></div>
@@ -137,7 +138,7 @@
     <aside id="sidebar" class="alignright">
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">Etiquetas</h3>
   <ul class="entry">
   
     <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
@@ -174,7 +175,7 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Neueste Artikel</h3>
+  <h3 class="title">Entradas Recientes</h3>
   <ul class="entry">
     
       <li>
