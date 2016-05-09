@@ -1,263 +1,237 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>ArrayList和Vector的区别 | DotGeng</title>
-  <meta name="author" content="Gengyukun">
-  
-  <meta name="description" content="DotGeng的Blog">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="ArrayList和Vector的区别"/>
-  <meta property="og:site_name" content="DotGeng"/>
-
+  <meta name="description" content="这两个类都实现了List接口（List接口继承了Collection接口），他们都是有序集合，级存贮在这两个集合中的元素都是有序的，他们的底层实现就是用数组。我们可以按照集合中元素的索引号取出某个元素，并且其中元素是可以重复的（比较和HashTable以及HashMap的区别）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArrayList和Vector的区别">
+<meta property="og:url" content="http://yoursite.com/2016/03/21/ArrayList和Vector的区别/index.html">
+<meta property="og:site_name" content="DotGeng">
+<meta property="og:description" content="这两个类都实现了List接口（List接口继承了Collection接口），他们都是有序集合，级存贮在这两个集合中的元素都是有序的，他们的底层实现就是用数组。我们可以按照集合中元素的索引号取出某个元素，并且其中元素是可以重复的（比较和HashTable以及HashMap的区别）。">
+<meta property="og:updated_time" content="2016-05-07T13:24:04.301Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ArrayList和Vector的区别">
+<meta name="twitter:description" content="这两个类都实现了List接口（List接口继承了Collection接口），他们都是有序集合，级存贮在这两个集合中的元素都是有序的，他们的底层实现就是用数组。我们可以按照集合中元素的索引号取出某个元素，并且其中元素是可以重复的（比较和HashTable以及HashMap的区别）。">
   
-    <meta property="og:image" content="undefined"/>
-  
-
+    <link rel="alternate" href="/atom.xml" title="DotGeng" type="application/atom+xml">
   
   
-    <link href="/favicon.png" rel="icon">
+    <link rel="icon" href="/favicon.png">
   
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-  <script src="/js/jquery-2.0.3.min.js"></script>
-
-  <!-- analytics -->
   
-
-
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
 
 </head>
 
- <body>  
-  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	<span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-       <a class="navbar-brand" href="/">DotGeng</a>
-      <div class="collapse navbar-collapse nav-menu">
-		<ul class="nav navbar-nav">
-		  
-		  <li>
-			<a href="/archives" title="All the articles.">
-			  <i class="fa fa-archive"></i>Archives
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/categories" title="All the categories.">
-			  <i class="fa fa-folder"></i>Categories
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/tags" title="All the tags.">
-			  <i class="fa fa-tags"></i>Tags
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/about" title="About me.">
-			  <i class="fa fa-user"></i>About
-			</a>
-		  </li>
-		  
-		</ul>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DotGeng</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
-    </div> <!-- container -->
-</nav>
-<div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ArrayList和Vector的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/21/ArrayList和Vector的区别/" class="article-date">
+  <time datetime="2016-03-21T14:16:13.000Z" itemprop="datePublished">2016-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
 
-  <div class="container">
-  	<div class="content">
-    	 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ArrayList和Vector的区别
+    </h1>
+  
 
-
-	
-		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> ArrayList和Vector的区别</h1>
-		</div>		
-	
-
-
-
-
-
-
-<div class="row post">
-	<!-- cols -->
-	
-	<div id="top_meta"></div>
-	<div class="col-md-9">
-	
-
-	<!-- content -->
-	<div class="mypage">		
-	  		
-
-	  <p>这两个类都实现了List接口（List接口继承了Collection接口），他们都是有序集合，级存贮在这两个集合中的元素都是有序的，他们的底层实现就是用数组。我们可以按照集合中元素的索引号取出某个元素，并且其中元素是可以重复的（比较和HashTable以及HashMap的区别）。<br><a id="more"></a></p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这两个类都实现了List接口（List接口继承了Collection接口），他们都是有序集合，级存贮在这两个集合中的元素都是有序的，他们的底层实现就是用数组。我们可以按照集合中元素的索引号取出某个元素，并且其中元素是可以重复的（比较和HashTable以及HashMap的区别）。<br><a id="more"></a></p>
 <p>接下来我们详细说明两者的区别：<br>1 同步性<br>    Vector是线程安全的，也就是说他的方法之间是线程同步的，而Arraylist是线程不安全的，他的方法之间不是线程同步的，如果只有一个线程会访问到集合，那么我们就应该用ArrayList，因为他不需要考虑线程的安全性，效率更高；如果有多个线程访问该集合，那么最好使用Vector，因为他是贤臣安全的，我们就不要在考虑和编写线程安全的代码。</p>
 <p>2 数据增长<br>    Arraylist与Vector都有一个初始的容量大小，当存储在他们里边的元素的个数超过了该容量，就需要增加ArrayList和Vector的大小，每次要增加存储空间的时候，不是增加一个存储空间，而是增加多个存储空间，Vector增加默认增加为原来的两倍，Arraylist增加为原来的1.5倍（在源码中可以看到）。他们也可以设置增长空间大小，比如用resize方法</p>
-	  
-	</div>
 
-	<div>
-  	<center>
-	<div class="pagination">
-<ul class="pagination">
-	 
-				
-    	<li class="prev"><a href="/2016/03/22/java中Sort方法底层实现/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
-
-        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
-
-		
-		   <li class="next"><a href="/2016/03/21/Comparable和Comparator的区别/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
-        
-	
-</ul>
-</div>
-
-    </center>
-	</div>
-
-    <!-- share -->
-    
-        
-    <div class="bdsharebuttonbox">
-        <a href="#" class="bds_more" data-cmd="more"></a>
-        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
-        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
-        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
-        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+      
     </div>
-    <script>
-        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
-        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-    </script>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/21/ArrayList和Vector的区别/" data-id="cinzb6dzo00015kd1a740cqbb" class="article-share-link">Delen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Collection/">Collection</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java基础/">java基础</a></li></ul>
 
-
-        
-
-    
-	
-	<!-- comment -->
-	
-<section id="comment">
-  <h2 class="title">Comments</h2>
-
-  
-</section>
-
-	</div> <!-- col-md-9/col-md-12 -->
-		
-	
-	<div id="side_meta">
-		<div class="col-md-3" id="post_meta"> 
-
-	<!-- date -->
-	
-	<div class="meta-widget">
-	<i class="fa fa-clock-o"></i>
-	2016-03-21 
-	</div>
-	
-
-	<!-- categories -->
-    
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
-    <ul id="categorys" class="tag_box list-unstyled collapse in">
-          
-  <li>
-    <li><a href="/categories/技术/">技术<span>23</span></a></li>
-  </li>
-
-    </ul>
-	</div>
-	
-
-	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/java基础/">java基础<span>7</span></a></li> <li><a href="/tags/Collection/">Collection<span>2</span></a></li>
-    </ul>
-	</div>
-		
-
-	<!-- toc -->
-	<div class="meta-widget">
-	
-	</div>
-	
-    <hr>
-	
-</div><!-- col-md-3 -->
-
-	</div>
-		
-
-</div><!-- row -->
-
-
-
-	</div>
+    </footer>
   </div>
-  <div class="container-narrow">
-  <footer> <p>
-  &copy; 2016 Gengyukun
   
-      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
-</p> </footer>
-</div> <!-- container-narrow -->
+    
+<nav id="article-nav">
   
+    <a href="/2016/03/22/java中Sort方法底层实现/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          java中Sort方法底层实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/21/Comparable和Comparator的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">Comparable和Comparator的区别</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorieën</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/随笔/">随笔</a></li></ul></li></ul>
+    </div>
+  </div>
 
 
   
-<a id="gotop" href="#">   
-  <span>▲</span> 
-</a>
-
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/search.js"></script> 
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gc/">gc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-多线程/">java 多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-多线程编程/">java 多线程编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-新知/">java 新知</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-高级/">java 高级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java基础/">java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程编程/">java多线程编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程编程/">多线程编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概念/">概念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+    </div>
+  </div>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Collection/" style="font-size: 12px;">Collection</a> <a href="/tags/gc/" style="font-size: 10px;">gc</a> <a href="/tags/java-多线程/" style="font-size: 10px;">java 多线程</a> <a href="/tags/java-多线程编程/" style="font-size: 18px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/java多线程编程/" style="font-size: 10px;">java多线程编程</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 14px;">分享</a> <a href="/tags/多线程编程/" style="font-size: 12px;">多线程编程</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 16px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
 
 
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/27/gc日志查看（转载）/">gc日志查看（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/26/java多线程编程中join方法/">java多线程编程中join方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/25/通过管道进行线程间的通信-字符流/">通过管道进行线程间的通信:字符流</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/25/通过管道进行线程间的通信：字节流/">通过管道进行线程间的通信：字节流</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/23/线程中suspend和yield方法的区别/">线程中suspend和yield方法的区别</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Gengyukun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
 </body>
-   </html>
+</html>

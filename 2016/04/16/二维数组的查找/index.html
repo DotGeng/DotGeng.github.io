@@ -1,266 +1,243 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>二维数组的查找 | DotGeng</title>
-  <meta name="author" content="Gengyukun">
-  
-  <meta name="description" content="DotGeng的Blog">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="二维数组的查找"/>
-  <meta property="og:site_name" content="DotGeng"/>
-
+  <meta name="description" content="在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+这是一道来自牛客网的一道编程题，有人写了下边的代码：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二维数组的查找">
+<meta property="og:url" content="http://yoursite.com/2016/04/16/二维数组的查找/index.html">
+<meta property="og:site_name" content="DotGeng">
+<meta property="og:description" content="在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+这是一道来自牛客网的一道编程题，有人写了下边的代码：">
+<meta property="og:updated_time" content="2016-04-23T09:56:14.617Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二维数组的查找">
+<meta name="twitter:description" content="在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+这是一道来自牛客网的一道编程题，有人写了下边的代码：">
   
-    <meta property="og:image" content="undefined"/>
-  
-
+    <link rel="alternate" href="/atom.xml" title="DotGeng" type="application/atom+xml">
   
   
-    <link href="/favicon.png" rel="icon">
+    <link rel="icon" href="/favicon.png">
   
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-  <script src="/js/jquery-2.0.3.min.js"></script>
-
-  <!-- analytics -->
   
-
-
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
 
 </head>
 
- <body>  
-  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	<span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-       <a class="navbar-brand" href="/">DotGeng</a>
-      <div class="collapse navbar-collapse nav-menu">
-		<ul class="nav navbar-nav">
-		  
-		  <li>
-			<a href="/archives" title="All the articles.">
-			  <i class="fa fa-archive"></i>Archives
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/categories" title="All the categories.">
-			  <i class="fa fa-folder"></i>Categories
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/tags" title="All the tags.">
-			  <i class="fa fa-tags"></i>Tags
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/about" title="About me.">
-			  <i class="fa fa-user"></i>About
-			</a>
-		  </li>
-		  
-		</ul>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DotGeng</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
-    </div> <!-- container -->
-</nav>
-<div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-二维数组的查找" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/16/二维数组的查找/" class="article-date">
+  <time datetime="2016-04-16T15:29:26.000Z" itemprop="datePublished">2016-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
 
-  <div class="container">
-  	<div class="content">
-    	 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      二维数组的查找
+    </h1>
+  
 
-
-	
-		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> 二维数组的查找</h1>
-		</div>		
-	
-
-
-
-
-
-
-<div class="row post">
-	<!-- cols -->
-	
-	<div id="top_meta"></div>
-	<div class="col-md-9">
-	
-
-	<!-- content -->
-	<div class="mypage">		
-	  		
-
-	  <p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
 <p>这是一道来自牛客网的一道编程题，有人写了下边的代码：<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean Find(int [][] array,int target) &#123;</span><br><span class="line">		int m = array.length - 1;</span><br><span class="line">        int i = 0;</span><br><span class="line">        <span class="keyword">while</span>(m &gt;= 0 &amp;&amp; i &lt; array[0].length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[m][i] &gt; target)</span><br><span class="line">                m--;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(array[m][i] &lt; target)</span><br><span class="line">                i++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>算法分析：<br>解法一：对于这样一个二维数组，我们可以直接用暴力解决：用两重循环重头开始遍历。（代码比较简单，这里省略，以后有时间补上）（时间复杂度是O(n^2）)。</p>
 <p>解法二：由于每行都是有序的数组，这个时候我们也比较容易想到二分查找。我们可以对每行进行二分查找（时间复杂度是O(n*log2(底数)n)）。</p>
 <p>解法三；即上边的算法。这个时候的时间为（O（n））（1^2 + 2^2 + 3^2 + 4^2 + … n^2 +(n+1)(n-1)+(n+2)(n-2)+(n+3)(n-3)+…+(n+n-1)(n-(n-1))）/n^2</p>
 <p>综上解法三最省时间，是最优算法。</p>
-	  
-	</div>
 
-	<div>
-  	<center>
-	<div class="pagination">
-<ul class="pagination">
-	 
-				
-    	<li class="prev"><a href="/2016/04/19/非递归方式实现斐波那契数列/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
-
-        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
-
-		
-		   <li class="next"><a href="/2016/04/14/算法世界/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
-        
-	
-</ul>
-</div>
-
-    </center>
-	</div>
-
-    <!-- share -->
-    
-        
-    <div class="bdsharebuttonbox">
-        <a href="#" class="bds_more" data-cmd="more"></a>
-        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
-        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
-        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
-        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+      
     </div>
-    <script>
-        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
-        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-    </script>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/16/二维数组的查找/" data-id="cinzb6e1p000u5kd1v4avoa83" class="article-share-link">Delen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
 
-
-        
-
-    
-	
-	<!-- comment -->
-	
-<section id="comment">
-  <h2 class="title">Comments</h2>
-
-  
-</section>
-
-	</div> <!-- col-md-9/col-md-12 -->
-		
-	
-	<div id="side_meta">
-		<div class="col-md-3" id="post_meta"> 
-
-	<!-- date -->
-	
-	<div class="meta-widget">
-	<i class="fa fa-clock-o"></i>
-	2016-04-16 
-	</div>
-	
-
-	<!-- categories -->
-    
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
-    <ul id="categorys" class="tag_box list-unstyled collapse in">
-          
-  <li>
-    <li><a href="/categories/技术/">技术<span>23</span></a></li>
-  </li>
-
-    </ul>
-	</div>
-	
-
-	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/算法/">算法<span>4</span></a></li>
-    </ul>
-	</div>
-		
-
-	<!-- toc -->
-	<div class="meta-widget">
-	
-	</div>
-	
-    <hr>
-	
-</div><!-- col-md-3 -->
-
-	</div>
-		
-
-</div><!-- row -->
-
-
-
-	</div>
+    </footer>
   </div>
-  <div class="container-narrow">
-  <footer> <p>
-  &copy; 2016 Gengyukun
   
-      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
-</p> </footer>
-</div> <!-- container-narrow -->
+    
+<nav id="article-nav">
   
+    <a href="/2016/04/19/非递归方式实现斐波那契数列/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          非递归方式实现斐波那契数列
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/14/算法世界/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">算法世界</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorieën</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/随笔/">随笔</a></li></ul></li></ul>
+    </div>
+  </div>
 
 
   
-<a id="gotop" href="#">   
-  <span>▲</span> 
-</a>
-
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/search.js"></script> 
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gc/">gc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-多线程/">java 多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-多线程编程/">java 多线程编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-新知/">java 新知</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-高级/">java 高级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java基础/">java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程编程/">java多线程编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程编程/">多线程编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概念/">概念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+    </div>
+  </div>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Collection/" style="font-size: 12px;">Collection</a> <a href="/tags/gc/" style="font-size: 10px;">gc</a> <a href="/tags/java-多线程/" style="font-size: 10px;">java 多线程</a> <a href="/tags/java-多线程编程/" style="font-size: 18px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/java多线程编程/" style="font-size: 10px;">java多线程编程</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 14px;">分享</a> <a href="/tags/多线程编程/" style="font-size: 12px;">多线程编程</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 16px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
 
 
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/27/gc日志查看（转载）/">gc日志查看（转载）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/26/java多线程编程中join方法/">java多线程编程中join方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/25/通过管道进行线程间的通信-字符流/">通过管道进行线程间的通信:字符流</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/25/通过管道进行线程间的通信：字节流/">通过管道进行线程间的通信：字节流</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/23/线程中suspend和yield方法的区别/">线程中suspend和yield方法的区别</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Gengyukun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
 </body>
-   </html>
+</html>
