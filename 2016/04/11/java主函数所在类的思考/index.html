@@ -1,235 +1,252 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
   <title>java主函数所在类的思考 | DotGeng</title>
-  <meta name="author" content="Gengyukun" />
+  <meta name="author" content="Gengyukun">
+  
+  <meta name="description" content="DotGeng的Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="java主函数所在类的思考"/>
+  <meta property="og:site_name" content="DotGeng"/>
 
   
-  <meta name="description" content="DotGeng的Blog" />
-  
-
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-  <meta property="og:title" content="java主函数所在类的思考" />
-  <meta property="og:site_name" content="DotGeng" />
-
-  <meta name="google-site-verification" content="NCXVSqxqB-os803-VFMtIEd1SUNJVOIjctCfNYUwD0w" />
-  
-  
-  
+    <meta property="og:image" content="undefined"/>
   
 
   
-    <meta property="og:image" content="undefined" />
+  
+    <link href="/favicon.png" rel="icon">
   
 
-  
-  <link href="/css/images/favicon.ico" rel="icon" />
-  
-
-  <link rel="alternate" href="/atom.xml" title="DotGeng" type="application/atom+xml">
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
   
 
 
-  <!-- baidu webmaster push -->
-  <script src='//push.zhanzhang.baidu.com/push.js'></script>
 
 </head>
 
-
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">DotGeng</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/about">关于</a></li>
-    
-      <li><a href="/atom.xml">RSS</a></li>
-    
-      <li><a href="https://github.com/DotGeng">github</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">DotGeng</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
 </nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-11T14:27:39.000Z"><a href="/2016/04/11/java主函数所在类的思考/">2016-04-11</a></time>
-      
-      
-  
-    <h1 class="title">java主函数所在类的思考</h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>今天跟同学突然聊到关于java的main函数所在类的实例化问题；他突然问我，在程序运行时候，main函数所在的类是否会实例化，我还真一时脑袋没转过来，不过，还来想想，这个问题还是挺简单的。</p>
-<p>main函数所在类是否实例化，还是看你是否用法哦了该类的实例，是否写了new方法。</p>
-<p>其实，main所在的类和其他类没有什么区别，只是main函数式程序的入口。在程序启动时候，调用main函数。因为main函数是static的，所以，其所在的类及时不实例化，他也可以运行。当你用到该类的实例的时候，你会new出一个实例，这时候main函数所在类就实例化了。如果你没有用到该类的实例，那么你就不需要new出这么个实例，所以，这个时候就没有实例化main函数所在的类。</p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/11/java主函数所在类的思考/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java基础/">java基础</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-<section id="comment">
-  <h1 class="title">Comentarios</h1>
-
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="post-java主函数所在类的思考" data-title="java主函数所在类的思考" data-url="http://yoursite.com/2016/04/11/java主函数所在类的思考/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:'fl-it-ebooks'};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-       || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-  <!-- 多说公共JS代码 end -->
-
-</section>
-
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  
-<div class="widget tag">
-  <h3 class="title">Etiquetas</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
-  
-    <li><a href="/tags/gc/">gc</a><small>1</small></li>
-  
-    <li><a href="/tags/java-多线程/">java 多线程</a><small>1</small></li>
-  
-    <li><a href="/tags/java-多线程编程/">java 多线程编程</a><small>5</small></li>
-  
-    <li><a href="/tags/java-新知/">java 新知</a><small>1</small></li>
-  
-    <li><a href="/tags/java-高级/">java 高级</a><small>1</small></li>
-  
-    <li><a href="/tags/java基础/">java基础</a><small>7</small></li>
-  
-    <li><a href="/tags/java多线程编程/">java多线程编程</a><small>1</small></li>
-  
-    <li><a href="/tags/spring/">spring</a><small>1</small></li>
-  
-    <li><a href="/tags/分享/">分享</a><small>3</small></li>
-  
-    <li><a href="/tags/多线程编程/">多线程编程</a><small>2</small></li>
-  
-    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
-  
-    <li><a href="/tags/概念/">概念</a><small>1</small></li>
-  
-    <li><a href="/tags/算法/">算法</a><small>4</small></li>
-  
-  </ul>
-</div>
-
-
-  
-<div class="widget tag">
-  <h3 class="title">Entradas Recientes</h3>
-  <ul class="entry">
-    
-      <li>
-        <a href="/2016/04/27/gc日志查看（转载）/">gc日志查看（转载）</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/26/java多线程编程中join方法/">java多线程编程中join方法</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/25/通过管道进行线程间的通信-字符流/">通过管道进行线程间的通信:字符流</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/25/通过管道进行线程间的通信：字节流/">通过管道进行线程间的通信：字节流</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/23/线程中suspend和yield方法的区别/">线程中suspend和yield方法的区别</a>
-      </li>
-    
-  </ul>
-</div>
-
-
-  <div class="widget tag">
-  <h3 class="title">友情链接</h3>
-  <div class="entry">
-    <ul>
-<!-- link start -->
-<li><a href='http://bestcbooks.com/'>计算机书籍控</a></li>
-<li><a href='http://www.uncletoo.com/'>PHP中文网</a></li>
-<!-- link  end -->
-    </ul>
-  </div>
-</div>
-
-</aside>
-    <div class="clearfix"></div>
-  </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  <p>
-  
-  &copy; 2016 Gengyukun
-  
-  All rights reserved.</p>
-  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
-</div>
 <div class="clearfix"></div>
 
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> java主函数所在类的思考</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>今天跟同学突然聊到关于java的main函数所在类的实例化问题；他突然问我，在程序运行时候，main函数所在的类是否会实例化，我还真一时脑袋没转过来，不过，还来想想，这个问题还是挺简单的。</p>
+<p>main函数所在类是否实例化，还是看你是否用法哦了该类的实例，是否写了new方法。</p>
+<p>其实，main所在的类和其他类没有什么区别，只是main函数式程序的入口。在程序启动时候，调用main函数。因为main函数是static的，所以，其所在的类及时不实例化，他也可以运行。当你用到该类的实例的时候，你会new出一个实例，这时候main函数所在类就实例化了。如果你没有用到该类的实例，那么你就不需要new出这么个实例，所以，这个时候就没有实例化main函数所在的类。</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/04/14/算法世界/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/04/01/MySql外键设置中的Cascade-no-action-restrict-set-null-分享/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-04-11 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/技术/">技术<span>23</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/java基础/">java基础<span>7</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Gengyukun
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
@@ -241,28 +258,6 @@
 </script>
 
 
-<script>
-    //Kill XP and IE8
-    (function(){
-        var ua = navigator.userAgent;
-        var res = /Windows NT (\d+\.\d+)/.exec(ua);
-        var xpOrLower = res && JSON.parse(res[1]) < 6;
-        res = /MSIE (\d+\.\d+)/.exec(ua);
-        var ie8OrLower = res && JSON.parse(res[1]) < 9;
-        if(xpOrLower || ie8OrLower)
-        {
-            alert('请不要用XP及之前的Windows系统，和IE8及之前的IE浏览器访问本站！');
-            location.href = "about:blank";
-        }
-        var fromBaiduSE = /^https?:\/\/www.baidu.com/.test(document.referrer);
-        if(fromBaiduSE)
-        {
-            alert('检测到你还在使用百度搜索，作为一个程序员，这是一种自暴自弃！\n\n做不作恶的程序员，从不用百度开始！')
-            location.href = "about:blank";
-        }
-    })();
-</script>
 
-<div id='bg'></div>
 </body>
-</html>
+   </html>

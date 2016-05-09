@@ -1,339 +1,344 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <title>Página 3 | DotGeng</title>
-  <meta name="author" content="Gengyukun" />
+  <title>Page 3 | DotGeng</title>
+  <meta name="author" content="Gengyukun">
+  
+  <meta name="description" content="DotGeng的Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="DotGeng的Blog" />
-  
+  <meta property="og:site_name" content="DotGeng"/>
 
   
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-  
-  <meta property="og:site_name" content="DotGeng" />
-
-  <meta name="google-site-verification" content="NCXVSqxqB-os803-VFMtIEd1SUNJVOIjctCfNYUwD0w" />
-  
-  
-  
+    <meta property="og:image" content="undefined"/>
   
 
   
-    <meta property="og:image" content="undefined" />
+  
+    <link href="/favicon.png" rel="icon">
   
 
-  
-  <link href="/css/images/favicon.ico" rel="icon" />
-  
-
-  <link rel="alternate" href="/atom.xml" title="DotGeng" type="application/atom+xml">
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
   
 
 
-  <!-- baidu webmaster push -->
-  <script src='//push.zhanzhang.baidu.com/push.js'></script>
 
 </head>
 
-
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">DotGeng</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/about">关于</a></li>
-    
-      <li><a href="/atom.xml">RSS</a></li>
-    
-      <li><a href="https://github.com/DotGeng">github</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">DotGeng</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
 </nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-20T16:45:19.000Z"><a href="/2016/03/21/多线程对文件的读写/">2016-03-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/21/多线程对文件的读写/">多线程对文件的读写</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>题目：<br> 一个文件中有10000个数，用java实现一个多线程程序将这10000个数输入到五个不同的文件中（要求输入到每个文件中的数量相同）。要求启动10个线程，两两一组，分为五组。每组两个线程分别将文件中的奇数偶数输入到改组对应的文件中，需要偶数线程没打印10个偶数之后，就将技术线程打印10个奇数，如此交替进行。同时需要记录输入进度，没完成1000个数就在控制台打印当前完成的数量，并在所有线程结束后，在控制台打印”DONE”。</p>
-<p> 分析：（1）我们可以将10000个数字分成五份，每一份对应两个线程，每两个线程对应一个打印类实体（2）同时声明一个共享变量，用于记录当前线程输出的记录数，但应记录的输出进度；</p>
-<p> 代码如下：<br>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/03/21/多线程对文件的读写/#more" class="more-link">更多內容</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/03/21/多线程对文件的读写/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java-多线程编程/">java 多线程编程</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-15T03:07:08.000Z"><a href="/2016/03/15/关于return语句是否立即返回/">2016-03-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/15/关于return语句是否立即返回/">关于return语句是否立即返回</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>java的return语句，好多程序员都认为自己对这个语句很了解，可是，事实是这样吗？请看下边的一个例子：<br>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/03/15/关于return语句是否立即返回/#more" class="more-link">更多內容</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/03/15/关于return语句是否立即返回/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java基础/">java基础</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-14T08:43:15.000Z"><a href="/2016/03/14/内部类详解/">2016-03-14</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/14/内部类详解/">内部类详解</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>java的内部类详解<br>java的内部类，就是一个类的内部定义的类。这个类可以是可以是Inner Class，也可以是Static Nested Class。<br>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/03/14/内部类详解/#more" class="more-link">更多內容</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/03/14/内部类详解/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java基础/">java基础</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-
-<nav id="pagination">
-  
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Anterior</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
-</nav>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  
-<div class="widget tag">
-  <h3 class="title">Etiquetas</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
-  
-    <li><a href="/tags/gc/">gc</a><small>1</small></li>
-  
-    <li><a href="/tags/java-多线程/">java 多线程</a><small>1</small></li>
-  
-    <li><a href="/tags/java-多线程编程/">java 多线程编程</a><small>5</small></li>
-  
-    <li><a href="/tags/java-新知/">java 新知</a><small>1</small></li>
-  
-    <li><a href="/tags/java-高级/">java 高级</a><small>1</small></li>
-  
-    <li><a href="/tags/java基础/">java基础</a><small>7</small></li>
-  
-    <li><a href="/tags/java多线程编程/">java多线程编程</a><small>1</small></li>
-  
-    <li><a href="/tags/spring/">spring</a><small>1</small></li>
-  
-    <li><a href="/tags/分享/">分享</a><small>3</small></li>
-  
-    <li><a href="/tags/多线程编程/">多线程编程</a><small>2</small></li>
-  
-    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
-  
-    <li><a href="/tags/概念/">概念</a><small>1</small></li>
-  
-    <li><a href="/tags/算法/">算法</a><small>4</small></li>
-  
-  </ul>
-</div>
-
-
-  
-<div class="widget tag">
-  <h3 class="title">Entradas Recientes</h3>
-  <ul class="entry">
-    
-      <li>
-        <a href="/2016/04/27/gc日志查看（转载）/">gc日志查看（转载）</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/26/java多线程编程中join方法/">java多线程编程中join方法</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/25/通过管道进行线程间的通信-字符流/">通过管道进行线程间的通信:字符流</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/25/通过管道进行线程间的通信：字节流/">通过管道进行线程间的通信：字节流</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/23/线程中suspend和yield方法的区别/">线程中suspend和yield方法的区别</a>
-      </li>
-    
-  </ul>
-</div>
-
-
-  <div class="widget tag">
-  <h3 class="title">友情链接</h3>
-  <div class="entry">
-    <ul>
-<!-- link start -->
-<li><a href='http://bestcbooks.com/'>计算机书籍控</a></li>
-<li><a href='http://www.uncletoo.com/'>PHP中文网</a></li>
-<!-- link  end -->
-    </ul>
-  </div>
-</div>
-
-</aside>
-    <div class="clearfix"></div>
-  </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  <p>
-  
-  &copy; 2016 Gengyukun
-  
-  All rights reserved.</p>
-  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
-</div>
 <div class="clearfix"></div>
 
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <div class="container">
+  	<div class="content">
+    	 <div class="page-header page-header-inverse ">
+  <h1 class="title title-inverse ">DotGeng</h1>
+</div>
+
+<div class="row page">
+
+	
+	<div class="col-md-9">
+	
+
+		<div class="slogan">
+      <i class="fa fa-heart"></i>
+      Yet another bootstrap theme.
+</div>    
+		<div id="top_search"></div>
+		<div class="mypage">
+		
+		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-21 </div>
+			<div class="article-title"><a href="/2016/03/21/多线程对文件的读写/" >多线程对文件的读写</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>题目：<br> 一个文件中有10000个数，用java实现一个多线程程序将这10000个数输入到五个不同的文件中（要求输入到每个文件中的数量相同）。要求启动10个线程，两两一组，分为五组。每组两个线程分别将文件中的奇数偶数输入到改组对应的文件中，需要偶数线程没打印10个偶数之后，就将技术线程打印10个奇数，如此交替进行。同时需要记录输入进度，没完成1000个数就在控制台打印当前完成的数量，并在所有线程结束后，在控制台打印”DONE”。</p>
+<p> 分析：（1）我们可以将10000个数字分成五份，每一份对应两个线程，每两个线程对应一个打印类实体（2）同时声明一个共享变量，用于记录当前线程输出的记录数，但应记录的输出进度；</p>
+<p> 代码如下：<br>
+	
+	</div>
+  <a type="button" href="/2016/03/21/多线程对文件的读写/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-15 </div>
+			<div class="article-title"><a href="/2016/03/15/关于return语句是否立即返回/" >关于return语句是否立即返回</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>java的return语句，好多程序员都认为自己对这个语句很了解，可是，事实是这样吗？请看下边的一个例子：<br>
+	
+	</div>
+  <a type="button" href="/2016/03/15/关于return语句是否立即返回/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-14 </div>
+			<div class="article-title"><a href="/2016/03/14/内部类详解/" >内部类详解</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>java的内部类详解<br>java的内部类，就是一个类的内部定义的类。这个类可以是可以是Inner Class，也可以是Static Nested Class。<br>
+	
+	</div>
+  <a type="button" href="/2016/03/14/内部类详解/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+
+		</div>
+
+		<!-- pagination -->
+		<div>
+  		<center>
+		<div class="pagination">
+<ul class="pagination">
+	 
+		
+    	<li class="prev"><a href="/page/2/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i> Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+
+		
+          <li class="next disabled"><a>Next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+        
+	
+</ul>
+</div>
+
+  		</center>
+		</div>
+
+		
+		
+	</div> <!-- col-md-9 -->
+
+	
+		<div class="col-md-3">
+	<div id="sidebar">
+	
+			
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+		
+			
+	<div class="widget">
+		<h4>Categories</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/技术/">技术<span>23</span></a></li>
+		
+			<li><a href="/categories/技术/随笔/">随笔<span>1</span></a></li>
+		
+		</ul>
+	</div>
+
+		
+			
+	<div class="widget">
+		<h4>Tag Cloud</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/java-多线程/">java 多线程<span>1</span></a></li>
+		
+			<li><a href="/tags/java-多线程编程/">java 多线程编程<span>5</span></a></li>
+		
+			<li><a href="/tags/数据库/">数据库<span>1</span></a></li>
+		
+			<li><a href="/tags/java多线程编程/">java多线程编程<span>1</span></a></li>
+		
+			<li><a href="/tags/多线程编程/">多线程编程<span>2</span></a></li>
+		
+			<li><a href="/tags/算法/">算法<span>4</span></a></li>
+		
+			<li><a href="/tags/java基础/">java基础<span>7</span></a></li>
+		
+			<li><a href="/tags/java-新知/">java 新知<span>1</span></a></li>
+		
+			<li><a href="/tags/gc/">gc<span>1</span></a></li>
+		
+			<li><a href="/tags/spring/">spring<span>1</span></a></li>
+		
+			<li><a href="/tags/Collection/">Collection<span>2</span></a></li>
+		
+			<li><a href="/tags/java-高级/">java 高级<span>1</span></a></li>
+		
+			<li><a href="/tags/分享/">分享<span>3</span></a></li>
+		
+			<li><a href="/tags/概念/">概念<span>1</span></a></li>
+		
+		 
+		</ul>
+	</div>
+
+
+		
+			
+<div class="widget">
+  <h4>Recent Posts</h4>
+  <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2016/04/27/gc日志查看（转载）/" ><i class="fa fa-file-o"></i>gc日志查看（转载）</a>
+      </li>
+    
+      <li>
+        <a href="/2016/04/26/java多线程编程中join方法/" ><i class="fa fa-file-o"></i>java多线程编程中join方法</a>
+      </li>
+    
+      <li>
+        <a href="/2016/04/25/通过管道进行线程间的通信-字符流/" ><i class="fa fa-file-o"></i>通过管道进行线程间的通信:字符流</a>
+      </li>
+    
+      <li>
+        <a href="/2016/04/25/通过管道进行线程间的通信：字节流/" ><i class="fa fa-file-o"></i>通过管道进行线程间的通信：字节流</a>
+      </li>
+    
+      <li>
+        <a href="/2016/04/23/线程中suspend和yield方法的区别/" ><i class="fa fa-file-o"></i>线程中suspend和yield方法的区别</a>
+      </li>
+    
+  </ul>
+</div>
+
+		
+			
+<div class="widget">
+	<h4>Links</h4>
+	<ul class="blogroll list-unstyled">
+	
+		<li><i class="fa fa-github"></i><a href="https://github.com/wzpan/freemind/" title="Freemind's Github repository." target="_blank"]);">Freemind</a></li>
+	
+		<li><i class="fa fa-github"></i><a href="http://www.github.com/wzpan" title="My Github account." target="_blank"]);">My Github</a></li>
+	
+		<li><i class="fa fa-linkedin"></i><a href="http://www.linkedin.com/in/hahack" title="My Linkin account." target="_blank"]);">My LinkedIn</a></li>
+	
+	</ul>
+</div>
+
+
+		
+	</div> <!-- sidebar -->
+</div> <!-- col-md-3 -->
+
+	
+	
+</div> <!-- row-fluid -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Gengyukun
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
@@ -345,28 +350,6 @@
 </script>
 
 
-<script>
-    //Kill XP and IE8
-    (function(){
-        var ua = navigator.userAgent;
-        var res = /Windows NT (\d+\.\d+)/.exec(ua);
-        var xpOrLower = res && JSON.parse(res[1]) < 6;
-        res = /MSIE (\d+\.\d+)/.exec(ua);
-        var ie8OrLower = res && JSON.parse(res[1]) < 9;
-        if(xpOrLower || ie8OrLower)
-        {
-            alert('请不要用XP及之前的Windows系统，和IE8及之前的IE浏览器访问本站！');
-            location.href = "about:blank";
-        }
-        var fromBaiduSE = /^https?:\/\/www.baidu.com/.test(document.referrer);
-        if(fromBaiduSE)
-        {
-            alert('检测到你还在使用百度搜索，作为一个程序员，这是一种自暴自弃！\n\n做不作恶的程序员，从不用百度开始！')
-            location.href = "about:blank";
-        }
-    })();
-</script>
 
-<div id='bg'></div>
 </body>
-</html>
+   </html>

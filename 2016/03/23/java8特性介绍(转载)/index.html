@@ -1,84 +1,117 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
   <title>java8特性介绍(转载) | DotGeng</title>
-  <meta name="author" content="Gengyukun" />
+  <meta name="author" content="Gengyukun">
+  
+  <meta name="description" content="DotGeng的Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="java8特性介绍(转载)"/>
+  <meta property="og:site_name" content="DotGeng"/>
 
   
-  <meta name="description" content="DotGeng的Blog" />
-  
-
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-  <meta property="og:title" content="java8特性介绍(转载)" />
-  <meta property="og:site_name" content="DotGeng" />
-
-  <meta name="google-site-verification" content="NCXVSqxqB-os803-VFMtIEd1SUNJVOIjctCfNYUwD0w" />
-  
-  
-  
+    <meta property="og:image" content="undefined"/>
   
 
   
-    <meta property="og:image" content="undefined" />
+  
+    <link href="/favicon.png" rel="icon">
   
 
-  
-  <link href="/css/images/favicon.ico" rel="icon" />
-  
-
-  <link rel="alternate" href="/atom.xml" title="DotGeng" type="application/atom+xml">
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
   
 
 
-  <!-- baidu webmaster push -->
-  <script src='//push.zhanzhang.baidu.com/push.js'></script>
 
 </head>
 
-
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">DotGeng</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/about">关于</a></li>
-    
-      <li><a href="/atom.xml">RSS</a></li>
-    
-      <li><a href="https://github.com/DotGeng">github</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">DotGeng</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
 </nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-23T14:38:42.000Z"><a href="/2016/03/23/java8特性介绍(转载)/">2016-03-23</a></time>
-      
-      
-  
-    <h1 class="title">java8特性介绍(转载)</h1>
-  
+<div class="clearfix"></div>
 
-    </header>
-    <div class="entry">
-      
-        <p>这次博客推荐的java8的十大新特性，并将使用简单的代码示例来指你如何使用默认接口方法。比如流，函数式接口，Map以及全新的日期API</p>
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> java8特性介绍(转载)</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>这次博客推荐的java8的十大新特性，并将使用简单的代码示例来指你如何使用默认接口方法。比如流，函数式接口，Map以及全新的日期API</p>
 <p>本教程将用带注释的简单代码来描述新特性，你将看不到大片吓人的文字。<br><a id="more"></a><br>一 接口额默认方法</p>
 <p>java8 允许我们给接口添加一个非抽象的方法实现，只需要使用default关键字即可，这个特性又叫做扩展方法，代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">interface Formula &#123;</span><br><span class="line">	double calculate(int a );</span><br><span class="line">	default double sqrt(int a) &#123;</span><br><span class="line">		retuen Math.squrt(a);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Formula接口在拥有calculate方法之外同时还定义了sqrt方法，实现了Formula接口的子类只需要实现一个calculate方法，默认方法sqrt将在子类上可以直接使用。<br>代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Formaula formula = new <span class="function"><span class="title">Formula</span></span>() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public double caculate(int a) &#123;</span><br><span class="line">		<span class="built_in">return</span> squart(a * 100);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;；</span><br><span class="line">formula.caculate(100);//100.0</span><br><span class="line">formula.sqrt(16);//4.0</span><br></pre></td></tr></table></figure></p>
@@ -198,155 +231,139 @@
 <p>即便我们没有在Person类上定义@Hints注解，我们还是可以通过 getAnnotation(Hints.class) 来获取 @Hints注解，更加方便的方法是使用 getAnnotationsByType 可以直接获取到所有的@Hint注解。<br>另外Java 8的注解还增加到两种新的target上了：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE_PARAMETER, ElementType.TYPE_USE&#125;)</span><br><span class="line">@interface MyAnnotation &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>关于Java 8的新特性就写到这了，肯定还有更多的特性等待发掘。JDK 1.8里还有很多很有用的东西，比如Arrays.parallelSort, StampedLock和CompletableFuture等等。</p>
+	  
+	</div>
 
-      
-    </div>
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/03/24/多线程的几种方法？同步的几种方法？/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/03/22/java中Sort方法底层实现/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
     
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/03/23/java8特性介绍(转载)/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
         
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
 
         
-  
-  <div class="tags">
-    <a href="/tags/java-新知/">java 新知</a>, <a href="/tags/概念/">概念</a>
-  </div>
 
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
+    
+	
+	<!-- comment -->
+	
 <section id="comment">
-  <h1 class="title">Comentarios</h1>
+  <h2 class="title">Comments</h2>
 
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="post-java8特性介绍(转载)" data-title="java8特性介绍(转载)" data-url="http://yoursite.com/2016/03/23/java8特性介绍(转载)/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:'fl-it-ebooks'};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-       || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-  <!-- 多说公共JS代码 end -->
-
+  
 </section>
 
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
 
-</div></div>
-    <aside id="sidebar" class="alignright">
-  
-<div class="widget tag">
-  <h3 class="title">Etiquetas</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
-  
-    <li><a href="/tags/gc/">gc</a><small>1</small></li>
-  
-    <li><a href="/tags/java-多线程/">java 多线程</a><small>1</small></li>
-  
-    <li><a href="/tags/java-多线程编程/">java 多线程编程</a><small>5</small></li>
-  
-    <li><a href="/tags/java-新知/">java 新知</a><small>1</small></li>
-  
-    <li><a href="/tags/java-高级/">java 高级</a><small>1</small></li>
-  
-    <li><a href="/tags/java基础/">java基础</a><small>7</small></li>
-  
-    <li><a href="/tags/java多线程编程/">java多线程编程</a><small>1</small></li>
-  
-    <li><a href="/tags/spring/">spring</a><small>1</small></li>
-  
-    <li><a href="/tags/分享/">分享</a><small>3</small></li>
-  
-    <li><a href="/tags/多线程编程/">多线程编程</a><small>2</small></li>
-  
-    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
-  
-    <li><a href="/tags/概念/">概念</a><small>1</small></li>
-  
-    <li><a href="/tags/算法/">算法</a><small>4</small></li>
-  
-  </ul>
-</div>
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-03-23 
+	</div>
+	
 
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/技术/">技术<span>23</span></a></li>
+  </li>
 
-  
-<div class="widget tag">
-  <h3 class="title">Entradas Recientes</h3>
-  <ul class="entry">
-    
-      <li>
-        <a href="/2016/04/27/gc日志查看（转载）/">gc日志查看（转载）</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/26/java多线程编程中join方法/">java多线程编程中join方法</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/25/通过管道进行线程间的通信-字符流/">通过管道进行线程间的通信:字符流</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/25/通过管道进行线程间的通信：字节流/">通过管道进行线程间的通信：字节流</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/23/线程中suspend和yield方法的区别/">线程中suspend和yield方法的区别</a>
-      </li>
-    
-  </ul>
-</div>
-
-
-  <div class="widget tag">
-  <h3 class="title">友情链接</h3>
-  <div class="entry">
-    <ul>
-<!-- link start -->
-<li><a href='http://bestcbooks.com/'>计算机书籍控</a></li>
-<li><a href='http://www.uncletoo.com/'>PHP中文网</a></li>
-<!-- link  end -->
     </ul>
-  </div>
-</div>
+	</div>
+	
 
-</aside>
-    <div class="clearfix"></div>
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/java-新知/">java 新知<span>1</span></a></li> <li><a href="/tags/概念/">概念<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  <p>
-  
+  <div class="container-narrow">
+  <footer> <p>
   &copy; 2016 Gengyukun
   
-  All rights reserved.</p>
-  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
-</div>
-<div class="clearfix"></div>
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
 
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
@@ -358,28 +375,6 @@
 </script>
 
 
-<script>
-    //Kill XP and IE8
-    (function(){
-        var ua = navigator.userAgent;
-        var res = /Windows NT (\d+\.\d+)/.exec(ua);
-        var xpOrLower = res && JSON.parse(res[1]) < 6;
-        res = /MSIE (\d+\.\d+)/.exec(ua);
-        var ie8OrLower = res && JSON.parse(res[1]) < 9;
-        if(xpOrLower || ie8OrLower)
-        {
-            alert('请不要用XP及之前的Windows系统，和IE8及之前的IE浏览器访问本站！');
-            location.href = "about:blank";
-        }
-        var fromBaiduSE = /^https?:\/\/www.baidu.com/.test(document.referrer);
-        if(fromBaiduSE)
-        {
-            alert('检测到你还在使用百度搜索，作为一个程序员，这是一种自暴自弃！\n\n做不作恶的程序员，从不用百度开始！')
-            location.href = "about:blank";
-        }
-    })();
-</script>
 
-<div id='bg'></div>
 </body>
-</html>
+   </html>

@@ -1,718 +1,503 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
   <title>DotGeng</title>
-  <meta name="author" content="Gengyukun" />
+  <meta name="author" content="Gengyukun">
+  
+  <meta name="description" content="DotGeng的Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="DotGeng的Blog" />
-  
+  <meta property="og:site_name" content="DotGeng"/>
 
   
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-  
-  <meta property="og:site_name" content="DotGeng" />
-
-  <meta name="google-site-verification" content="NCXVSqxqB-os803-VFMtIEd1SUNJVOIjctCfNYUwD0w" />
-  
-  
-  
+    <meta property="og:image" content="undefined"/>
   
 
   
-    <meta property="og:image" content="undefined" />
+  
+    <link href="/favicon.png" rel="icon">
   
 
-  
-  <link href="/css/images/favicon.ico" rel="icon" />
-  
-
-  <link rel="alternate" href="/atom.xml" title="DotGeng" type="application/atom+xml">
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
   
 
 
-  <!-- baidu webmaster push -->
-  <script src='//push.zhanzhang.baidu.com/push.js'></script>
 
 </head>
 
-
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">DotGeng</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/about">关于</a></li>
-    
-      <li><a href="/atom.xml">RSS</a></li>
-    
-      <li><a href="https://github.com/DotGeng">github</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">DotGeng</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
 </nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-27T02:21:47.000Z"><a href="/2016/04/27/gc日志查看（转载）/">2016-04-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/27/gc日志查看（转载）/">gc日志查看（转载）</a></h1>
-  
+<div class="clearfix"></div>
 
-    </header>
-    <div class="entry">
-      
-        <p>Java GC类型</p>
+  <div class="container">
+  	<div class="content">
+    	 <div class="page-header page-header-inverse ">
+  <h1 class="title title-inverse ">DotGeng</h1>
+</div>
+
+<div class="row page">
+
+	
+	<div class="col-md-9">
+	
+
+		<div class="slogan">
+      <i class="fa fa-heart"></i>
+      Yet another bootstrap theme.
+</div>    
+		<div id="top_search"></div>
+		<div class="mypage">
+		
+		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-27 </div>
+			<div class="article-title"><a href="/2016/04/27/gc日志查看（转载）/" >gc日志查看（转载）</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>Java GC类型</p>
 <p>Java中的GC有哪几种类型？</p>
 <p>参数<br>描述<br>UseSerialGC<br>虚拟机运行在Client模式的默认值，打开此开关参数后，<br>使用Serial+Serial Old收集器组合进行垃圾收集。<br>UseParNewGC<br>打开此开关参数后，使用ParNew+Serial Old收集器组合进行垃圾收集。<br>UseConcMarkSweepGC<br>打开此开关参数后，使用ParNew+CMS+Serial Old收集器组合进行垃圾收集。Serial Old作为CMS收集器出现Concurrent Mode Failure的备用垃圾收集器。<br>UseParallelGC<br>虚拟机运行在Server模式的默认值，打开此开关参数后，使用Parallel Scavenge+Serial Old收集器组合进行垃圾收集。<br>UseParallelOldGC<br>打开此开关参数后，使用Parallel Scavenge+Parallel Old收集器组合进行垃圾收集。<br>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/04/27/gc日志查看（转载）/#more" class="more-link">更多內容</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/27/gc日志查看（转载）/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
+	
+	</div>
+  <a type="button" href="/2016/04/27/gc日志查看（转载）/#more" class="btn btn-default more">Read More</a>
+</div>
 
-        
-  
-  <div class="tags">
-    <a href="/tags/gc/">gc</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-26 </div>
+			<div class="article-title"><a href="/2016/04/26/java多线程编程中join方法/" >java多线程编程中join方法</a></div>						
+		</h3>
+	
 
 
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-26T03:46:02.000Z"><a href="/2016/04/26/java多线程编程中join方法/">2016-04-26</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/26/java多线程编程中join方法/">java多线程编程中join方法</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>一 方法joinde 作用是所属的线程对象x正常执行run()方法中的任务，而使当前的线程z进行无限期的阻塞，等待线程x销毁后在继续执行线程z后边的代码。<br>    方法join具有是线程排队运行的作用，有些类似同步的运行效果。join和synchronized的区别是：join在内部使用的wait方法运行等待，而synchronized关键字使用的是“对象监视器”原理作为同步的。</p>
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>一 方法joinde 作用是所属的线程对象x正常执行run()方法中的任务，而使当前的线程z进行无限期的阻塞，等待线程x销毁后在继续执行线程z后边的代码。<br>    方法join具有是线程排队运行的作用，有些类似同步的运行效果。join和synchronized的区别是：join在内部使用的wait方法运行等待，而synchronized关键字使用的是“对象监视器”原理作为同步的。</p>
 <p>二 当运行join方法时候，因为join底层使用的是wait方法，所以，当其被interrupt时候，就会报interruptedException异常。</p>
 <p>三 方法join（long） 的作用<br>    使主程序在此处等待子程序运行执行时候后，主程序不在等待，继续往下执行。他和sleep(long) 方法有什么区别呢？ 区别主要就是同步的处理上，请接着往下看。</p>
 <p>四 方法 join(long) 和 sleep(long)的区别<br>    方法join(long) 具有释放锁的特点（因为其底层是用wait实现的），然而sleep(long) 不会释放锁。</p>
 
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/26/java多线程编程中join方法/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
+	
+	</div>
+  <a type="button" href="/2016/04/26/java多线程编程中join方法/#more" class="btn btn-default more">Read More</a>
+</div>
 
-        
-  
-  <div class="tags">
-    <a href="/tags/java-多线程编程/">java 多线程编程</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-25 </div>
+			<div class="article-title"><a href="/2016/04/25/通过管道进行线程间的通信-字符流/" >通过管道进行线程间的通信:字符流</a></div>						
+		</h3>
+	
 
 
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>在管道通信通信中还可以传递字符流（字节流请看：通过管道进行线程间的通信:字符流）。</p>
+	
+	</div>
+  <a type="button" href="/2016/04/25/通过管道进行线程间的通信-字符流/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-25 </div>
+			<div class="article-title"><a href="/2016/04/25/通过管道进行线程间的通信：字节流/" >通过管道进行线程间的通信：字节流</a></div>						
+		</h3>
+	
 
 
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>在java语言中提供了各种各样的输入和输出流Stream，使我们能够方便的对数据进行操作，其中管道流（pipeStream）是一种特殊流，用于在不同的线程间直接传送数据。一个线程发送数据到输出管道，另一个线程输出管道中获取数据，中间介质是内存。实现不同线程之间的通信，而无需借助中间临时文件。<br>
+	
+	</div>
+  <a type="button" href="/2016/04/25/通过管道进行线程间的通信：字节流/#more" class="btn btn-default more">Read More</a>
+</div>
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-25T08:27:54.000Z"><a href="/2016/04/25/通过管道进行线程间的通信-字符流/">2016-04-25</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/25/通过管道进行线程间的通信-字符流/">通过管道进行线程间的通信:字符流</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在管道通信通信中还可以传递字符流（字节流请看：通过管道进行线程间的通信:字符流）。</p>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/04/25/通过管道进行线程间的通信-字符流/#more" class="more-link">更多內容</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/25/通过管道进行线程间的通信-字符流/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java多线程编程/">java多线程编程</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-23 </div>
+			<div class="article-title"><a href="/2016/04/23/线程中suspend和yield方法的区别/" >线程中suspend和yield方法的区别</a></div>						
+		</h3>
+	
 
 
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-25T06:57:04.000Z"><a href="/2016/04/25/通过管道进行线程间的通信：字节流/">2016-04-25</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/25/通过管道进行线程间的通信：字节流/">通过管道进行线程间的通信：字节流</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在java语言中提供了各种各样的输入和输出流Stream，使我们能够方便的对数据进行操作，其中管道流（pipeStream）是一种特殊流，用于在不同的线程间直接传送数据。一个线程发送数据到输出管道，另一个线程输出管道中获取数据，中间介质是内存。实现不同线程之间的通信，而无需借助中间临时文件。<br>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/04/25/通过管道进行线程间的通信：字节流/#more" class="more-link">更多內容</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/25/通过管道进行线程间的通信：字节流/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java-多线程编程/">java 多线程编程</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-23T09:37:20.000Z"><a href="/2016/04/23/线程中suspend和yield方法的区别/">2016-04-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/23/线程中suspend和yield方法的区别/">线程中suspend和yield方法的区别</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <a id="more"></a>
+			<div class="entry">
+  <div class="row">
+	
+	
+		<a id="more"></a>
 <p>suspend方法调用后，线程放弃cpu，但是一直持有其他的资源，知道resume将程序重新启动，这时候会再次获得cup。<br>而yield方法调用后，线程放弃cpu，但放弃多长时间不一定，有可能刚刚放弃cpu，就马上又获得了cpu了。</p>
 
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/23/线程中suspend和yield方法的区别/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
+	
+	</div>
+  <a type="button" href="/2016/04/23/线程中suspend和yield方法的区别/#more" class="btn btn-default more">Read More</a>
+</div>
 
-        
-  
-  <div class="tags">
-    <a href="/tags/java-多线程编程/">java 多线程编程</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-23 </div>
+			<div class="article-title"><a href="/2016/04/23/线程的暂停/" >线程的暂停总结</a></div>						
+		</h3>
+	
 
 
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>暂停线程意味着此线程还可以恢复执行。在java多线程中，可以使用suspend()方法暂停线程，使用resume()方法恢复线程的执行。<br>
+	
+	</div>
+  <a type="button" href="/2016/04/23/线程的暂停/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-22 </div>
+			<div class="article-title"><a href="/2016/04/22/线程停止/" >线程停止</a></div>						
+		</h3>
+	
 
 
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-23T08:03:20.000Z"><a href="/2016/04/23/线程的暂停/">2016-04-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/23/线程的暂停/">线程的暂停总结</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>暂停线程意味着此线程还可以恢复执行。在java多线程中，可以使用suspend()方法暂停线程，使用resume()方法恢复线程的执行。<br>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/04/23/线程的暂停/#more" class="more-link">更多內容</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/23/线程的暂停/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/java-多线程/">java 多线程</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-22T10:07:45.000Z"><a href="/2016/04/22/线程停止/">2016-04-22</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/22/线程停止/">线程停止</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在前边的博客中，曾经介绍了线程是怎么创建和开启的。今天我来分享下我自己对线程是怎么关闭的一些理解。</p>
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>在前边的博客中，曾经介绍了线程是怎么创建和开启的。今天我来分享下我自己对线程是怎么关闭的一些理解。</p>
 <p>停止线程不像java语言中的break语句那样那么干脆，需要一些技巧性的处理。</p>
 <p>在java中有以下三种方式可以停止正在执行的线程。：<br>1）使用退标志，使线程正常退出，也就是完成run方法后终止线程。<br>2）使用stop方法强制终止线程。但是这个方法不被推荐。因为stop是不安全的。和suspend以及resume一样，都已经被废弃。使用过期的方法，可能要产生不可预料的结果。<br>3）使用interrupt方法中断线程。</p>
 <p>在大多数停止的线程的操作使用的是Thread.interrupt()方法。但是这个方法不会终止正在执行的线程。需要加入一个判断才可以完成线程的停止。</p>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/04/22/线程停止/#more" class="more-link">更多內容</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/22/线程停止/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
+	
+	</div>
+  <a type="button" href="/2016/04/22/线程停止/#more" class="btn btn-default more">Read More</a>
+</div>
 
-        
-  
-  <div class="tags">
-    <a href="/tags/java-多线程编程/">java 多线程编程</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-19 </div>
+			<div class="article-title"><a href="/2016/04/19/非递归方式实现斐波那契数列/" >非递归方式实现斐波那契数列</a></div>						
+		</h3>
+	
 
 
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>今天做的是一道关于斐波那契数列的题目，本来在牛客网上准备用递归实现，但是递归的时间到达不到牛客网的要求，所以改用非递归的方式；<br>
+	
+	</div>
+  <a type="button" href="/2016/04/19/非递归方式实现斐波那契数列/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-16 </div>
+			<div class="article-title"><a href="/2016/04/16/二维数组的查找/" >二维数组的查找</a></div>						
+		</h3>
+	
 
 
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-19T15:58:09.000Z"><a href="/2016/04/19/非递归方式实现斐波那契数列/">2016-04-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/19/非递归方式实现斐波那契数列/">非递归方式实现斐波那契数列</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>今天做的是一道关于斐波那契数列的题目，本来在牛客网上准备用递归实现，但是递归的时间到达不到牛客网的要求，所以改用非递归的方式；<br>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/04/19/非递归方式实现斐波那契数列/#more" class="more-link">更多內容</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/19/非递归方式实现斐波那契数列/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/算法/">算法</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-16T15:29:26.000Z"><a href="/2016/04/16/二维数组的查找/">2016-04-16</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/16/二维数组的查找/">二维数组的查找</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
 <p>这是一道来自牛客网的一道编程题，有人写了下边的代码：<br>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2016/04/16/二维数组的查找/#more" class="more-link">更多內容</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/16/二维数组的查找/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
+	
+	</div>
+  <a type="button" href="/2016/04/16/二维数组的查找/#more" class="btn btn-default more">Read More</a>
+</div>
 
-        
-  
-  <div class="tags">
-    <a href="/tags/算法/">算法</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-14 </div>
+			<div class="article-title"><a href="/2016/04/14/算法世界/" >算法世界</a></div>						
+		</h3>
+	
 
 
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-13T16:06:57.000Z"><a href="/2016/04/14/算法世界/">2016-04-14</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/14/算法世界/">算法世界</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>好久没有写算法的程序的，感觉脑袋都有生锈了。考虑到算法对自己的思维有很大的帮助，而且对代码的要优化，对编写出高效的程序都是必不可少。因此必须要懂算法。算法如此重要，我决定要重新拾起算法了。</p>
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>好久没有写算法的程序的，感觉脑袋都有生锈了。考虑到算法对自己的思维有很大的帮助，而且对代码的要优化，对编写出高效的程序都是必不可少。因此必须要懂算法。算法如此重要，我决定要重新拾起算法了。</p>
 <p>从今天起，我要尽力每天完成一两个算法。</p>
 
-      
-    </div>
+	
+	</div>
+  <a type="button" href="/2016/04/14/算法世界/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+
+		</div>
+
+		<!-- pagination -->
+		<div>
+  		<center>
+		<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+
+		
+		   <li class="next"> <a href="/page/2/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
+        
+	
+</ul>
+</div>
+
+  		</center>
+		</div>
+
+		
+		
+	</div> <!-- col-md-9 -->
+
+	
+		<div class="col-md-3">
+	<div id="sidebar">
+	
+			
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+		
+			
+	<div class="widget">
+		<h4>Categories</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/技术/">技术<span>23</span></a></li>
+		
+			<li><a href="/categories/技术/随笔/">随笔<span>1</span></a></li>
+		
+		</ul>
+	</div>
+
+		
+			
+	<div class="widget">
+		<h4>Tag Cloud</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/java-多线程/">java 多线程<span>1</span></a></li>
+		
+			<li><a href="/tags/分享/">分享<span>3</span></a></li>
+		
+			<li><a href="/tags/gc/">gc<span>1</span></a></li>
+		
+			<li><a href="/tags/算法/">算法<span>4</span></a></li>
+		
+			<li><a href="/tags/java基础/">java基础<span>7</span></a></li>
+		
+			<li><a href="/tags/概念/">概念<span>1</span></a></li>
+		
+			<li><a href="/tags/spring/">spring<span>1</span></a></li>
+		
+			<li><a href="/tags/Collection/">Collection<span>2</span></a></li>
+		
+			<li><a href="/tags/java-多线程编程/">java 多线程编程<span>5</span></a></li>
+		
+			<li><a href="/tags/java-高级/">java 高级<span>1</span></a></li>
+		
+			<li><a href="/tags/数据库/">数据库<span>1</span></a></li>
+		
+			<li><a href="/tags/多线程编程/">多线程编程<span>2</span></a></li>
+		
+			<li><a href="/tags/java多线程编程/">java多线程编程<span>1</span></a></li>
+		
+			<li><a href="/tags/java-新知/">java 新知<span>1</span></a></li>
+		
+		 
+		</ul>
+	</div>
+
+
+		
+			
+<div class="widget">
+  <h4>Recent Posts</h4>
+  <ul class="entry list-unstyled">
     
-    <footer>
-        <div class="alignright">
-          
-          <a href="/2016/04/14/算法世界/#comment" class="comment-link">评论</a>
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/技术/">技术</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/算法/">算法</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-
-<nav id="pagination">
-  
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Siguiente &raquo;</a>
-  </nav>
-
-</nav>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  
-<div class="widget tag">
-  <h3 class="title">Etiquetas</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/Collection/">Collection</a><small>2</small></li>
-  
-    <li><a href="/tags/gc/">gc</a><small>1</small></li>
-  
-    <li><a href="/tags/java-多线程/">java 多线程</a><small>1</small></li>
-  
-    <li><a href="/tags/java-多线程编程/">java 多线程编程</a><small>5</small></li>
-  
-    <li><a href="/tags/java-新知/">java 新知</a><small>1</small></li>
-  
-    <li><a href="/tags/java-高级/">java 高级</a><small>1</small></li>
-  
-    <li><a href="/tags/java基础/">java基础</a><small>7</small></li>
-  
-    <li><a href="/tags/java多线程编程/">java多线程编程</a><small>1</small></li>
-  
-    <li><a href="/tags/spring/">spring</a><small>1</small></li>
-  
-    <li><a href="/tags/分享/">分享</a><small>3</small></li>
-  
-    <li><a href="/tags/多线程编程/">多线程编程</a><small>2</small></li>
-  
-    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
-  
-    <li><a href="/tags/概念/">概念</a><small>1</small></li>
-  
-    <li><a href="/tags/算法/">算法</a><small>4</small></li>
-  
+      <li>
+        <a href="/2016/04/27/gc日志查看（转载）/" ><i class="fa fa-file-o"></i>gc日志查看（转载）</a>
+      </li>
+    
+      <li>
+        <a href="/2016/04/26/java多线程编程中join方法/" ><i class="fa fa-file-o"></i>java多线程编程中join方法</a>
+      </li>
+    
+      <li>
+        <a href="/2016/04/25/通过管道进行线程间的通信-字符流/" ><i class="fa fa-file-o"></i>通过管道进行线程间的通信:字符流</a>
+      </li>
+    
+      <li>
+        <a href="/2016/04/25/通过管道进行线程间的通信：字节流/" ><i class="fa fa-file-o"></i>通过管道进行线程间的通信：字节流</a>
+      </li>
+    
+      <li>
+        <a href="/2016/04/23/线程中suspend和yield方法的区别/" ><i class="fa fa-file-o"></i>线程中suspend和yield方法的区别</a>
+      </li>
+    
   </ul>
 </div>
 
-
-  
-<div class="widget tag">
-  <h3 class="title">Entradas Recientes</h3>
-  <ul class="entry">
-    
-      <li>
-        <a href="/2016/04/27/gc日志查看（转载）/">gc日志查看（转载）</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/26/java多线程编程中join方法/">java多线程编程中join方法</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/25/通过管道进行线程间的通信-字符流/">通过管道进行线程间的通信:字符流</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/25/通过管道进行线程间的通信：字节流/">通过管道进行线程间的通信：字节流</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/23/线程中suspend和yield方法的区别/">线程中suspend和yield方法的区别</a>
-      </li>
-    
-  </ul>
+		
+			
+<div class="widget">
+	<h4>Links</h4>
+	<ul class="blogroll list-unstyled">
+	
+		<li><i class="fa fa-github"></i><a href="https://github.com/wzpan/freemind/" title="Freemind's Github repository." target="_blank"]);">Freemind</a></li>
+	
+		<li><i class="fa fa-github"></i><a href="http://www.github.com/wzpan" title="My Github account." target="_blank"]);">My Github</a></li>
+	
+		<li><i class="fa fa-linkedin"></i><a href="http://www.linkedin.com/in/hahack" title="My Linkin account." target="_blank"]);">My LinkedIn</a></li>
+	
+	</ul>
 </div>
 
 
-  <div class="widget tag">
-  <h3 class="title">友情链接</h3>
-  <div class="entry">
-    <ul>
-<!-- link start -->
-<li><a href='http://bestcbooks.com/'>计算机书籍控</a></li>
-<li><a href='http://www.uncletoo.com/'>PHP中文网</a></li>
-<!-- link  end -->
-    </ul>
-  </div>
-</div>
+		
+	</div> <!-- sidebar -->
+</div> <!-- col-md-3 -->
 
-</aside>
-    <div class="clearfix"></div>
+	
+	
+</div> <!-- row-fluid -->
+
+	</div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  <p>
-  
+  <div class="container-narrow">
+  <footer> <p>
   &copy; 2016 Gengyukun
   
-  All rights reserved.</p>
-  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
-</div>
-<div class="clearfix"></div>
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
 
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
@@ -724,28 +509,6 @@
 </script>
 
 
-<script>
-    //Kill XP and IE8
-    (function(){
-        var ua = navigator.userAgent;
-        var res = /Windows NT (\d+\.\d+)/.exec(ua);
-        var xpOrLower = res && JSON.parse(res[1]) < 6;
-        res = /MSIE (\d+\.\d+)/.exec(ua);
-        var ie8OrLower = res && JSON.parse(res[1]) < 9;
-        if(xpOrLower || ie8OrLower)
-        {
-            alert('请不要用XP及之前的Windows系统，和IE8及之前的IE浏览器访问本站！');
-            location.href = "about:blank";
-        }
-        var fromBaiduSE = /^https?:\/\/www.baidu.com/.test(document.referrer);
-        if(fromBaiduSE)
-        {
-            alert('检测到你还在使用百度搜索，作为一个程序员，这是一种自暴自弃！\n\n做不作恶的程序员，从不用百度开始！')
-            location.href = "about:blank";
-        }
-    })();
-</script>
 
-<div id='bg'></div>
 </body>
-</html>
+   </html>
