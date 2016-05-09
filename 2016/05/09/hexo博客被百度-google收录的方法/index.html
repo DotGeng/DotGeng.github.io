@@ -115,15 +115,24 @@
 <p>因为我在这个工程中走了很多弯路，导致我没少耗费时间，在这里我就写的尽量详细一点，为后来的小伙伴节省一点宝贵的时间。</p>
 <p>1 我们需要买域名，我是在阿里云上买的域名，我就说下我买域名的过程。<br>  1.1 首先我们注册一个阿里云的账户(阿里云官网：<a href="https://www.aliyun.com/" target="_blank" rel="external">https://www.aliyun.com/</a>)<br>  1.2 在阿里云的主页上点击万网，如下图：<br>  <img src="/images/serachByGoogleOrBaidu/1.1.PNG" alt=""><br>  可以根据官网提示购买域名，这里不再赘述。<br>  1.3 下边怎么介绍怎么把域名指向自己的hexo博客网站。<br>    请参考阿里云官方文档：</p>
 <pre><code>https://help.aliyun.com/knowledge_detail/6555838.html?spm=5176.2020520130.105.2.sE5fR3&amp;&amp;msctype=pmsg&amp;mscmsgid=116416032500061222&amp;
-</code></pre><p>2 第一步生效后，我们在浏览器中输入我们的域名，就能看到我们的hexo博客。那么接下来就是怎么让百度和google收录了。<br>    2.1 先确认博客是否被收录<br>        在百度或者谷歌上面输入下面格式来判断，如果能搜索到就说明被收录，否则就没有，用你的域名替代我的dotdotcloud.cn<br>        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site:dotdotcloud.cn</span><br></pre></td></tr></table></figure></p>
-<pre><code>    ![](/images/serachByGoogleOrBaidu/2.1.PNG) 
+</code></pre><p>2 第一步生效后，我们在浏览器中输入我们的域名，就能看到我们的hexo博客。那么接下来就是怎么让百度和google收录了。<br>    2.1 先确认博客是否被收录<br>        在百度或者谷歌上面输入下面格式来判断，如果能搜索到就说明被收录，否则就没有，用你的域名替代我的dotdotcloud.cn</p>
+<pre><code>    site:dotdotcloud.cn
+
+    ![](/images/serachByGoogleOrBaidu/2.1.PNG) 
 
     这里百度没有收录我的，因为github已经对百度爬虫是拒绝的，所以我这里还是介绍下以前用方法，为以后在这个方法的扩展而被百度收录做铺垫。
+
     ![](/images/serachByGoogleOrBaidu/2.1.2.PNG) 
+
 2.2 验证网站
   两个搜索引擎入口：https://www.google.com/webmasters/tools/home?hl=zh-CN
   百度搜索引擎入口：http://zhanzhang.baidu.com/linksubmit/url
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> 下载此 HTML 验证文件。 [google0b4c8a25b65d7c2a.html]</span><br><span class="line">将该文件上传到 http://yoursite/</span><br><span class="line">通过在浏览器中访问 http://yoursite/google0b4c8a25b65d7c2a.html，确认上传成功。</span><br><span class="line">点击下面的“验证”。</span><br><span class="line">为保持已进行过验证的状态，即使成功通过了验证也请不要删除该 HTML 文件。</span><br></pre></td></tr></table></figure>
+
+  下载此 HTML 验证文件。 [google0b4c8a25b65d7c2a.html]
+    将该文件上传到 http://yoursite/
+    通过在浏览器中访问 http://yoursite/google0b4c8a25b65d7c2a.html，确认上传成功。
+    点击下面的“验证”。
+    为保持已进行过验证的状态，即使成功通过了验证也请不要删除该 HTML 文件。
 
     我们的博客系统使用了hexo，部署在Github上，因此下载Google的验证文件之后，需要在文件开头添加layout: false来取消hexo对其进行的转换，如下：
     ![](/images/serachByGoogleOrBaidu/2.2.1.png) 
@@ -135,11 +144,14 @@
 
  站点地图：
 
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">站点地图是一种文件，您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知Google和其他搜索引擎。Googlebot等搜索引擎网页抓取工具会读取此文件，以便更加智能地抓取您的网站。</span><br></pre></td></tr></table></figure>
+
+ 站点地图是一种文件，您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知Google和其他搜索引擎。Googlebot等搜索引擎网页抓取工具会读取此文件，以便更加智能地抓取您的网站。
 
  我们要先安装一下，打开你的hexo博客根目录，分别用下面两个命令来安装针对谷歌和百度的插件
 
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
+
+ npm install hexo-generator-sitemap --save
+ npm install hexo-generator-baidu-sitemap --save
 
  在博客目录的_config.yml中添加如下代码(我不加也可以)
  # 自动生成sitemap
@@ -213,13 +225,13 @@
 <ul class="pagination">
 	 
 		
-          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Anterior</a></li>
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
         
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2016/04/27/gc日志查看（转载）/" class="alignright next">Próximo<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2016/04/27/gc日志查看（转载）/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -255,7 +267,7 @@
 	<!-- comment -->
 	
 <section id="comment">
-  <h2 class="title">Comentários</h2>
+  <h2 class="title">留言</h2>
 
   
   	 <div class="ds-thread" data-thread-key="2016/05/09/hexo博客被百度-google收录的方法/" data-title="hexo博客被百度+google收录的方法" data-url="http://yoursite.com/2016/05/09/hexo博客被百度-google收录的方法/"></div>  
