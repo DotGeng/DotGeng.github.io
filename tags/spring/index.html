@@ -130,7 +130,7 @@
 			
   <div id="site_search">
    <div class="form-group">
-    <input type="text" id="local-search-input" name="q" results="0" placeholder="Busca" class="st-search-input st-default-search-input form-control"/>
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
    </div>  
   <div id="local-search-result"></div>
   </div>
@@ -139,10 +139,10 @@
 		
 			
 	<div class="widget">
-		<h4>Categorias</h4>
+		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/技术/">技术<span>23</span></a></li>
+			<li><a href="/categories/技术/">技术<span>24</span></a></li>
 		
 			<li><a href="/categories/技术/随笔/">随笔<span>1</span></a></li>
 		
@@ -155,33 +155,35 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Collection/">Collection<span>2</span></a></li>
-		
-			<li><a href="/tags/java-高级/">java 高级<span>1</span></a></li>
-		
 			<li><a href="/tags/多线程编程/">多线程编程<span>2</span></a></li>
 		
+			<li><a href="/tags/Collection/">Collection<span>2</span></a></li>
+		
+			<li><a href="/tags/工具使用/">工具使用<span>1</span></a></li>
+		
+			<li><a href="/tags/java基础/">java基础<span>7</span></a></li>
+		
+			<li><a href="/tags/spring/">spring<span>1</span></a></li>
+		
 			<li><a href="/tags/数据库/">数据库<span>1</span></a></li>
+		
+			<li><a href="/tags/java-多线程/">java 多线程<span>1</span></a></li>
+		
+			<li><a href="/tags/算法/">算法<span>4</span></a></li>
 		
 			<li><a href="/tags/java-新知/">java 新知<span>1</span></a></li>
 		
 			<li><a href="/tags/gc/">gc<span>1</span></a></li>
 		
-			<li><a href="/tags/spring/">spring<span>1</span></a></li>
+			<li><a href="/tags/分享/">分享<span>3</span></a></li>
 		
-			<li><a href="/tags/java基础/">java基础<span>7</span></a></li>
+			<li><a href="/tags/java-高级/">java 高级<span>1</span></a></li>
 		
 			<li><a href="/tags/概念/">概念<span>1</span></a></li>
 		
 			<li><a href="/tags/java-多线程编程/">java 多线程编程<span>5</span></a></li>
 		
-			<li><a href="/tags/算法/">算法<span>4</span></a></li>
-		
-			<li><a href="/tags/分享/">分享<span>3</span></a></li>
-		
 			<li><a href="/tags/java多线程编程/">java多线程编程<span>1</span></a></li>
-		
-			<li><a href="/tags/java-多线程/">java 多线程<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -191,8 +193,12 @@
 		
 			
 <div class="widget">
-  <h4>Posts recentes</h4>
+  <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2016/05/09/hexo博客被百度-google收录的方法/" ><i class="fa fa-file-o"></i>hexo博客被百度+google收录的方法</a>
+      </li>
     
       <li>
         <a href="/2016/04/27/gc日志查看（转载）/" ><i class="fa fa-file-o"></i>gc日志查看（转载）</a>
@@ -208,10 +214,6 @@
     
       <li>
         <a href="/2016/04/25/通过管道进行线程间的通信：字节流/" ><i class="fa fa-file-o"></i>通过管道进行线程间的通信：字节流</a>
-      </li>
-    
-      <li>
-        <a href="/2016/04/23/线程中suspend和yield方法的区别/" ><i class="fa fa-file-o"></i>线程中suspend和yield方法的区别</a>
       </li>
     
   </ul>
@@ -281,5 +283,13 @@
      searchFunc(path, 'local-search-input', 'local-search-result');
    </script>
 
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 </body>
    </html>

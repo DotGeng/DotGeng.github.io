@@ -1,0 +1,384 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hexo博客被百度+google收录的方法 | DotGeng</title>
+  <meta name="author" content="Gengyukun">
+  
+  <meta name="description" content="DotGeng的Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="hexo博客被百度+google收录的方法"/>
+  <meta property="og:site_name" content="DotGeng"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">DotGeng</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> hexo博客被百度+google收录的方法</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>我自己的hexo博客搭建起来也好多天了，但是一直没有办法被别人检索到，这样总觉得不好装逼，别人看不到啊。于是，决定花一天时间来搞下。<br>博客，是我们技术人员向外界展示自己思想的重要途径，也是和志同道合的人来交流的一个很好的平台，但是如果我们的博客不能被百度和google检索到，那就好像是我们自己在家里造车，造好之后，从不把它拉到市场上，只是放在家里。那么今天我就分享下我是怎么把我的”车”拉到市场上的。<br><a id="more"></a></p>
+<p>因为我在这个工程中走了很多弯路，导致我没少耗费时间，在这里我就写的尽量详细一点，为后来的小伙伴节省一点宝贵的时间。</p>
+<p>1 我们需要买域名，我是在阿里云上买的域名，我就说下我买域名的过程。<br>  1.1 首先我们注册一个阿里云的账户(阿里云官网：<a href="https://www.aliyun.com/" target="_blank" rel="external">https://www.aliyun.com/</a>)<br>  1.2 在阿里云的主页上点击万网，如下图：<br>  <img src="/images/serachByGoogleOrBaidu/1.1.PNG" alt=""><br>  可以根据官网提示购买域名，这里不再赘述。<br>  1.3 下边怎么介绍怎么把域名指向自己的hexo博客网站。<br>    请参考阿里云官方文档：</p>
+<pre><code>https://help.aliyun.com/knowledge_detail/6555838.html?spm=5176.2020520130.105.2.sE5fR3&amp;&amp;msctype=pmsg&amp;mscmsgid=116416032500061222&amp;
+</code></pre><p>2 第一步生效后，我们在浏览器中输入我们的域名，就能看到我们的hexo博客。那么接下来就是怎么让百度和google收录了。<br>    2.1 先确认博客是否被收录<br>        在百度或者谷歌上面输入下面格式来判断，如果能搜索到就说明被收录，否则就没有，用你的域名替代我的dotdotcloud.cn<br>        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site:dotdotcloud.cn</span><br></pre></td></tr></table></figure></p>
+<pre><code>    ![](/images/serachByGoogleOrBaidu/2.1.PNG) 
+
+    这里百度没有收录我的，因为github已经对百度爬虫是拒绝的，所以我这里还是介绍下以前用方法，为以后在这个方法的扩展而被百度收录做铺垫。
+    ![](/images/serachByGoogleOrBaidu/2.1.2.PNG) 
+2.2 验证网站
+  两个搜索引擎入口：https://www.google.com/webmasters/tools/home?hl=zh-CN
+  百度搜索引擎入口：http://zhanzhang.baidu.com/linksubmit/url
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> 下载此 HTML 验证文件。 [google0b4c8a25b65d7c2a.html]</span><br><span class="line">将该文件上传到 http://yoursite/</span><br><span class="line">通过在浏览器中访问 http://yoursite/google0b4c8a25b65d7c2a.html，确认上传成功。</span><br><span class="line">点击下面的“验证”。</span><br><span class="line">为保持已进行过验证的状态，即使成功通过了验证也请不要删除该 HTML 文件。</span><br></pre></td></tr></table></figure>
+
+    我们的博客系统使用了hexo，部署在Github上，因此下载Google的验证文件之后，需要在文件开头添加layout: false来取消hexo对其进行的转换，如下：
+    ![](/images/serachByGoogleOrBaidu/2.2.1.png) 
+
+ 不管谷歌还是百度都要先添加域名，然后验证网站，这里统一都使用文件验证，就是下载对应的html文件，放到域名根目录下，也就收博客根目录下的source下面
+ ![](/images/serachByGoogleOrBaidu/2.2.2.png) 
+
+ 然后部署到服务器,输入地址：http://tengj.top/googlead0e22632f59a368.html 能访问到内容就可以点验证按钮。
+
+ 站点地图：
+
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">站点地图是一种文件，您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知Google和其他搜索引擎。Googlebot等搜索引擎网页抓取工具会读取此文件，以便更加智能地抓取您的网站。</span><br></pre></td></tr></table></figure>
+
+ 我们要先安装一下，打开你的hexo博客根目录，分别用下面两个命令来安装针对谷歌和百度的插件
+
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
+
+ 在博客目录的_config.yml中添加如下代码(我不加也可以)
+ # 自动生成sitemap
+ sitemap:
+ path: sitemap.xml
+ baidusitemap:
+ path: baidusitemap.xml
+
+ 编译你的博客
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+ 如果你在你的博客根目录的public下面发现生成了sitemap.xml以及baidusitemap.xml就表示成功了。
+ 这时候sitemap.xml跟baidusitemap.xml里面的内容一样，但是文章链接都是tengj.github.io的，这里我就很奇怪了，我博客同时对应github和coding的，为啥生成的sitemap.xml对应的域名都是yoursite.com，所以我把里面的改成了我的个人域名dotdotcloud.cn.
+</code></pre><p>  部署后你分别访问<br>     <a href="http://dotdotcloud.cn/sitemap.xml" target="_blank" rel="external">http://dotdotcloud.cn/sitemap.xml</a><br>   <a href="http://dotdotcloud.cn/baidusitemap.xml" target="_blank" rel="external">http://dotdotcloud.cn/baidusitemap.xml</a><br>   <img src="/images/serachByGoogleOrBaidu/2.2.3.png" alt=""><br>   <img src="/images/serachByGoogleOrBaidu/2.2.4.png" alt=""></p>
+<p>   让谷歌收录我们的博客:<br>   谷歌操作比较简单，就是向Google站长工具提交sitemap</p>
+<pre><code>登录Google账号，添加了站点验证通过后，选择站点，之后在抓取——站点地图中就能看到添加/测试站点地图，如下图：
+ ![](/images/serachByGoogleOrBaidu/2.2.5.png)
+
+ 谷歌我提交过了两个小时就能搜索到我的博客了，效率很高。
+
+让百度收录我们的博客：
+
+谷歌很好搞定，百度就感觉很难，我从提交百度到现在写这篇博客，在百度那边也只能搜索到一条我的博客，真不容易。
+正常情况，是要等百度爬虫来爬到你的网站，才会被收录。
+但是github屏蔽了百度爬虫目前，所以我们要主动出击，我们自己把网站提交给百度。
+这就要使用到百度站长平台（http://zhanzhang.baidu.com/）
+
+验证网站
+验证网站最上面提过了，这里直接截图
+ ![](/images/serachByGoogleOrBaidu/2.2.6.png)
+ ![](/images/serachByGoogleOrBaidu/2.2.7.png)
+
+网页抓取：
+上面步骤成功后，进入站点管理，找到网页抓取这边详情点进去
+![](/images/serachByGoogleOrBaidu/2.2.8.png)
+
+我们主动提交博客文章链接
+如何选择链接提交方式
+    1、主动推送：最为快速的提交方式，推荐您将站点当天新产出链接立即通过此方式推送给百度，以保证新链接可以及时被百度收录。
+    2、自动推送：最为便捷的提交方式，请将自动推送的JS代码部署在站点的每一个页面源代码中，部署代码的页面在每次被浏览时，链接会被自动推送给百度。可以与主动推送配合使用。
+    3、sitemap：您可以定期将网站链接放到sitemap中，然后将sitemap提交给百度。百度会周期性的抓取检查您提交的sitemap，对其中的链接进行处理，但收录速度慢于主动推送。
+    4、手动提交：一次性提交链接给百度，可以使用此种方式。
+
+    一般主动提交比手动提交效果好，这里介绍主动提交的三种方法
+
+从效率上来说：
+
+        主动推送&gt;自动推送&gt;sitemap
+
+        主动推送(最复杂，这里不做说明)；
+
+        自动推送：
+            自动推送很简单，就是在你代码里面嵌入自动推送JS代码，在页面被访问时，页面URL将立即被推送给百度
+            代码如下：
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">	var bp = document.createElement(<span class="string">'script'</span>);</span><br><span class="line">	    bp.src = <span class="string">'//push.zhanzhang.baidu.com/push.js'</span>;</span><br><span class="line">	    var s = document.getElementsByTagName(<span class="string">"script"</span>)[0];</span><br><span class="line">	    s.parentNode.insertBefore(bp, s);</span><br><span class="line">	&#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+          我是放在\themes\jacman\layout\_partial\after_footer.ejs中，添加到下面就行。
+
+          sitemap提交
+
+                我这里是报的抓取失败的错误。
+
+参考博客：http://www.jianshu.com/p/619dab2d3c08
+                    http://selfboot.cn/2014/12/21/add_blog_to_google/
+</code></pre>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/04/27/gc日志查看（转载）/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2016/05/09/hexo博客被百度-google收录的方法/" data-title="hexo博客被百度+google收录的方法" data-url="http://yoursite.com/2016/05/09/hexo博客被百度-google收录的方法/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-05-09 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/技术/">技术<span>24</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/工具使用/">工具使用<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'dotdotcloud' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Gengyukun
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+</body>
+   </html>
