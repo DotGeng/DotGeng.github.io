@@ -1,243 +1,275 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>多线程对文件的读写 | DotGeng</title>
+  <meta name="author" content="Gengyukun">
+  
+  <meta name="description" content="DotGeng的Blog">
+  
+  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目： 一个文件中有10000个数，用java实现一个多线程程序将这10000个数输入到五个不同的文件中（要求输入到每个文件中的数量相同）。要求启动10个线程，两两一组，分为五组。每组两个线程分别将文件中的奇数偶数输入到改组对应的文件中，需要偶数线程没打印10个偶数之后，就将技术线程打印10个奇数，如此交替进行。同时需要记录输入进度，没完成1000个数就在控制台打印当前完成的数量，并在所有线程结束">
-<meta property="og:type" content="article">
-<meta property="og:title" content="多线程对文件的读写">
-<meta property="og:url" content="http://yoursite.com/2016/03/21/多线程对文件的读写/index.html">
-<meta property="og:site_name" content="DotGeng">
-<meta property="og:description" content="题目： 一个文件中有10000个数，用java实现一个多线程程序将这10000个数输入到五个不同的文件中（要求输入到每个文件中的数量相同）。要求启动10个线程，两两一组，分为五组。每组两个线程分别将文件中的奇数偶数输入到改组对应的文件中，需要偶数线程没打印10个偶数之后，就将技术线程打印10个奇数，如此交替进行。同时需要记录输入进度，没完成1000个数就在控制台打印当前完成的数量，并在所有线程结束">
-<meta property="og:image" content="http://yoursite.com/images/input.png">
-<meta property="og:image" content="http://yoursite.com/images/output0.png">
-<meta property="og:updated_time" content="2016-04-24T03:05:12.687Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程对文件的读写">
-<meta name="twitter:description" content="题目： 一个文件中有10000个数，用java实现一个多线程程序将这10000个数输入到五个不同的文件中（要求输入到每个文件中的数量相同）。要求启动10个线程，两两一组，分为五组。每组两个线程分别将文件中的奇数偶数输入到改组对应的文件中，需要偶数线程没打印10个偶数之后，就将技术线程打印10个奇数，如此交替进行。同时需要记录输入进度，没完成1000个数就在控制台打印当前完成的数量，并在所有线程结束">
-<meta name="twitter:image" content="http://yoursite.com/images/input.png">
+
+  <meta property="og:title" content="多线程对文件的读写"/>
+  <meta property="og:site_name" content="DotGeng"/>
+
   
-    <link rel="alternate" href="/atom.xml" title="DotGeng" type="application/atom+xml">
+    <meta property="og:image" content="undefined"/>
+  
+
   
   
-    <link rel="icon" href="/favicon.png">
+    <link href="/favicon.png" rel="icon">
   
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+
+
 
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">DotGeng</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">DotGeng</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
       </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-多线程对文件的读写" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/21/多线程对文件的读写/" class="article-date">
-  <time datetime="2016-03-20T16:45:19.000Z" itemprop="datePublished">2016-03-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      多线程对文件的读写
-    </h1>
-  
+  <div class="container">
+  	<div class="content">
+    	 
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>题目：<br> 一个文件中有10000个数，用java实现一个多线程程序将这10000个数输入到五个不同的文件中（要求输入到每个文件中的数量相同）。要求启动10个线程，两两一组，分为五组。每组两个线程分别将文件中的奇数偶数输入到改组对应的文件中，需要偶数线程没打印10个偶数之后，就将技术线程打印10个奇数，如此交替进行。同时需要记录输入进度，没完成1000个数就在控制台打印当前完成的数量，并在所有线程结束后，在控制台打印”DONE”。</p>
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> 多线程对文件的读写</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>题目：<br> 一个文件中有10000个数，用java实现一个多线程程序将这10000个数输入到五个不同的文件中（要求输入到每个文件中的数量相同）。要求启动10个线程，两两一组，分为五组。每组两个线程分别将文件中的奇数偶数输入到改组对应的文件中，需要偶数线程没打印10个偶数之后，就将技术线程打印10个奇数，如此交替进行。同时需要记录输入进度，没完成1000个数就在控制台打印当前完成的数量，并在所有线程结束后，在控制台打印”DONE”。</p>
 <p> 分析：（1）我们可以将10000个数字分成五份，每一份对应两个线程，每两个线程对应一个打印类实体（2）同时声明一个共享变量，用于记录当前线程输出的记录数，但应记录的输出进度；</p>
 <p> 代码如下：<br> <a id="more"></a><br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"> import java.io.BufferedReader;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileReader;</span><br><span class="line">import java.io.FileWriter;</span><br><span class="line">import java.io.PrintWriter;</span><br><span class="line">import java.util.Random;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> 一个文件中有10000个数，用Java实现一个多线程程序将这个10000个数输出到5个不用文件中（不要求输出到每个文件中的数量相同）。</span><br><span class="line"> 要求启动10个线程，两两一组，分为5组。</span><br><span class="line"> 每组两个线程分别将文件中的奇数和偶数输出到该组对应的一个文件中，</span><br><span class="line"> 需要偶数线程每打印10个偶数以后，就将奇数线程打印10个奇数，如此交替进行。</span><br><span class="line"> 同时需要记录输出进度，每完成1000个数就在控制台中打印当前完成数量，并在所有线程结束后，在控制台打印”Done”.</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * 分析：可以将10000个数分成5份，每一份（2000个数）对应一组，即两个线程，来分别输出这一份的奇数和偶数，</span><br><span class="line"> * 同时声明一个共享变量，用于统计当前所有线程输出的个数，反映记录的输出进度</span><br><span class="line"> */</span><br><span class="line">public class PrintByThread &#123;</span><br><span class="line">     </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            //创建一个包含10000数字的输入文件</span><br><span class="line">            PrintWriter pw=new PrintWriter(new FileWriter(new File(<span class="string">"input.txt"</span>)),<span class="literal">true</span>);</span><br><span class="line">            Random random=new Random();</span><br><span class="line">            <span class="keyword">for</span> (int i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">                pw.print(Math.abs(random.nextInt())%100+<span class="string">","</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            pw.flush();</span><br><span class="line">            pw.close();</span><br><span class="line">            //读取文件中的数字，分5次读取，每次读取2000个</span><br><span class="line">            BufferedReader reader=new BufferedReader(new FileReader(<span class="string">"input.txt"</span>));</span><br><span class="line">            String str=reader.readLine();</span><br><span class="line">            reader.close();</span><br><span class="line">            String[] strs=str.split(<span class="string">","</span>);//将一行字符串全部解析为10000个数字</span><br><span class="line">            int j=0;//10000个数的索引计数</span><br><span class="line">            <span class="keyword">for</span> (int i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">                int records[]=new int[2000];</span><br><span class="line">                <span class="keyword">for</span> (int k = 0; k &lt; 2000; k++) &#123;</span><br><span class="line">                    records[k]=Integer.parseInt(strs[j]);</span><br><span class="line">                    j++;</span><br><span class="line">                &#125;</span><br><span class="line">                //定义输出文件</span><br><span class="line">                PrintWriter writer = new PrintWriter(new FileWriter(new File(<span class="string">"output"</span>+i+<span class="string">".txt"</span>)),<span class="literal">true</span>);</span><br><span class="line">                //定义实现的方法</span><br><span class="line">                ThreadGroup3 group = new ThreadGroup3(records, writer);</span><br><span class="line">                //开启一对儿线程</span><br><span class="line">                new Thread(group).start();</span><br><span class="line">                new Thread(group).start();    </span><br><span class="line">            &#125;          </span><br><span class="line">             </span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            // TODO: handle exception</span><br><span class="line">        &#125;      </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">class ThreadGroup3 implements Runnable&#123;</span><br><span class="line">    //所有类对象共享的同一个计数器count，记录总共输出的记录总数</span><br><span class="line">    private static int count=0;</span><br><span class="line">    //所有的ThreadGroup类对象共享一个锁，用于count变量的同步，任何一个线程需要修改count变量，必须取得该锁</span><br><span class="line">    private static Object lock=new Object();</span><br><span class="line">    public static final int EVEN=0;//代表偶数</span><br><span class="line">    public static final int ODD=-1;//代表奇数（此处一定要是-1，因为后边 <span class="built_in">type</span> = ~ <span class="built_in">type</span>的代码，0的按位取反（~）结果是-1，切记切记）</span><br><span class="line">     </span><br><span class="line">    //*********以上静态变量，属于整个类所有***********</span><br><span class="line">    private int <span class="built_in">type</span>;</span><br><span class="line">    private int records[];</span><br><span class="line">    private PrintWriter writer;//每组共享一个writer，输出到同一个文件</span><br><span class="line">    private int oddPoint=0;//记录每次打印奇数的起始位置</span><br><span class="line">    private int evenPoint=0;//记录每次打印偶数的起始位置</span><br><span class="line">     </span><br><span class="line">    public ThreadGroup3(int[] records,PrintWriter writer)&#123;</span><br><span class="line">        this.records=records;</span><br><span class="line">        this.writer=writer;</span><br><span class="line">        this.type=EVEN;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    //线程方法实现</span><br><span class="line">    public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">print</span>());</span><br><span class="line">         </span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    private synchronized boolean <span class="function"><span class="title">print</span></span>()&#123;</span><br><span class="line">        <span class="keyword">for</span>(int i=0;i&lt;10;)&#123;</span><br><span class="line">            //如果奇数和偶数都打印完成以后，就直接停止打印循环，等待该线程自己结束</span><br><span class="line">            <span class="keyword">if</span> (oddPoint&gt;=records.length&amp;&amp;evenPoint&gt;=records.length) &#123;</span><br><span class="line">                notifyAll();</span><br><span class="line">                <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            //如果该线程该打印奇数，但奇数已经打印晚了，就直接停止本次10个数的打印，</span><br><span class="line">            //同理偶数，等下次切换打印类型后，再开始打印另外一种类型</span><br><span class="line">            <span class="keyword">if</span> ((oddPoint&gt;=records.length&amp;&amp;<span class="built_in">type</span>==ODD)||(evenPoint&gt;=records.length&amp;&amp;<span class="built_in">type</span>==EVEN)) &#123;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            //判断开始打印偶数</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">type</span>==EVEN) &#123;</span><br><span class="line">                <span class="keyword">if</span> (records[evenPoint]%2==0) &#123;</span><br><span class="line">                    i++;</span><br><span class="line">                    writer.print(records[evenPoint]+<span class="string">","</span>);</span><br><span class="line">                    writer.flush();</span><br><span class="line">                    //锁定全局变量方便线程输出后计数</span><br><span class="line">                    synchronized (lock) &#123;</span><br><span class="line">                        count++;</span><br><span class="line">                        <span class="keyword">if</span> (count%1000==0) &#123;</span><br><span class="line">                            System.out.println(<span class="string">"当前完成数量："</span>+count);</span><br><span class="line">                            <span class="keyword">if</span> (count==10000) &#123;</span><br><span class="line">                                System.out.println(<span class="string">"Done!"</span>);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                //无论是否是偶数，打印成功一个后，偶数的起始位置都要后移</span><br><span class="line">                evenPoint++;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                //打印奇数</span><br><span class="line">                <span class="keyword">if</span> (records[oddPoint]%2==1) &#123;</span><br><span class="line">                    i++;</span><br><span class="line">                    writer.print(records[oddPoint]+<span class="string">","</span>);</span><br><span class="line">                    writer.flush();</span><br><span class="line">                    //锁定全局变量方便线程输出后计数</span><br><span class="line">                    synchronized (lock) &#123;</span><br><span class="line">                        count++;</span><br><span class="line">                        <span class="keyword">if</span> (count%1000==0) &#123;</span><br><span class="line">                            System.out.println(<span class="string">"当前完成数量："</span>+count);</span><br><span class="line">                            <span class="keyword">if</span> (count==10000) &#123;</span><br><span class="line">                                System.out.println(<span class="string">"Done!"</span>);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                //无论是否是奇数，打印成功一个后，偶数的起始位置都要后移</span><br><span class="line">                oddPoint++;</span><br><span class="line">            &#125;</span><br><span class="line">             </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">type</span>=~<span class="built_in">type</span>;//切换打印类型</span><br><span class="line">        notifyAll();//一组中的任一线程打印完后唤醒另一个线程</span><br><span class="line">        try &#123;</span><br><span class="line">            <span class="built_in">wait</span>();//释放锁进入等待状态，等待另一线程打印</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            // TODO: handle exception</span><br><span class="line">        	e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>（以下结果是完全真实运行的结果，读者可以拿来验证）<br> 在控制台的输出结果：<br>当前完成数量：1000<br>当前完成数量：2000<br>当前完成数量：3000<br>当前完成数量：4000<br>当前完成数量：5000<br>当前完成数量：6000<br>当前完成数量：7000<br>当前完成数量：8000<br>当前完成数量：9000<br>当前完成数量：10000<br>Done!</p>
 <p>在input.txt中，部分数据内容如下：<br><img src="/images/input.png" alt="Alt text"></p>
 <p>在output0.txt文件中，部分内容如下：<br><img src="/images/output0.png" alt="Alt text"><br>在input1.txt文件中，内容和在output0.txt内容相似，这里不再赘述。</p>
+	  
+	</div>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/21/多线程对文件的读写/" data-id="cinzb6e2300135kd164b2v6tm" class="article-share-link">Delen</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-多线程编程/">java 多线程编程</a></li></ul>
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/03/21/Comparable和Comparator的区别/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Anterior</a></li>
+  		
 
-    </footer>
-  </div>
-  
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/03/15/关于return语句是否立即返回/" class="alignright next">Próximo<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
     
-<nav id="article-nav">
-  
-    <a href="/2016/03/21/Comparable和Comparator的区别/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nieuwer</strong>
-      <div class="article-nav-title">
         
-          Comparable和Comparator的区别
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
         
-      </div>
-    </a>
-  
-  
-    <a href="/2016/03/15/关于return语句是否立即返回/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
-      <div class="article-nav-title">关于return语句是否立即返回</div>
-    </a>
-  
-</nav>
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comentários</h2>
 
   
-</article>
-
 </section>
-        
-          <aside id="sidebar">
-  
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-03-21 
+	</div>
+	
+
+	<!-- categories -->
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/随笔/">随笔</a></li></ul></li></ul>
-    </div>
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/技术/">技术<span>23</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/java-多线程编程/">java 多线程编程<span>5</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
   </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Gengyukun
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
 
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gc/">gc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-多线程/">java 多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-多线程编程/">java 多线程编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-新知/">java 新知</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-高级/">java 高级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java基础/">java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程编程/">java多线程编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程编程/">多线程编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概念/">概念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
-    </div>
-  </div>
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Collection/" style="font-size: 12px;">Collection</a> <a href="/tags/gc/" style="font-size: 10px;">gc</a> <a href="/tags/java-多线程/" style="font-size: 10px;">java 多线程</a> <a href="/tags/java-多线程编程/" style="font-size: 18px;">java 多线程编程</a> <a href="/tags/java-新知/" style="font-size: 10px;">java 新知</a> <a href="/tags/java-高级/" style="font-size: 10px;">java 高级</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/java多线程编程/" style="font-size: 10px;">java多线程编程</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/分享/" style="font-size: 14px;">分享</a> <a href="/tags/多线程编程/" style="font-size: 12px;">多线程编程</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/概念/" style="font-size: 10px;">概念</a> <a href="/tags/算法/" style="font-size: 16px;">算法</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
-    </div>
-  </div>
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/04/27/gc日志查看（转载）/">gc日志查看（转载）</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/26/java多线程编程中join方法/">java多线程编程中join方法</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/通过管道进行线程间的通信-字符流/">通过管道进行线程间的通信:字符流</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/通过管道进行线程间的通信：字节流/">通过管道进行线程间的通信：字节流</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/23/线程中suspend和yield方法的区别/">线程中suspend和yield方法的区别</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Gengyukun<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-  </div>
 </body>
-</html>
+   </html>
