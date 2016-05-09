@@ -8,9 +8,8 @@
       <url>http://yoursite.com/2016/05/09/hexo%E5%8D%9A%E5%AE%A2%E8%A2%AB%E7%99%BE%E5%BA%A6-google%E6%94%B6%E5%BD%95%E7%9A%84%E6%96%B9%E6%B3%95/</url>
       <content type="html"><![CDATA[<p>我自己的hexo博客搭建起来也好多天了，但是一直没有办法被别人检索到，这样总觉得不好装逼，别人看不到啊。于是，决定花一天时间来搞下。<br>博客，是我们技术人员向外界展示自己思想的重要途径，也是和志同道合的人来交流的一个很好的平台，但是如果我们的博客不能被百度和google检索到，那就好像是我们自己在家里造车，造好之后，从不把它拉到市场上，只是放在家里。那么今天我就分享下我是怎么把我的”车”拉到市场上的。<br><a id="more"></a></p>
 <p>因为我在这个工程中走了很多弯路，导致我没少耗费时间，在这里我就写的尽量详细一点，为后来的小伙伴节省一点宝贵的时间。</p>
-<p>1 我们需要买域名，我是在阿里云上买的域名，我就说下我买域名的过程。<br>  1.1 首先我们注册一个阿里云的账户(阿里云官网：<a href="https://www.aliyun.com/" target="_blank" rel="external">https://www.aliyun.com/</a>)<br>  1.2 在阿里云的主页上点击万网，如下图：<br>  <img src="/images/serachByGoogleOrBaidu/1.1.PNG" alt=""><br>  可以根据官网提示购买域名，这里不再赘述。<br>  1.3 下边怎么介绍怎么把域名指向自己的hexo博客网站。<br>    请参考阿里云官方文档：</p>
-<pre><code>https://help.aliyun.com/knowledge_detail/6555838.html?spm=5176.2020520130.105.2.sE5fR3&amp;&amp;msctype=pmsg&amp;mscmsgid=116416032500061222&amp;
-</code></pre><p>2 第一步生效后，我们在浏览器中输入我们的域名，就能看到我们的hexo博客。那么接下来就是怎么让百度和google收录了。<br>    2.1 先确认博客是否被收录<br>        在百度或者谷歌上面输入下面格式来判断，如果能搜索到就说明被收录，否则就没有，用你的域名替代我的dotdotcloud.cn</p>
+<p>1 我们需要买域名，我是在阿里云上买的域名，我就说下我买域名的过程。<br>  1.1 首先我们注册一个阿里云的账户(阿里云官网：<a href="https://www.aliyun.com/" target="_blank" rel="external">https://www.aliyun.com/</a>)<br>  1.2 在阿里云的主页上点击万网，如下图：<br>  <img src="/images/serachByGoogleOrBaidu/1.1.PNG" alt=""><br>  可以根据官网提示购买域名，这里不再赘述。<br>  1.3 下边怎么介绍怎么把域名指向自己的hexo博客网站。<br>    请参考<a href="https://help.aliyun.com/knowledge_detail/6555838.html?spm=5176.2020520130.105.2.sE5fR3&amp;&amp;msctype=pmsg&amp;mscmsgid=116416032500061222&amp;" target="_blank" rel="external">阿里云官方文档</a>;</p>
+<p>2 第一步生效后，我们在浏览器中输入我们的域名，就能看到我们的hexo博客。那么接下来就是怎么让百度和google收录了。<br>    2.1 先确认博客是否被收录<br>        在百度或者谷歌上面输入下面格式来判断，如果能搜索到就说明被收录，否则就没有，用你的域名替代我的dotdotcloud.cn</p>
 <pre><code>    site:dotdotcloud.cn
 
     ![](/images/serachByGoogleOrBaidu/2.1.PNG) 
