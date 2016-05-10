@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://yoursite.com/2016/03/21/Comparable%E5%92%8CComparator%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2016-05-10T15:31:45.041Z</lastmod>
+    <data>
+        <display>
+        <title>Comparable和Comparator的区别</title>
+        <pubTime>2016-03-21T13:39:00.000Z</pubTime>
+        
+        <tag>java基础</tag>
+         
+        <tag>Collection</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2016/05/09/hexo%E5%8D%9A%E5%AE%A2%E8%A2%AB%E7%99%BE%E5%BA%A6-google%E6%94%B6%E5%BD%95%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2016-05-10T08:45:50.975Z</lastmod>
     <data>
@@ -369,28 +391,6 @@
         <tag>java 新知</tag>
          
         <tag>概念</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2016/03/21/Comparable%E5%92%8CComparator%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2016-04-23T09:53:31.440Z</lastmod>
-    <data>
-        <display>
-        <title>Comparable和Comparator的区别</title>
-        <pubTime>2016-03-21T13:39:00.000Z</pubTime>
-        
-        <tag>java基础</tag>
-         
-        <tag>Collection</tag>
          
          
            
