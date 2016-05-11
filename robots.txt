@@ -1,3 +1,0 @@
-User-agent: *
-
-Sitemap: http://it-ebooks.flygon.net/sitemap.xml
