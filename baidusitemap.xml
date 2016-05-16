@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2016/05/16/java%E4%B8%ADClass%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3-%E8%BD%AC%E8%BD%BD/</loc>
+    <lastmod>2016-05-16T12:04:17.385Z</lastmod>
+    <data>
+        <display>
+        <title>java中Class对象详解(转载)</title>
+        <pubTime>2016-05-16T12:01:34.000Z</pubTime>
+        
+        <tag>java技术</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2016/03/15/%E5%9C%A8try-catch-finally%E4%B8%AD%E5%85%B3%E4%BA%8Ereturn%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%90%A6%E7%AB%8B%E5%8D%B3%E8%BF%94%E5%9B%9E/</loc>
     <lastmod>2016-05-13T03:11:00.860Z</lastmod>
     <data>
@@ -238,9 +258,9 @@
         <title>MySql外键设置中的Cascade, no action,restrict ,set null(分享)</title>
         <pubTime>2016-04-01T07:28:13.000Z</pubTime>
         
-        <tag>分享</tag>
-         
         <tag>数据库</tag>
+         
+        <tag>分享</tag>
          
          
            
@@ -327,9 +347,9 @@
         <title>Java对象池技术的原理及其实现(转载)</title>
         <pubTime>2016-03-30T14:24:04.000Z</pubTime>
         
-        <tag>java 高级</tag>
-         
         <tag>分享</tag>
+         
+        <tag>java 高级</tag>
          
          
            
