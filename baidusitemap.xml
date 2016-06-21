@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2016/06/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%90%97%EF%BC%9F/</loc>
+    <lastmod>2016-06-21T14:43:43.691Z</lastmod>
+    <data>
+        <display>
+        <title>面向对象和面向过程的区别？面向过程可以实现面向对象吗？</title>
+        <pubTime>2016-06-21T14:25:48.000Z</pubTime>
+        
+        <tag>java基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2016/06/20/java%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E6%80%A7%EF%BC%88%E6%8A%BD%E8%B1%A1%EF%BC%8C%E5%B0%81%E8%A3%85%EF%BC%8C%E7%BB%A7%E6%89%BF%EF%BC%8C%E5%A4%9A%E6%80%81%EF%BC%89%EF%BC%8C%E5%AF%B9%E5%A4%9A%E6%80%81%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
     <lastmod>2016-06-20T09:51:52.215Z</lastmod>
     <data>
@@ -278,9 +298,9 @@
         <title>MySql外键设置中的Cascade, no action,restrict ,set null(分享)</title>
         <pubTime>2016-04-01T07:28:13.000Z</pubTime>
         
-        <tag>分享</tag>
-         
         <tag>数据库</tag>
+         
+        <tag>分享</tag>
          
          
            
@@ -367,9 +387,9 @@
         <title>Java对象池技术的原理及其实现(转载)</title>
         <pubTime>2016-03-30T14:24:04.000Z</pubTime>
         
-        <tag>java 高级</tag>
-         
         <tag>分享</tag>
+         
+        <tag>java 高级</tag>
          
          
            

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>java多线程编程中join方法 | DotGeng</title>
+  <title>面向对象和面向过程的区别？面向过程可以实现面向对象吗？ | DotGeng</title>
   <meta name="author" content="Gengyukun">
   
   <meta name="description" content="DotGeng的Blog">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="java多线程编程中join方法"/>
+  <meta property="og:title" content="面向对象和面向过程的区别？面向过程可以实现面向对象吗？"/>
   <meta property="og:site_name" content="DotGeng"/>
 
   
@@ -91,7 +91,7 @@
 
 	
 		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> java多线程编程中join方法</h1>
+			<h1 class="title title-inverse "> 面向对象和面向过程的区别？面向过程可以实现面向对象吗？</h1>
 		</div>		
 	
 
@@ -111,10 +111,7 @@
 	<div class="mypage">		
 	  		
 
-	  <p>一 方法joinde 作用是所属的线程对象x正常执行run()方法中的任务，而使当前的线程z进行无限期的阻塞，等待线程x销毁后在继续执行线程z后边的代码。<br>    方法join具有是线程排队运行的作用，有些类似同步的运行效果。join和synchronized的区别是：join在内部使用的wait方法运行等待，而synchronized关键字使用的是“对象监视器”原理作为同步的。</p>
-<p>二 当运行join方法时候，因为join底层使用的是wait方法，所以，当其被interrupt时候，就会报interruptedException异常。</p>
-<p>三 方法join（long） 的作用<br>    使主程序在此处等待子程序运行执行时候后，主程序不在等待，继续往下执行。他和sleep(long) 方法有什么区别呢？ 区别主要就是同步的处理上，请接着往下看。</p>
-<p>四 方法 join(long) 和 sleep(long)的区别<br>    方法join(long) 具有释放锁的特点（因为其底层是用wait实现的），然而sleep(long) 不会释放锁。</p>
+	  <p>面向对象和面向过程的区别？<br>    1 面向过程是一个细心的管家，事无巨细都要考虑到，而面向对象就像是一个家用电器，不需要知道他的实现原理，只需要知道他的功能有哪些，以及怎么使用这些功能即可；<br>    2 面向过程是以事件为中心的编程思想，就是要分析出解决问题的思路，然后用函数吧这些过程都实现，然后按照顺序调用即可。面向对象是以“对象”为中心的编程思想。<br>    3 举一个简单的例子：汽车发动和汽车到站<br>        对于面向过程来说，汽车到站和汽车出站都是事件面向过程是以事件为中心的编程思想，面向过程就把汽车发动和汽车到站设置为两个函数，然后依次调用即可。<br>        面向过程是以对象为中心的编程思想，他关注的是汽车本身这个对象，包括这个汽车有哪些功能，哪些属性，如汽车的功能是发动，行驶，而对于具体事件，是否是出发或者到站，        在对象的设计中并不考虑。只有在处理业务的时候，才会涉及到事件。<br>    面向过程可以实现面向对象吗？<br>    在我看来，这是两种不同的思想，在思想层面上不存在谁去实现谁。但是就代码实习的功能来说，肯定是面向过程可以实现面向对象的功能，而且面向对象编程也可以实现面向过程的功能；</p>
 	  
 	</div>
 
@@ -123,14 +120,14 @@
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2016/04/27/gc日志查看（转载）/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2016/04/25/通过管道进行线程间的通信-字符流/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2016/06/20/java的四个特性（抽象，封装，继承，多态），对多态使用方式的理解/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -169,7 +166,7 @@
   <h2 class="title">Comments</h2>
 
   
-  	 <div class="ds-thread" data-thread-key="2016/04/26/java多线程编程中join方法/" data-title="java多线程编程中join方法" data-url="http://yoursite.com/2016/04/26/java多线程编程中join方法/"></div>  
+  	 <div class="ds-thread" data-thread-key="2016/06/21/面向对象和面向过程的区别？面向过程可以实现面向对象吗？/" data-title="面向对象和面向过程的区别？面向过程可以实现面向对象吗？" data-url="http://yoursite.com/2016/06/21/面向对象和面向过程的区别？面向过程可以实现面向对象吗？/"></div>  
   
 </section>
 
@@ -183,7 +180,7 @@
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2016-04-26 
+	2016-06-21 
 	</div>
 	
 
@@ -207,7 +204,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/java-多线程编程/">java 多线程编程<span>5</span></a></li>
+  <li><a href="/tags/java基础/">java基础<span>8</span></a></li>
     </ul>
 	</div>
 		
