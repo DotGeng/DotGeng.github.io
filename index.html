@@ -109,6 +109,69 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2016-07-30 </div>
+			<div class="article-title"><a href="/2016/07/30/spring事务管理/" >spring事务管理</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>一： 数据库事务的基本知识<br>    1.1何为数据库事务：多个SQL 语句，要么都执行失败要么都执行成功；<br>        数据库事务的4个特性：ACID<br>        原子性（automatic）<br>        一致性（consistency）<br>        隔离性（Isolation）<br>        持久性(durability)<br>    1.2数据库并发的问题<br>        三类数据度问题<br>        两类数据更新问题<br>        脏读：A事务读取B事务尚未提交的数据。并在这个数据的基础上操作。如果恰巧B事务回滚，那么A事务读到的数据根本不会被承认。<br>        不可重复读：A事务读取了B事务已经提交的更改数据，导致在A事务过程中两次被读到的数据结果不一致。<br>        幻象：A事务提交了B事务新增的数据，导致A事务过程两次读取的结果不一致。<br>            防止不可重复读：添加行级锁<br>            防止幻象读：添加表级锁，防止新增数据。<br>，第一类数据更新，第二类数据更新；<br>        第一类丢失更新：A事务撤销的时候把B事务的更新数据覆盖了；<br>        第二类丢失更新：A事务覆盖B事务提交过的数据，造成B事务所做造作的丢失。<br>    1.3数据库锁机制<br>        数据库并发会出现很多问题，数据库通过锁机制解决并发访问的问题。<br>        按照锁定的对象不同：行锁定  、 表锁定。<br>        按照并发事务关系开看，可分为共享锁定和独占锁定；<br>    1.4 事务的隔离级别<br>        数据库提供了自动锁机制。只要用户指定了事务的隔离级别，数据库就会自动为事务操作的数据资源添加合适的锁。此外数据库还会维护这些锁，当一个资源上的所属木太多的时，自动进行锁的升级以提高系统的运行性能，而这一过程对于用户来说是完全透明的。<br>一下是<br>隔离级别    脏读<br>不可重复读<br>幻象读<br>第一类丢失更新<br>第二类丢失更新<br>READ UNCOMMITED    允许    允许<br>允许<br>不允许    允许<br>READ COMMITED<br>不允许<br>允许<br>允许<br>不允许<br>允许<br>REPEATABLE READ<br>不允许<br>不允许<br>允许<br>不允许<br>不允许<br>SERILIZABLE<br>不允许<br>不允许<br>不允许<br>不允许<br>不允许<br>    1.5 JDBC对事务的支持<br>        并不是所有的数据库都支持事务，即使支持事务，也不见得会支持事务的所有隔离级别。用户可以根据Connection#getMetaData()方法获取DatabaseMetaData对象。并通过该对象的supportsTransaction（）、supportsTransactionIsolationLevel(int level) 来查看数据库对事务的支持情况。<br>    JDBC 事务代码：<br>            Connection conn;<br>            try {<br>                conn = DriverManager.getConnection();//1 获取数据库连接<br>                conn.setAutoCommit(false);//2 为了将多个sql语句当成一个事务执行，必须关闭connection的自动提交功能<br>                conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);//3 设置事务的隔离级别<br>                Statement stmt = connn.createStatement();<br>                int rows = stmt.executeUpdate(sql1);<br>                rows = stmt.executeupdate(sql2);<br>                    .<br>                    .<br>                  conn.commit();// 4 提交事务</p>
+<pre><code>}catch（） {
+     conn.rollback();//5 出现异常，事务回滚
+ }finally{
+ }
+ 保存点; 并不是所有的数据库都支持保存点功能，用户可以通过DatabaseMetaData#supportsSavepoints() 方法查看是否支持。
+ savePoint 允许事务被分割成很多阶段，用户可以指定回滚事务的特定保存点。而并非像JDBC 2.0 那样 只能回滚到开始事务的点.
+看下面的代码：就是回滚到指定的保存点，而不是事务开始的点。
+
+ Statement stmt = connn.createStatement();
+ int rows = stmt.executeUpdate(sql1);
+ 。。。
+ Savepoint svpt = conn.setSavepoint(&quot;savePoint1&quot;); // 1 设置一个保存点
+ rows = stmt.executeupdate(sql2);
+ 。。。
+ conn.rollback(svpt);//2 回滚到1处的savePoint1， 1 之前的 操作事务提交后依旧提交，但是1和2 之间的sql操作被撤销了。
+ 。。。
+ conn.commit();// 3 提交事务
+</code></pre><p>二：ThreadLocal 在数据库事务方面的应用<br>    2.1 什么是ThreadLocal<br>        ThreadLocal 不是一个线程，而是线程的一个本地化对象。当工作于多线程使用ThreadLocal时，ThreadLocal为每一个线程分配一个独立的变量副本。所以每一个线程都可以独立的改变自己的副本，不会影响其他线程对应的副本。从线程的角度来看，这个线程就像线程的本地变量，这就是勒种的“Local”所要表达的意思。<br>    2.2 ThreadLocal的接口方法<br>            void set(Object value)<br>                设置当前线程局部变量的值；<br>            public Object get()<br>                该方法返回当前线程所对应的线程局部变量<br>            public void remove()<br>                将当前线程的局部变量的值删除，目的是减少内存的占用。需要指出的是，当线程结束后，该线程对应的局部变量会被自动回收，所以，显示调动该方法清除线程的局部变量不是必须的的操作，但是这可以加快内存回收的速度。<br>            protected Object initialValue()<br>                返回该线程局部变量的初始值，该方法是一个protected的方法，显然是为了让子类覆盖而设计的。这个方法是一个延迟调用方法。<br>            ThreadLocal现在已经支持泛型了。该类的类名现在已经变为ThreadLocal<t> 了。API 方法也相应进行了调整。新版的API 方法分别是void set(T value)、void get() 以及 T initValue().<br>            ThreadLocal 是如何做到为每一个线程维护一份独立的变量副本呢？其实很简单：在ThreadLocal类中有一个map对象，用于存储每一个线程的变量副本，Map中元素的键为线程对象，而值对应的就是变量的副本。甚至我们自己就可以写一个简单的ThreadLocal类（如果写博文的话，就把这个简单的类实现下）；<br>    2.3一个ThreadLocal实例<br>        下边我们通过一个实例具体了解一下ThreadLocal的使用的方法。</t></p>
+<p>public class SequenceNumber {<br>    private static ThreadLocal<integer> seqNum = new ThreadLocal<integer>(){<br>        @Override<br>        protected Integer initialValue() {<br>            return 0;<br>        }<br>    };<br>    public int getNextNum() {<br>        seqNum.set(seqNum.get() +1);<br>        return seqNum.get();<br>    }<br>    public static void main(String[] args) {<br>        SequenceNumber sn = new SequenceNumber();//只需要实例化一次</integer></integer></p>
+<pre><code>    TestClient t1 = new TestClient(sn);
+    TestClient t2 = new TestClient(sn);
+    TestClient t3 = new TestClient(sn);// 3个线程共享sn，各自产生序列号；
+
+    t1.start();
+    t2.start();
+    t3.start();
+}
+</code></pre><p>}<br>class TestClient extends Thread {<br>    private SequenceNumber sn ;<br>    public TestClient(SequenceNumber sn) {<br>        this.sn = sn;<br>    }<br>    @Override<br>    public void run() {<br>        for(int i = 0 ; i &lt; 3 ; i ++) {<br>            System.out.println(“thread :[“ + Thread.currentThread() + “] sn[“<br>                    +sn.getNextNum() +”]”<br>                    );<br>        }<br>    }<br>}<br>输出结果是：</p>
+<p>thread :[Thread[Thread-0,5,main]] sn[1]<br>thread :[Thread[Thread-0,5,main]] sn[2]<br>thread :[Thread[Thread-0,5,main]] sn[3]<br>thread :[Thread[Thread-1,5,main]] sn[1]<br>thread :[Thread[Thread-2,5,main]] sn[1]<br>thread :[Thread[Thread-1,5,main]] sn[2]<br>thread :[Thread[Thread-2,5,main]] sn[2]<br>thread :[Thread[Thread-1,5,main]] sn[3]<br>thread :[Thread[Thread-2,5,main]] sn[3]<br>    2.4 与Thread同步机制的比较<br>         ThreadLocal和线程都可以解决线多线程中相同变量的访问冲突问题，那么，这两者有什么区别呢？下边我们来一一解答。<br>            两者有什么区别？<br> 在同步机制中，通过对象锁机制，保证在某一个时刻，只能有一个线程对变量进行访问。这就要求程序编写者对多线程的并发操作有比较专业的认识，才能胜任此项工作。采用“时间换取空间”的方式，访问串行化，对象共享化；<br>而在ThreadLocal从另一个角度来解决多线程的并发问题。那就是为每一个变量复制一个副本，从而隔离了多个线程对数据的访问。这样启示我们，当遇到不安全的对象时候，就要考虑用ThreadLocal对象封装不安全的对象。采用”空间换取时间“的方式，访问并行化，对象独享化；<br>            那么要用那种方式更好，就依据实际情况而定，这里不做讨论，以后有机会再单独说。<br>    2.5 终于说到了主题, spring 就是使用ThreadLocal 来解决线程安全问题的。<br>        一般情况下只有无状态的Bean才可以在多线程的环境下共享。在Spring中，绝大数的Bean是可以声明为单例作用域的。就是因为Spring对一些Bean中非线程安全的“状态类对象”，采用ThreadLocal进行封装，让他们也成为了线程安全的“状态类对象”，因此有状态的Bean就能够以Singleton的方式在多线程中正常的工作了。<br>       下边的两个编程实例将展示Spring对有状态的bean的改造思路；</p>
+<pre><code>public class TopicDao  {
+    //conn是一个非线程安全的变量
+    private Connection conn;
+    public void addTopic() {
+        //引用非线程安全变量
+        Statement stat = conn.createStatement();
+        ...
+    }
+}
+由于conn是非线程安全的成员变量，因此addTopic()方法是非线程安全的，必须在使用的时候新建一个TopicDao实例（非SingleTon）。下面使用ThreadLocal对这个非线程安全的conn变量进行改造。
+</code></pre><p>import java.sql.Connection;<br>import java.sql.SQLException;<br>import java.sql.Statement;</p>
+<p>public class TopicDao {<br> //1.使用ThreadLocal变量对Connection变量进行封装。<br> private static  ThreadLocal<connection> connThreadLocal = new ThreadLocal<connection>();<br> public static Connection getConnection() {<br>//2 如果connThreadLocal 中没有本线程对应的conn,则创建一个新的conn，并且保存在connThreadLocal中<br>  if(connThreadLocal.get() == null) {<br>   Connection conn = ConnectionManager.getConnection();<br>   connThreadLocal.set(conn);<br>   return conn;<br>  }else {<br>//3 否则直接返回线程本地变量<br>   return connThreadLocal.get();<br>  }<br> }<br> public void addTopic() throws SQLException {<br>//4 从ThreadLocal中获取线程对应的执行语句<br>  Statement stat = getConnection().createStatement();<br> }<br>}<br>这个实例基本上说明了Spring对有状态类线程安全化的解决思路；<br>    3 Spring对事务管理的支持<br>        Spring对事物管理提供了一致的编程模板，在高层次上建立了统一的事物抽象。也就是说不管选择Spring JDBC、Hibernate、JPA还是Mybatis，Spring都让我们可以使用统一的编程模型进行事务管理。<br>    3.1 事物管理关键抽象<br>        在spring书屋管理SPI（Service Provider Interface）的抽象层主要包括三个接口，分别是PlatformTransactionManager，TransactionDefinition和TransactionStatus，他们位于org.springframework.transaction包中。<br>        TransactionDefinition用于描述事务的隔离级别，超时时间，是否为只读事务和事务传播规则等控制控制事务具体行为的事务属性，这行事务属性可以通过xml配置或者注解进行配置，也可以通过手动编程的方式设置。<br>        TransactionManager 根据TransactionDefinition提供的事务配置信息，创建事务，并用TransactionStatus描述这个激活事务的状态，下面，我们分别来了解下这些SPI接口内部的组成；<br>        TransactionDefinition<br>            定义Spring的事务属性，这些属性从若干方面进行配置；<br>事务隔离:请参考前边讲解的几种隔离级别，另外Spring增加了一种默认的事务隔离级别；ISOLATUION_DEFAULT，他表示使用底层数据库默认的隔离级别；<br>事务传播:当我们调用一个基于Spring的Service接口方法时，他将运行于Spring管理的事务环境中，Service接口方法可能会在内部调用其他的service接口方法来完成一个完整的业务操作。这就是service接口嵌套调用的情形。Spring通过事务传播行为控制当前的事务如何传播到被嵌套调用的目标服务调用接口方法中。事务传播行为非常的重要，也是误解最多的地方，这里先介绍这里，后边我们进行更为详细的讲述；<br>事务超时：事务在超时之前运行，当超过时间后，就会进行事务的回滚；另外，有些事务管理器是不支持事务事务过期的功能的。<br>只读状态：只读事务是不能进行数据修改的。<br>            Spring允许通过XML或注解的方式进行事务的属性配置，这些信息作为事务管理框架的输入，Spring将按照这些属性信息的指示，创建对应的事务。<br>        TransactionStatus<br>            代表事务的具体运行状态。事务管理器通过该接口获取事务的运行的状态信息。也可以通过该接口间接的回滚事务，他相比于在在抛出异常的时候回滚事务更具可控性。该接口继承SavepointManager接口。SavepointManager接口是基于JDBC3.0保存点的分段事务控制能力提供了嵌套事务的机制。<br>        Object createSavePoint()<br>            创建一个保存点对象；<br>        void rollbackToSavePoint(Object savepoint)<br>            回滚事务到指定的保存点；<br>        void releaseSavePoint(Object savepoint)<br>             释放一个保存点；如果事务提交，该保存点自动释放，不需要手动释放；<br>        有时候底层的资源不支持保存点，就会抛出异常。<br>    未完待续。。。</connection></connection></p>
+
+	
+	</div>
+  <a type="button" href="/2016/07/30/spring事务管理/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2016-07-29 </div>
 			<div class="article-title"><a href="/2016/07/29/字节流和字符流的区别/" >字节流和字符流的区别</a></div>						
 		</h3>
@@ -123,7 +186,7 @@
 
 	
 	</div>
-  <a type="button" href="/2016/07/29/字节流和字符流的区别/#more" class="btn btn-default more">Leia Mais</a>
+  <a type="button" href="/2016/07/29/字节流和字符流的区别/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -144,7 +207,7 @@
 		
 	
 	</div>
-  <a type="button" href="/2016/06/22/面向对象开发的六个基本原则，并且在项目中用过哪些原则？/#more" class="btn btn-default more">Leia Mais</a>
+  <a type="button" href="/2016/06/22/面向对象开发的六个基本原则，并且在项目中用过哪些原则？/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -166,7 +229,7 @@
 
 	
 	</div>
-  <a type="button" href="/2016/06/21/面向对象和面向过程的区别？面向过程可以实现面向对象吗？/#more" class="btn btn-default more">Leia Mais</a>
+  <a type="button" href="/2016/06/21/面向对象和面向过程的区别？面向过程可以实现面向对象吗？/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -205,7 +268,7 @@
 
 	
 	</div>
-  <a type="button" href="/2016/06/20/java的四个特性（抽象，封装，继承，多态），对多态使用方式的理解/#more" class="btn btn-default more">Leia Mais</a>
+  <a type="button" href="/2016/06/20/java的四个特性（抽象，封装，继承，多态），对多态使用方式的理解/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -230,7 +293,7 @@
 
 	
 	</div>
-  <a type="button" href="/2016/05/16/java中Class对象详解-转载/#more" class="btn btn-default more">Leia Mais</a>
+  <a type="button" href="/2016/05/16/java中Class对象详解-转载/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -251,7 +314,7 @@
 		<p>我自己的hexo博客搭建起来也好多天了，但是一直没有办法被别人检索到，这样总觉得不好装逼，别人看不到啊。于是，决定花一天时间来搞下。<br>博客，是我们技术人员向外界展示自己思想的重要途径，也是和志同道合的人来交流的一个很好的平台，但是如果我们的博客不能被百度和google检索到，那就好像是我们自己在家里造车，造好之后，从不把它拉到市场上，只是放在家里。那么今天我就分享下我是怎么把我的”车”拉到市场上的。<br>
 	
 	</div>
-  <a type="button" href="/2016/05/09/hexo博客被百度-google收录的方法/#more" class="btn btn-default more">Leia Mais</a>
+  <a type="button" href="/2016/05/09/hexo博客被百度-google收录的方法/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -274,7 +337,7 @@
 <p>参数<br>描述<br>UseSerialGC<br>虚拟机运行在Client模式的默认值，打开此开关参数后，<br>使用Serial+Serial Old收集器组合进行垃圾收集。<br>UseParNewGC<br>打开此开关参数后，使用ParNew+Serial Old收集器组合进行垃圾收集。<br>UseConcMarkSweepGC<br>打开此开关参数后，使用ParNew+CMS+Serial Old收集器组合进行垃圾收集。Serial Old作为CMS收集器出现Concurrent Mode Failure的备用垃圾收集器。<br>UseParallelGC<br>虚拟机运行在Server模式的默认值，打开此开关参数后，使用Parallel Scavenge+Serial Old收集器组合进行垃圾收集。<br>UseParallelOldGC<br>打开此开关参数后，使用Parallel Scavenge+Parallel Old收集器组合进行垃圾收集。<br>
 	
 	</div>
-  <a type="button" href="/2016/04/27/gc日志查看（转载）/#more" class="btn btn-default more">Leia Mais</a>
+  <a type="button" href="/2016/04/27/gc日志查看（转载）/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -299,7 +362,7 @@
 
 	
 	</div>
-  <a type="button" href="/2016/04/26/java多线程编程中join方法/#more" class="btn btn-default more">Leia Mais</a>
+  <a type="button" href="/2016/04/26/java多线程编程中join方法/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -320,28 +383,7 @@
 		<p>在管道通信通信中还可以传递字符流（字节流请看：通过管道进行线程间的通信:字符流）。</p>
 	
 	</div>
-  <a type="button" href="/2016/04/25/通过管道进行线程间的通信-字符流/#more" class="btn btn-default more">Leia Mais</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-04-25 </div>
-			<div class="article-title"><a href="/2016/04/25/通过管道进行线程间的通信：字节流/" >通过管道进行线程间的通信：字节流</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>在java语言中提供了各种各样的输入和输出流Stream，使我们能够方便的对数据进行操作，其中管道流（pipeStream）是一种特殊流，用于在不同的线程间直接传送数据。一个线程发送数据到输出管道，另一个线程输出管道中获取数据，中间介质是内存。实现不同线程之间的通信，而无需借助中间临时文件。<br>
-	
-	</div>
-  <a type="button" href="/2016/04/25/通过管道进行线程间的通信：字节流/#more" class="btn btn-default more">Leia Mais</a>
+  <a type="button" href="/2016/04/25/通过管道进行线程间的通信-字符流/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -355,13 +397,13 @@
 <ul class="pagination">
 	 
 		
-          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Anterior</a></li>
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
         
 
         <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
 
 		
-		   <li class="next"> <a href="/page/2/" class="alignright next">Próximo<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
+		   <li class="next"> <a href="/page/2/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
         
 	
 </ul>
@@ -381,7 +423,7 @@
 			
   <div id="site_search">
    <div class="form-group">
-    <input type="text" id="local-search-input" name="q" results="0" placeholder="Busca" class="st-search-input st-default-search-input form-control"/>
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
    </div>  
   <div id="local-search-result"></div>
   </div>
@@ -390,10 +432,10 @@
 		
 			
 	<div class="widget">
-		<h4>Categorias</h4>
+		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/技术/">技术<span>28</span></a></li>
+			<li><a href="/categories/技术/">技术<span>29</span></a></li>
 		
 			<li><a href="/categories/技术/随笔/">随笔<span>1</span></a></li>
 		
@@ -406,39 +448,41 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/算法/">算法<span>4</span></a></li>
-		
-			<li><a href="/tags/数据库/">数据库<span>1</span></a></li>
-		
-			<li><a href="/tags/java-多线程/">java 多线程<span>1</span></a></li>
-		
-			<li><a href="/tags/java技术/">java技术<span>1</span></a></li>
-		
-			<li><a href="/tags/java-高级/">java 高级<span>1</span></a></li>
+			<li><a href="/tags/Collection/">Collection<span>2</span></a></li>
 		
 			<li><a href="/tags/spring/">spring<span>1</span></a></li>
 		
-			<li><a href="/tags/多线程编程/">多线程编程<span>2</span></a></li>
+			<li><a href="/tags/java基础/">java基础<span>9</span></a></li>
 		
-			<li><a href="/tags/gc/">gc<span>1</span></a></li>
-		
-			<li><a href="/tags/分享/">分享<span>3</span></a></li>
+			<li><a href="/tags/java技术/">java技术<span>1</span></a></li>
 		
 			<li><a href="/tags/java多线程编程/">java多线程编程<span>1</span></a></li>
 		
-			<li><a href="/tags/java基础/">java基础<span>9</span></a></li>
-		
 			<li><a href="/tags/java-新知/">java 新知<span>1</span></a></li>
-		
-			<li><a href="/tags/工具使用/">工具使用<span>1</span></a></li>
-		
-			<li><a href="/tags/概念/">概念<span>1</span></a></li>
 		
 			<li><a href="/tags/java心得/">java心得<span>1</span></a></li>
 		
-			<li><a href="/tags/Collection/">Collection<span>2</span></a></li>
+			<li><a href="/tags/java-多线程/">java 多线程<span>1</span></a></li>
+		
+			<li><a href="/tags/概念/">概念<span>1</span></a></li>
+		
+			<li><a href="/tags/spring总结/">spring总结<span>1</span></a></li>
+		
+			<li><a href="/tags/数据库/">数据库<span>1</span></a></li>
+		
+			<li><a href="/tags/java-高级/">java 高级<span>1</span></a></li>
+		
+			<li><a href="/tags/gc/">gc<span>1</span></a></li>
 		
 			<li><a href="/tags/java-多线程编程/">java 多线程编程<span>5</span></a></li>
+		
+			<li><a href="/tags/分享/">分享<span>3</span></a></li>
+		
+			<li><a href="/tags/多线程编程/">多线程编程<span>2</span></a></li>
+		
+			<li><a href="/tags/工具使用/">工具使用<span>1</span></a></li>
+		
+			<li><a href="/tags/算法/">算法<span>4</span></a></li>
 		
 		 
 		</ul>
@@ -448,8 +492,12 @@
 		
 			
 <div class="widget">
-  <h4>Posts recentes</h4>
+  <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2016/07/30/spring事务管理/" ><i class="fa fa-file-o"></i>spring事务管理</a>
+      </li>
     
       <li>
         <a href="/2016/07/29/字节流和字符流的区别/" ><i class="fa fa-file-o"></i>字节流和字符流的区别</a>
@@ -465,10 +513,6 @@
     
       <li>
         <a href="/2016/06/20/java的四个特性（抽象，封装，继承，多态），对多态使用方式的理解/" ><i class="fa fa-file-o"></i>java的四个特性（抽象，封装，继承，多态），对多态使...</a>
-      </li>
-    
-      <li>
-        <a href="/2016/05/16/java中Class对象详解-转载/" ><i class="fa fa-file-o"></i>java中Class对象详解(转载)</a>
       </li>
     
   </ul>
