@@ -109,6 +109,28 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2016-08-04 </div>
+			<div class="article-title"><a href="/2016/08/04/java中final和static总结/" >java中final和static总结</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>一:final和static修饰变量<br>1 其实不用那么花哨的解释，其实final就是规定，其修饰的基本类型数据不能再更改，对于引用类型变量不能再更改引用。<br>    static修饰的变量规定其修饰的变量在内存中只有一份。<br>2 final和static修饰的变量都存在于java内存模型的运行时常量池中。<br>3 fianl 修饰的变量在定义的时候，必须要进行初始化。<br>二 final和static修饰方法<br> 1 final修饰的方法，表示其不能被子类重写；<br> 2 static 修饰的方法，不依赖于任何实例对象，static修饰的<br>方法必须实现。<br>三 static 和final 修饰的类<br>1 final修饰的类，表名该类不能被继承，也就是说该类的设计不能再被做任何修改，或者出于安全的角度考虑，该类不应该有子类。<br>2 static 一般不用来修饰类，如果一定要用static修饰的话，那么通常static修饰匿名内部类。（请看其他笔记）；<br>四 ： static 修饰代码块：<br>通过static关键字用来形成静态代码块，以优化程序性能。static块可以置于类中的任何地方，类中可以有多个static块。在类初次被加载的时候，会按照static块的顺序来执行每个static块，并且只会执行一次，即静态代码块随着类的加载而执行，只执行一次，并优先于主函数执行。</p>
+
+	
+	</div>
+  <a type="button" href="/2016/08/04/java中final和static总结/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2016-07-30 </div>
 			<div class="article-title"><a href="/2016/07/30/spring事务管理/" >spring事务管理</a></div>						
 		</h3>
@@ -366,27 +388,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-04-25 </div>
-			<div class="article-title"><a href="/2016/04/25/通过管道进行线程间的通信-字符流/" >通过管道进行线程间的通信:字符流</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>在管道通信通信中还可以传递字符流（字节流请看：通过管道进行线程间的通信:字符流）。</p>
-	
-	</div>
-  <a type="button" href="/2016/04/25/通过管道进行线程间的通信-字符流/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -435,7 +436,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/技术/">技术<span>29</span></a></li>
+			<li><a href="/categories/技术/">技术<span>30</span></a></li>
 		
 			<li><a href="/categories/技术/随笔/">随笔<span>1</span></a></li>
 		
@@ -448,41 +449,43 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Collection/">Collection<span>2</span></a></li>
-		
-			<li><a href="/tags/spring/">spring<span>1</span></a></li>
+			<li><a href="/tags/多线程编程/">多线程编程<span>2</span></a></li>
 		
 			<li><a href="/tags/java基础/">java基础<span>9</span></a></li>
 		
-			<li><a href="/tags/java技术/">java技术<span>1</span></a></li>
-		
-			<li><a href="/tags/java多线程编程/">java多线程编程<span>1</span></a></li>
-		
-			<li><a href="/tags/java-新知/">java 新知<span>1</span></a></li>
-		
 			<li><a href="/tags/java心得/">java心得<span>1</span></a></li>
-		
-			<li><a href="/tags/java-多线程/">java 多线程<span>1</span></a></li>
 		
 			<li><a href="/tags/概念/">概念<span>1</span></a></li>
 		
-			<li><a href="/tags/spring总结/">spring总结<span>1</span></a></li>
-		
-			<li><a href="/tags/数据库/">数据库<span>1</span></a></li>
+			<li><a href="/tags/gc/">gc<span>1</span></a></li>
 		
 			<li><a href="/tags/java-高级/">java 高级<span>1</span></a></li>
 		
-			<li><a href="/tags/gc/">gc<span>1</span></a></li>
+			<li><a href="/tags/java总结/">java总结<span>1</span></a></li>
 		
-			<li><a href="/tags/java-多线程编程/">java 多线程编程<span>5</span></a></li>
+			<li><a href="/tags/数据库/">数据库<span>1</span></a></li>
 		
-			<li><a href="/tags/分享/">分享<span>3</span></a></li>
-		
-			<li><a href="/tags/多线程编程/">多线程编程<span>2</span></a></li>
+			<li><a href="/tags/spring总结/">spring总结<span>1</span></a></li>
 		
 			<li><a href="/tags/工具使用/">工具使用<span>1</span></a></li>
 		
 			<li><a href="/tags/算法/">算法<span>4</span></a></li>
+		
+			<li><a href="/tags/分享/">分享<span>3</span></a></li>
+		
+			<li><a href="/tags/spring/">spring<span>1</span></a></li>
+		
+			<li><a href="/tags/java多线程编程/">java多线程编程<span>1</span></a></li>
+		
+			<li><a href="/tags/Collection/">Collection<span>2</span></a></li>
+		
+			<li><a href="/tags/java-新知/">java 新知<span>1</span></a></li>
+		
+			<li><a href="/tags/java技术/">java技术<span>1</span></a></li>
+		
+			<li><a href="/tags/java-多线程/">java 多线程<span>1</span></a></li>
+		
+			<li><a href="/tags/java-多线程编程/">java 多线程编程<span>5</span></a></li>
 		
 		 
 		</ul>
@@ -494,6 +497,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2016/08/04/java中final和static总结/" ><i class="fa fa-file-o"></i>java中final和static总结</a>
+      </li>
     
       <li>
         <a href="/2016/07/30/spring事务管理/" ><i class="fa fa-file-o"></i>spring事务管理</a>
@@ -509,10 +516,6 @@
     
       <li>
         <a href="/2016/06/21/面向对象和面向过程的区别？面向过程可以实现面向对象吗？/" ><i class="fa fa-file-o"></i>面向对象和面向过程的区别？面向过程可以实现面向对象吗？</a>
-      </li>
-    
-      <li>
-        <a href="/2016/06/20/java的四个特性（抽象，封装，继承，多态），对多态使用方式的理解/" ><i class="fa fa-file-o"></i>java的四个特性（抽象，封装，继承，多态），对多态使...</a>
       </li>
     
   </ul>

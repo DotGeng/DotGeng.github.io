@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2016/08/04/java%E4%B8%ADfinal%E5%92%8Cstatic%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2016-08-04T15:50:26.865Z</lastmod>
+    <data>
+        <display>
+        <title>java中final和static总结</title>
+        <pubTime>2016-08-04T15:49:18.000Z</pubTime>
+        
+        <tag>java总结</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2016/07/30/spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2016-07-30T15:53:34.474Z</lastmod>
     <data>
@@ -353,9 +373,9 @@
         <title>MySql外键设置中的Cascade, no action,restrict ,set null(分享)</title>
         <pubTime>2016-04-01T07:28:13.000Z</pubTime>
         
-        <tag>分享</tag>
-         
         <tag>数据库</tag>
+         
+        <tag>分享</tag>
          
          
            
@@ -442,9 +462,9 @@
         <title>Java对象池技术的原理及其实现(转载)</title>
         <pubTime>2016-03-30T14:24:04.000Z</pubTime>
         
-        <tag>java 高级</tag>
-         
         <tag>分享</tag>
+         
+        <tag>java 高级</tag>
          
          
            

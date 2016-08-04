@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>字节流和字符流的区别 | DotGeng</title>
+  <title>java中final和static总结 | DotGeng</title>
   <meta name="author" content="Gengyukun">
   
   <meta name="description" content="DotGeng的Blog">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="字节流和字符流的区别"/>
+  <meta property="og:title" content="java中final和static总结"/>
   <meta property="og:site_name" content="DotGeng"/>
 
   
@@ -91,7 +91,7 @@
 
 	
 		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> 字节流和字符流的区别</h1>
+			<h1 class="title title-inverse "> java中final和static总结</h1>
 		</div>		
 	
 
@@ -111,7 +111,7 @@
 	<div class="mypage">		
 	  		
 
-	  <p>字符流的由来：因为数据编码的不同，而有了对字符进行高效操作的流对象，本质就是对基本的字节流读取数据时，去查了指定的码表。字节流和字符流的区别：<br>1 读写单位不同：字节流以字节（8bit）为单位，字符流以字符为单位，根据码表的映射字符，一次可以读取多个字节。<br>2 处理对象不同：字节流能处理所有类型的数据（如图片和视频等）。但是字符流只能处理字符类型的数据。<br>3 字节流继承自InputStream OutputStream<br>   字符流继承自InputStreamReader OutputStramWriter<br>4 字节流使用了缓冲区，而字符流没有使用缓冲区<br>5 字符是字节通过不同编码的封装。<br>6 字节流字符流像字节流转换的时，要注意编码</p>
+	  <p>一:final和static修饰变量<br>1 其实不用那么花哨的解释，其实final就是规定，其修饰的基本类型数据不能再更改，对于引用类型变量不能再更改引用。<br>    static修饰的变量规定其修饰的变量在内存中只有一份。<br>2 final和static修饰的变量都存在于java内存模型的运行时常量池中。<br>3 fianl 修饰的变量在定义的时候，必须要进行初始化。<br>二 final和static修饰方法<br> 1 final修饰的方法，表示其不能被子类重写；<br> 2 static 修饰的方法，不依赖于任何实例对象，static修饰的<br>方法必须实现。<br>三 static 和final 修饰的类<br>1 final修饰的类，表名该类不能被继承，也就是说该类的设计不能再被做任何修改，或者出于安全的角度考虑，该类不应该有子类。<br>2 static 一般不用来修饰类，如果一定要用static修饰的话，那么通常static修饰匿名内部类。（请看其他笔记）；<br>四 ： static 修饰代码块：<br>通过static关键字用来形成静态代码块，以优化程序性能。static块可以置于类中的任何地方，类中可以有多个static块。在类初次被加载的时候，会按照static块的顺序来执行每个static块，并且只会执行一次，即静态代码块随着类的加载而执行，只执行一次，并优先于主函数执行。</p>
 	  
 	</div>
 
@@ -120,14 +120,14 @@
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2016/07/30/spring事务管理/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2016/06/22/面向对象开发的六个基本原则，并且在项目中用过哪些原则？/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2016/07/30/spring事务管理/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -166,7 +166,7 @@
   <h2 class="title">Comments</h2>
 
   
-  	 <div class="ds-thread" data-thread-key="2016/07/29/字节流和字符流的区别/" data-title="字节流和字符流的区别" data-url="http://yoursite.com/2016/07/29/字节流和字符流的区别/"></div>  
+  	 <div class="ds-thread" data-thread-key="2016/08/04/java中final和static总结/" data-title="java中final和static总结" data-url="http://yoursite.com/2016/08/04/java中final和static总结/"></div>  
   
 </section>
 
@@ -180,7 +180,7 @@
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2016-07-29 
+	2016-08-04 
 	</div>
 	
 
@@ -204,7 +204,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/java基础/">java基础<span>9</span></a></li>
+  <li><a href="/tags/java总结/">java总结<span>1</span></a></li>
     </ul>
 	</div>
 		
