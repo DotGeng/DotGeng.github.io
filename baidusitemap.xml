@@ -5,14 +5,19 @@
     
   <url>
     <loc>http://yoursite.com/2016/08/15/text/</loc>
-    <lastmod>2016-08-15T02:55:46.091Z</lastmod>
+    <lastmod>2016-08-15T02:59:46.489Z</lastmod>
     <data>
         <display>
         <title>text</title>
         <pubTime>2016-08-15T02:55:46.000Z</pubTime>
         
+        <tag>����</tag>
+         
          
            
+             
+              <breadCrumb title="����" url="http://yoursite.com/categories/%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD/"/>
+          
         </display>
     </data>
     </url>
