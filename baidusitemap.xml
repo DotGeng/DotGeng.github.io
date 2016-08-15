@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2016/04/27/gc%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/</loc>
+    <lastmod>2016-08-15T09:52:15.134Z</lastmod>
+    <data>
+        <display>
+        <title>gc日志查看（转载）</title>
+        <pubTime>2016-04-27T02:21:47.000Z</pubTime>
+        
+        <tag>gc</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2016/08/15/text/</loc>
     <lastmod>2016-08-15T03:03:10.517Z</lastmod>
     <data>
@@ -149,26 +169,6 @@
         <pubTime>2016-06-20T09:10:11.000Z</pubTime>
         
         <tag>java心得</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2016/04/27/gc%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/</loc>
-    <lastmod>2016-06-01T13:43:33.375Z</lastmod>
-    <data>
-        <display>
-        <title>gc日志查看（转载）</title>
-        <pubTime>2016-04-27T02:21:47.000Z</pubTime>
-        
-        <tag>gc</tag>
          
          
            
